@@ -1,0 +1,1 @@
+# el archivo _init_.py la utilizaremos cuando querramos tomar en cuenta los archivos sobre cada fichero (core)
