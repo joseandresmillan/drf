@@ -1,10 +1,12 @@
-#Exietn dos metodos para enviar y recibir informacion 
+#Existen dos metodos para enviar y recibir informacion 
+
+#La funcion se ejecuta un paso a la vez, al terminarse de ejecutar envia un response
 
 
 #Asincrono 
 
 
-#CPU Workers  n cpu *2 + 1 
+
 
 """
 ASGI config for core project.
@@ -19,6 +21,7 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings') #Variables de ambiente y llama al archivo settings.
 
 application = get_asgi_application()
+ 

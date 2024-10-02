@@ -1,1 +1,1 @@
-# el archivo _init_.py la utilizaremos cuando querramos tomar en cuenta los archivos sobre cada fichero (core)
+# el archivo _init_.py lo utilizamos cuando queremos tomar en cuenta los archivos sobre cada carpeta de archivos (core)
