@@ -7,6 +7,8 @@ const initialState = {};
 
 const middleWare = [thunk];
 
-const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middleWare)));
+const store = createStore(rootReducer, initialState, composeWithDevTools(applyMiddleware(...middleWare))); /*Funcion que crea store */
 
 export default store;
+
+/*Este archivo crea el almacenamiento y es exportado a app.js */

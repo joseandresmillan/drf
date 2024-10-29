@@ -1,4 +1,4 @@
-import { connect  } from "react-redux";
+import { connect  } from "react-redux"; /*Conexion con redux  */
 
 function Layout({children}){
     return(
@@ -8,7 +8,7 @@ function Layout({children}){
     )
 }
 const mapStateToProps =  state => ({
-
+ // Aquí se conectan los estados del store al componente Layout  //
 })
 
 export default connect (mapStateToProps, {})(Layout)

@@ -4,8 +4,24 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        "green-button": '#E5F620',
+        "blue-button": '#000080',
+        
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    function({addUtilities}){
+      const extendeUnderline = {
+        '.underline': {
+          'textDecoration': 'underline',
+          'text-decoration-color': '#000080',
+        },
+      }
+      addUtilities(extendeUnderline)
+    }
+  ],
 }
 
