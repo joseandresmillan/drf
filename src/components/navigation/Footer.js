@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import logoNODE from 'assets/img/node.gif';
+import logoNODE from "assets/img/node.gif";
 
 const navigation = {
   solutions: [
@@ -15,11 +15,11 @@ const navigation = {
     { name: "API Status", href: "#" },
   ],
   company: [
-    { name: "About", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Jobs", href: "#" },
-    { name: "Press", href: "#" },
-    { name: "Partners", href: "#" },
+    { name: "Casos", href: "/casos" },
+    { name: "Servicios", href: "/servicios" },
+    { name: "Nosotros", href: "/nosotros" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contacto", href: "/contacto" },
   ],
   legal: [
     { name: "Claim", href: "#" },
@@ -29,7 +29,7 @@ const navigation = {
   social: [
     {
       name: "Instagram",
-      href: "#",
+      href: "https://www.instagram.com/node.ec/",
       icon: (props) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -40,7 +40,7 @@ const navigation = {
         </svg>
       ),
     },
-    {
+    /*{
       name: "Twitter",
       href: "#",
       icon: (props) => (
@@ -49,6 +49,7 @@ const navigation = {
         </svg>
       ),
     },
+    
     {
       name: "GitHub",
       href: "#",
@@ -61,7 +62,7 @@ const navigation = {
           />
         </svg>
       ),
-    },
+    },*/
   ],
 };
 
@@ -74,11 +75,7 @@ function Footer() {
       <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 xl:col-span-1">
-          <img  
-                className="" 
-                width={110}
-                height={100}
-                src={logoNODE}/>
+            <img className="" width={110} height={100} src={logoNODE} />
             <p className="text-base text-gray-500">
               Becomming part of the solution.
             </p>
@@ -87,6 +84,8 @@ function Footer() {
                 <a
                   key={item.name}
                   href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-400 hover:text-gray-500"
                 >
                   <span className="sr-only">{item.name}</span>
@@ -99,7 +98,7 @@ function Footer() {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-base font-medium text-gray-900">
-                  Ubicacion
+                  Ubicación
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.solutions.map((item) => (
@@ -115,7 +114,9 @@ function Footer() {
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
-                <h3 className="text-base font-medium text-gray-900">Contacto</h3>
+                <h3 className="text-base font-medium text-gray-900">
+                  Contacto
+                </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
@@ -132,7 +133,9 @@ function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-base font-medium text-gray-900">Servicios</h3>
+                <h3 className="text-base font-medium text-gray-900">
+                  Compañia
+                </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
@@ -147,7 +150,9 @@ function Footer() {
                 </ul>
               </div>
               <div className="mt-12 md:mt-0">
-                <h3 className="text-base font-medium text-gray-900">Company</h3>
+                <h3 className="text-base font-medium text-gray-900">
+                  Servicios
+                </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
