@@ -7,8 +7,13 @@ module.exports = {
     extend: {
       colors:{
         "green-button": '#E5F620',
-        "blue-button": '#000080',
+        "blue-button": '#155799',
+        "node-text":"#E5F620",
         
+        
+      },
+      backgroundImage:{
+        'header-background': "url('assets/img/header3-bg.jpg')",
       }
     },
   },

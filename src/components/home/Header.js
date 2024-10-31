@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter";
 function Header(){
     return(
         <main>
-        <div className="relative px-6 lg:px-8">
+        <div className="relative px-6 lg:px-8 bg-header-background bg-cover bg-center">
           <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
             <div>
               <div className="hidden sm:mb-8 sm:flex sm:justify-center">
@@ -16,12 +18,35 @@ function Header(){
                 </div>
               </div>
               <div>
-                <h1 className="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl">
-                  Data to enrich your online business
+                <h1 className="text-4xl text-node-text font-bold tracking-tight sm:text-center sm:text-6xl">
+                   <Typewriter
+                        words={['Transformación Digital','IoT', 'Fintech', 'AI']}
+                        
+                        loop={0}
+                        cursor
+                        cursorColor="white"
+                        cursorStyle='_'
+                        typeSpeed={70}
+                        deleteSpeed={60}
+                        delaySpeed={1000}
+                        //onLoopDone={handleDone}
+                        //onType={handleType}
+                    />
                 </h1>
+                <ul className="flex gap-8">
+                  <li className="inline-flex">
+                    <Link to = "/services">
+                    Item 1
+                    </Link>
+                  </li>
+                  <li className="inline-flex">
+                  <Link to = "/services">
+                    Item 2
+                    </Link>
+                  </li>
+                </ul>
                 <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt
-                  amet fugiat veniam occaecat fugiat aliqua.
+                  
                 </p>
                 <div className="mt-8 flex gap-x-4 sm:justify-center">
                   <a
