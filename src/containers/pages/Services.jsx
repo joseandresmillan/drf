@@ -6,7 +6,7 @@ function Services(){
     return(
         <Layout> 
             <Navbar/>
-            <h1>Services</h1>
+            <div>Services</div>
             <Footer/>
         </Layout> 
     );
