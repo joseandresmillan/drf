@@ -6,17 +6,6 @@ function Header(){
         <div className="relative px-6 lg:px-8 bg-header-background bg-cover bg-center">
           <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
             <div>
-              <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                <div className="relative overflow-hidden rounded-full py-1.5 px-4 text-sm leading-6 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                  <span className="text-gray-600">
-                    Announcing our next round of funding.{' '}
-                    <a href="#" className="font-semibold text-indigo-600">
-                      <span className="absolute inset-0" aria-hidden="true" />
-                      Read more <span aria-hidden="true">&rarr;</span>
-                    </a>
-                  </span>
-                </div>
-              </div>
               <div>
                 <h1 className="text-4xl text-node-text font-bold tracking-tight sm:text-center sm:text-6xl">
                    <Typewriter
@@ -33,41 +22,28 @@ function Header(){
                         //onType={handleType}
                     />
                 </h1>
-                <ul className="flex gap-8">
-                  <li className="inline-flex">
-                    <Link to = "/services">
+                <ul className="flex gap-8 items-center justify-center py-12" >
+                  <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out ">
+                    <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
                     Item 1
                     </Link>
                   </li>
-                  <li className="inline-flex">
-                  <Link to = "/services">
+                  <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out">
+                  <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
                     Item 2
                     </Link>
                   </li>
+                  <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out">
+                  <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
+                    Item 3
+                    </Link>
+                  </li>
+                  <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out">
+                  <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
+                    Item 4
+                    </Link>
+                  </li>
                 </ul>
-                <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
-                  
-                </p>
-                <div className="mt-8 flex gap-x-4 sm:justify-center">
-                  <a
-                    href="#"
-                    className="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700"
-                  >
-                    Get started
-                    <span className="text-indigo-200" aria-hidden="true">
-                      &rarr;
-                    </span>
-                  </a>
-                  <a
-                    href="#"
-                    className="inline-block rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
-                  >
-                    Live demo
-                    <span className="text-gray-400" aria-hidden="true">
-                      &rarr;
-                    </span>
-                  </a>
-                </div>
               </div>
               <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
                 <svg
