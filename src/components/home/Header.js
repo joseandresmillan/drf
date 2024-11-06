@@ -7,16 +7,16 @@ function Header(){
           <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
             <div>
               <div>
-                <h1 className="text-4xl text-node-text font-bold tracking-tight sm:text-center sm:text-6xl">
+                <h1 className="text-4xl text-node-text font-sora tracking-tight sm:text-center sm:text-6xl">
                    <Typewriter
-                        words={['Transformación Digital','IoT', 'Fintech', 'AI']}
+                        words={['Transformación Digital','IoT', 'Agricultura Inteligente', 'Inteligencia Artificial', 'Construcción Inteligente',]}
                         
                         loop={0}
                         cursor
                         cursorColor="white"
                         cursorStyle='_'
-                        typeSpeed={70}
-                        deleteSpeed={60}
+                        typeSpeed={100}
+                        deleteSpeed={70}
                         delaySpeed={1000}
                         //onLoopDone={handleDone}
                         //onType={handleType}
@@ -24,22 +24,22 @@ function Header(){
                 </h1>
                 <ul className="flex gap-8 items-center justify-center py-12" >
                   <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out ">
-                    <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
+                    <Link to = "/servicios" className="mt-6 text-lg font-sora font-thin leading-8 text-node-text sm:text-center">
                     Item 1
                     </Link>
                   </li>
                   <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out">
-                  <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
+                  <Link to = "/servicios" className="mt-6 text-lg font-sora font-thin leading-8 text-node-text sm:text-center">
                     Item 2
                     </Link>
                   </li>
                   <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out">
-                  <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
+                  <Link to = "/servicios" className="mt-6 text-lg font-sora font-thin leading-8 text-node-text sm:text-center">
                     Item 3
                     </Link>
                   </li>
                   <li className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out">
-                  <Link to = "/servicios" className="mt-6 text-lg font-medium leading-8 text-gray-900 sm:text-center">
+                  <Link to = "/servicios" className="mt-6 text-lg font-sora font-thin leading-8 text-node-text sm:text-center">
                     Item 4
                     </Link>
                   </li>
