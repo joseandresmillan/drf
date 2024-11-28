@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import logoNODE from "assets/img/node.gif";
+import logoNODE from "assets/img/node-blue.gif";
 
 const navigation = {
   solutions: [
-    { name: "", href: "#" },
+    { name: "Guayaquil , Ecuador", href: "#" },
     { name: "", href: "#" },
     { name: "", href: "#" },
     { name: "", href: "#" },
@@ -19,7 +19,7 @@ const navigation = {
     { name: "Servicios", href: "/servicios" },
     { name: "Nosotros", href: "/nosotros" },
     { name: "Blog", href: "/blog" },
-    { name: "Contacto", href: "/contacto" },
+    
   ],
   legal: [
     { name: "Claim", href: "#" },

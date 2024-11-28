@@ -1,1 +1,1 @@
-# 1. Agencia de Marketing Digital Node.ec       
+Node.ec es una empresa tecnológica dedicada a ofrecer soluciones innovadoras que integran tecnologías avanzadas como Web3, visión por computadora (CV), y software de automatización. Nuestro objetivo es conectar nodos –personas, empresas y tecnologías– para crear redes inteligentes que impulsen la eficiencia y el desarrollo sostenible.
