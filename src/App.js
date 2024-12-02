@@ -7,6 +7,7 @@ import Services from "containers/pages/Services";
 import About from "containers/pages/About";
 import Blog from "containers/pages/Blog";
 import Contact from "containers/pages/Contact";
+import ApodPage from "containers/pages/ApodPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/nosotros" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/apod" element={<ApodPage />} /> 
           <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>

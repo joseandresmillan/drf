@@ -1,5 +1,5 @@
 django==4.2.16
-django-environ==0.11.2 #Nos permite ocultar las llaves de la aplicacion, utilizando una variable de entorno o enviorment variable
+django-environ==0.11.2 #Nos permite ocultar las llaves de la aplicacion, utilizando una variable de entorno
 django-cors-headers==4.4.0#Permitir la comunicacion entre el back y el front
 djangorestframework==3.15.2#Nos permite crear apis 
 pillow==10.4.0#Nos permite trabajar con imagenes
