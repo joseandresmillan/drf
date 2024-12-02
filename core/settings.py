@@ -2,7 +2,7 @@
 from pathlib import Path
 
 import os #manejo de archvios en el proyecto
-import environ #Liberiar de django
+import environ #Libreria de django
 
 env = environ.Env()
 environ.Env.read_env()  #La funcion activa environ y le pasa el archivo env para poder ser usada
@@ -15,16 +15,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent #La variable BASE_DIR  hace re
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY') #Funcion para traer la variable definida en .env
+SECRET_KEY = os.environ.get('SECRET_KEY') #Funcion para traer de la carpeta de archivos la variable definida en .env
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') #Funcion para traer la variable definida en .env 
+DEBUG = os.environ.get('DEBUG') #Funcion para traer de la carpeta de archivos la variable definida en .env 
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV') #Funcion para traer la variable definida en .env y como DEBUG se encuntra en TRUE entonces todos los hosts son permitidos
 
 
 # Application definition
 
+#Aplicaciones pre instaladas por django
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,7 +33,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-] #Aplicaciones pre instaladas con django
+] 
 
 PROJECT_APPS = [
      

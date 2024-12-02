@@ -19,13 +19,13 @@ const navigation = {
     { name: "Servicios", href: "/servicios" },
     { name: "Nosotros", href: "/nosotros" },
     { name: "Blog", href: "/blog" },
-    
   ],
   legal: [
     { name: "Claim", href: "#" },
     { name: "Privacy", href: "#" },
     { name: "Terms", href: "#" },
   ],
+  apod: [{ name: "Astronomy Picture of the Day", href: "/apod" }],
   social: [
     {
       name: "Instagram",
@@ -72,7 +72,7 @@ function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+      <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-8 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 xl:col-span-1">
             <img className="" width={110} height={100} src={logoNODE} />
@@ -155,6 +155,21 @@ function Footer() {
                 </h3>
                 <ul role="list" className="mt-4 space-y-4">
                   {navigation.legal.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-base text-gray-500 hover:text-gray-900"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-12 md:mt-0">
+                <h3 className="text-base font-medium text-gray-900">APOD</h3>
+                <ul role="list" className="mt-4">
+                  {navigation.apod.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
