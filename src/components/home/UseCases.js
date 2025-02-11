@@ -4,6 +4,7 @@ import biopay from "assets/img/biopay.png";
 import { BsPersonFill } from "react-icons/bs";
 
 const posts = [
+  
   {
     title: "Detección de Plagas con Visión por Computadora",
     href: "/casos",
@@ -32,34 +33,35 @@ const posts = [
     imageUrl: sleepcv,
     readingTime: "5 min",
     author: {
-      name: "Ana Torres",
+      name: "Andrés Millán",
       href: "#",
       imageUrl:"",
       icon: BsPersonFill,
     },
   },
   {
-    title: "Sistemas de pago biometricos",
+    title: "Conteo de cajas utilizando vision por computadora",
     href: "/casos",
     category: { name: "Solucion para Retail", href: "/servicios" },
     description:
-      "Pago seguro y rápido a través de reconocimiento facial, eliminando la necesidad de contacto físico y mejorando la experiencia del cliente con tecnología de vanguardia.",
+      ".",
     date: "Sept 30, 2024",
     datetime: "2024-09-30",
     imageUrl: biopay,
     readingTime: "8 min",
     author: {
-      name: "Carlos Mendoza",
+      name: "Andrés Millán",
       href: "#",
       imageUrl: "",
       icon: BsPersonFill,
     },
   },
+
 ];
 
 export default function UseCases() {
   return (
-    <div className="relative bg-gray-50 px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28">
+    <div className="relative bg-white px-4 pt-32 pb-20 sm:px-6 lg:px-8 lg:pt-36 lg:pb-28">
       <div className="absolute inset-0">
         <div className="h-1/3 bg-white sm:h-2/3" />
       </div>

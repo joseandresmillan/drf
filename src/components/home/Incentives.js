@@ -26,12 +26,12 @@ const incentives = [
 export default function Incentives() {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-24 sm:px-2 sm:py-32 lg:px-4">
+      <div className="mx-auto max-w-7xl py-20 sm:px-2 sm:py-16 lg:px-4">
         <div className="mx-auto max-w-2xl px-4 lg:max-w-none">
           <div className="max-w-3xl">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900">¿Por qué elegir Node.ec?</h2>
             <p className="mt-4 text-lg text-gray-500">
-            Te ayudamos a transformar tu negocio con soluciones innovadoras en IoT, IA, sistemas embebidos y más.
+           
             </p>
           </div>
 
