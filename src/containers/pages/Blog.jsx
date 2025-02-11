@@ -1,12 +1,13 @@
 import Navbar from "components/navigation/Navbar"
 import Footer from "components/navigation/Footer"
 import Layout from "hocs/layouts/Layout" /*Esqueleto de la pagina*/
+import BlogPage from "components/blog/BlogPage";
 
 function Blog(){
     return(
         <Layout> 
             <Navbar/>
-            <h1>Blog</h1>
+            <BlogPage/>
             <Footer/>
         </Layout> 
     );

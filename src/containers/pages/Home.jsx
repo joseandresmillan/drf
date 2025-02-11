@@ -13,17 +13,15 @@ function Home() {
         <Header
           words={[
             "Transformación Digital",
-            "IoT",
-            "Sistemas Embebidos",
-            "Automatización de Hogares",
-            "WEB3"
+            "Computer Vision",
+            "Industria 4.0",
           ]}
           links={[
             { label: "Transformación Digital", path: "/servicios" },
-            { label: "IoT", path: "/servicios" },
-            { label: "Sistemas Embebidos", path: "/servicios" },
-            { label: "Automatización de Hogares", path: "/servicios" },
-            { label: "WEB3", path: "/servicios" },
+            { label: "Computer Vision", path: "/servicios"},
+            { label: "Industria 4.0", path: "/servicios" },
+            
+            
           ]}
           backgroundClass="bg-header-background"
         />

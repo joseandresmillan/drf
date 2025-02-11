@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ApodPage() {
   const [imageData, setImageData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(process.env.REACT_APP_NASA_API_KEY);
@@ -34,6 +36,11 @@ function ApodPage() {
       <header className="py-6">
         <h1 className="text-3xl font-bold">Astronomy Picture of the Day</h1>
       </header>
+      <button
+          onClick={() => navigate('/')}
+          className="absolute top-4 left-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Volver al inicio
+      </button>
       <main className="flex flex-col items-center max-w-4xl px-4">
         {imageData.media_type === 'image' ? (
           <img
