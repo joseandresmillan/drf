@@ -76,6 +76,14 @@ function Navbar() {
             >
               Contacto
             </NavLink>
+            <NavLink
+              to="/pixelation-test"
+              className={`text-lg inline-flex font-sora leading-6 transition duration-300 ease-in-out hover:underline hover:underline-blue-button mx-4 ${
+                isScrolled ? "text-blue-button" : "text-node-text"
+              }`}
+            >
+              Pixelation Test
+            </NavLink>
             <Link
               to="/contacto"
               type="button"

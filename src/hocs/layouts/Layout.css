@@ -1,0 +1,103 @@
+/* Layout principal con efectos modernos */
+.layout-container {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.layout-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.layout-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Patrón de fondo sutil */
+.bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(79, 172, 254, 0.02) 0%, transparent 70%);
+  animation: patternFloat 30s ease-in-out infinite;
+}
+
+@keyframes patternFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(20px, -20px) scale(1.05);
+  }
+}
+
+/* Partículas flotantes */
+.particles-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 20px 30px, rgba(102, 126, 234, 0.2), transparent),
+    radial-gradient(1px 1px at 40px 70px, rgba(118, 75, 162, 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(79, 172, 254, 0.2), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(245, 87, 108, 0.2), transparent),
+    radial-gradient(1px 1px at 160px 120px, rgba(16, 185, 129, 0.2), transparent);
+  background-repeat: repeat;
+  background-size: 200px 150px;
+  animation: particlesMove 40s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes particlesMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-200px, -150px);
+  }
+}
+
+/* Efectos responsivos */
+@media (max-width: 768px) {
+  .particles-bg {
+    background-size: 150px 100px;
+    animation-duration: 30s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-pattern,
+  .particles-bg {
+    animation: none;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .layout-container {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  }
+  
+  .bg-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(79, 172, 254, 0.05) 0%, transparent 70%);
+  }
+}
