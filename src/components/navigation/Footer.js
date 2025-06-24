@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import logoNODE from "assets/img/node-blue.gif";
+import logoNODE from "assets/images/node-blue.gif";
 
 const navigation = {
   solutions: [
