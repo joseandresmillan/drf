@@ -1,6 +1,6 @@
-import bananacv from "assets/img/bananacv.jpg";
-import sleepcv from "assets/img/somnolenciacv.png";
-import biopay from "assets/img/biopay.png";
+import bananacv from "assets/images/bananacv.jpg";
+import sleepcv from "assets/images/somnolenciacv.png";
+import biopay from "assets/images/biopay.png";
 import { BsPersonFill } from "react-icons/bs";
 
 const posts = [

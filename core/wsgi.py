@@ -1,10 +1,5 @@
 
 '''WEB SERVER GATEWAY INTERFACE'''
-
-
-
-
-
 '''Si el primer request toma mas tiempo de lo esperado al momento de ejecutar la funcion, salta al siguiente request y espera que se 
 termine de ejecutar el primero 
 '''

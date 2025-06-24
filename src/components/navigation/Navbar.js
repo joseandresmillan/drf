@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import logoNODE from "assets/img/node-blue.gif";
+import logoNODE from "assets/images/node-blue.gif";
 import { useState, useEffect } from "react";
 import PuffLoader from "react-spinners/PuffLoader";
 

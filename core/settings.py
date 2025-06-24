@@ -1,31 +1,42 @@
 
 from pathlib import Path
+import os
+import environ
 
-import os #manejo de archvios en el proyecto
-import environ #Libreria de django
-
-env = environ.Env()
-environ.Env.read_env()  #La funcion activa environ y le pasa el archivo env para poder ser usada
+# Initialize environment variables
+env = environ.Env(
+    # Set casting and default values
+    DEBUG=(bool, False),
+    ALLOWED_HOSTS_DEV=(list, ['localhost', '127.0.0.1']),
+    ALLOWED_HOSTS_DEPLOY=(list, []),
+    CORS_ORIGIN_WHITELIST_DEV=(str, 'http://localhost:3000'),
+    CORS_ORIGIN_WHITELIST_DEPLOY=(str, ''),
+    CSRF_TRUSTED_ORIGINS_DEV=(str, 'http://localhost:3000'),
+    CSRF_TRUSTED_ORIGINS_DEPLOY=(str, ''),
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent #La variable BASE_DIR  hace referencia a la carpeta principal de todo el proyecto
+BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Take environment variables from .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY') #Funcion para traer de la carpeta de archivos la variable definida en .env
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG') #Funcion para traer de la carpeta de archivos la variable definida en .env 
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV') #Funcion para traer la variable definida en .env y como DEBUG se encuntra en TRUE entonces todos los hosts son permitidos
+# Allowed hosts
+ALLOWED_HOSTS = env('ALLOWED_HOSTS_DEV') if env('DEBUG') else env('ALLOWED_HOSTS_DEPLOY')
 
 
 # Application definition
 
-#Aplicaciones pre instaladas por django
+# Aplicaciones pre instaladas por Django
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -35,37 +46,21 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ] 
 
+# Aplicaciones del proyecto
 PROJECT_APPS = [
-     
+    # Aquí agregarás tus apps personalizadas
 ]
 
+# Aplicaciones de terceros
 THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
-    'ckeditor',
-    'ckeditor_uploader',
-
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
-#CONFIGURACION PARA CKEDITOR TRAIDA DESDE LA DOCUMENTACION DE PIPY
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source']
-        ],
-        'autoParagraph':False
-    }
-}
-CKEDITOR_UPLOAD_PATH = "/media/" #Path a donde se subiran los archivos 
-
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # before django.middleware.common.CommonMiddleware
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,7 +75,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC-5'
+TIME_ZONE = 'America/Bogota'  # Timezone correcto para Colombia (UTC-5)
 
 USE_I18N = True
 
@@ -141,16 +136,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
+# Additional locations of static files
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'build/static'),
 ]
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
@@ -158,26 +155,65 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Django REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-       'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 }
 
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEV').split(',') if env('DEBUG') else env('CORS_ORIGIN_WHITELIST_DEPLOY').split(',')
 
-CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEV')
-CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEV') 
+CORS_ALLOW_CREDENTIALS = True
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# CSRF Configuration
+CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEV').split(',') if env('DEBUG') else env('CSRF_TRUSTED_ORIGINS_DEPLOY').split(',')
 
+# Email Backend (for development)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-if not DEBUG : 
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEPLOY',) 
-    CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
-    CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY') 
-
-    DATABASES = {
-        'default': env.db('DATABASE_URL'),
-    }
-    DATABASES['default']['ATOMIC_REQUESTS'] = True  #Evitar los duplicados
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'django.log'),
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
 

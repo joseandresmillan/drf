@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/django,react,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,react,python
 
+### Environment Variables ###
+.env
+.env.local
+.env.*.local
+
 ### Django ###
 *.log
 *.pot
