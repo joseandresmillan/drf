@@ -26,7 +26,7 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - redis_data:/data
     networks:
@@ -37,8 +37,8 @@ services:
     image: python:3.11-slim
     command: >
       sh -c "
-        pip install mcp-server-github &&
-        python -m mcp_server_github
+        pip install git+https://github.com/microsoft/mcp-server-github.git &&
+        python -m mcp_server_github --host 0.0.0.0 --port 3001
       "
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
@@ -52,11 +52,12 @@ services:
     image: python:3.11-slim
     command: >
       sh -c "
-        pip install mcp-server-filesystem &&
-        python -m mcp_server_filesystem /app/workspace
+        pip install git+https://github.com/microsoft/mcp-server-filesystem.git &&
+        python -m mcp_server_filesystem --host 0.0.0.0 --port 3002 --root /app/workspace
       "
     volumes:
       - ./workspace:/app/workspace
+      - .:/app/project:ro
     ports:
       - "3002:3002"
     networks:

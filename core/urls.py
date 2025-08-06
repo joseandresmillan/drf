@@ -40,11 +40,11 @@ if settings.DEBUG:
         document_root=settings.MEDIA_ROOT
     )
 
-# React SPA - Catch-all pattern
-# IMPORTANTE: Esto debe ir al final para no interceptar las rutas de la API
+# React SPA - Catch-all pattern específico
+# IMPORTANTE: Excluir rutas de API y admin del catch-all
 urlpatterns += [
     re_path(
-        r'^.*$', 
+        r'^(?!admin|api|static|media).*$', 
         TemplateView.as_view(template_name='index.html'), 
         name='react-app'
     ),

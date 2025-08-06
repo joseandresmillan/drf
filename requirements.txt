@@ -1,21 +1,19 @@
 django==4.2.16
-django-environ==0.11.2 #Nos permite ocultar las llaves de la aplicacion, utilizando una variable de entorno
-python-dotenv==1.0.0 #Carga variables de entorno desde archivo .env
-django-cors-headers==4.4.0#Permitir la comunicacion entre el back y el front
-djangorestframework==3.15.2#Nos permite crear apis 
-pillow==10.4.0#Nos permite trabajar con imagenes
-django-storages==1.14.4#Guardar las imagenes en aws
-django-ckeditor==6.7.1#Estlizar textos
-psycopg2==2.9.9#Trabajar con la base postgreSQL
+django-environ==0.11.2 # Nos permite ocultar las llaves de la aplicacion, utilizando una variable de entorno
+python-dotenv==1.0.0 # Carga variables de entorno desde archivo .env
+django-cors-headers==4.4.0 # Permitir la comunicacion entre el back y el front
+djangorestframework==3.15.2 # Nos permite crear apis 
+pillow==10.4.0 # Nos permite trabajar con imagenes
+django-storages==1.14.4 # Guardar las imagenes en aws
+django-ckeditor==6.7.1 # Estlizar textos
+psycopg2-binary==2.9.9 # Trabajar con la base postgreSQL
 
-# Servidores MCP (Model Context Protocol)
-mcp-server-time>=0.1.0 #Servidor MCP para manejo de tiempo y zonas horarias
-mcp-server-github>=0.1.0 #Servidor MCP para integración con GitHub
-mcp-server-filesystem>=0.1.0 #Servidor MCP para manejo de sistema de archivos
-mcp-server-web-search>=0.1.0 #Servidor MCP para búsquedas web
+# Servidores MCP (Model Context Protocol) - versiones específicas
+# Nota: Solo instalamos los que están disponibles en PyPI
+mcp-server-time # Servidor MCP para manejo de tiempo y zonas horarias
 
 # Dependencias adicionales para Docker
-redis>=4.5.0 #Cache y manejo de sesiones
-gunicorn>=21.2.0 #Servidor WSGI para producción
-whitenoise>=6.6.0 #Servir archivos estáticos en producción
+redis>=4.5.0 # Cache y manejo de sesiones
+gunicorn>=21.2.0 # Servidor WSGI para producción
+whitenoise>=6.6.0 # Servir archivos estáticos en producción
 
