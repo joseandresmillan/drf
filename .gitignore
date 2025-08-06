@@ -285,3 +285,27 @@ sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/django,react,python
 
+### Node.ec Specific ###
+# Logs personalizados
+server_output.log
+log.log
+
+# Documentación debe ser incluida (NO ignorar)
+# docs/ <- NO agregar esta línea, queremos que docs/ se incluya
+
+# Docker específico
+.dockerignore
+docker-compose.override.yml
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Archivos temporales de Node.ec
+temp/
+tmp/
+*.tmp
+
+# Markdown files
+*.md
+
