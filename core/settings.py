@@ -62,6 +62,7 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Para servir archivos estáticos
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -142,8 +143,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Additional locations of static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'build/static'),
+    # Comentamos build/static ya que no existe en este proyecto
+    # os.path.join(BASE_DIR, 'build/static'),
 ]
+
+# Configuración adicional para producción
+if not DEBUG:
+    # Configurar whitenoise para servir archivos estáticos
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files
 MEDIA_URL = '/media/'
@@ -167,15 +174,19 @@ REST_FRAMEWORK = {
 }
 
 # CORS Configuration
-CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEV').split(',') if env('DEBUG') else env('CORS_ORIGIN_WHITELIST_DEPLOY').split(',')
-
-CORS_ALLOW_CREDENTIALS = True
-
-# CSRF Configuration
-CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEV').split(',') if env('DEBUG') else env('CSRF_TRUSTED_ORIGINS_DEPLOY').split(',')
-
-# Email Backend (for development)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if env('DEBUG'):
+    CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEV').split(',')
+    CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEV').split(',')
+else:
+    CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEPLOY').split(',')
+    CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEPLOY').split(',')
+    # Agregar configuraciones adicionales para producción
+    CORS_ALLOW_ALL_ORIGINS = False
+    CORS_ALLOW_CREDENTIALS = True
+    
+    # Configuraciones de seguridad adicionales para producción
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Logging Configuration
 LOGGING = {
