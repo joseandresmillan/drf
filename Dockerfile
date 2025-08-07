@@ -1,4 +1,25 @@
 # Dockerfile para Agencia de Marketing - Django App
+FROM node:18-slim AS frontend-builder
+
+# Establecer directorio de trabajo para React
+WORKDIR /app
+
+# Copiar package.json y package-lock.json
+COPY package*.json ./
+
+# Instalar dependencias de Node
+RUN npm ci --only=production
+
+# Copiar código fuente de React
+COPY src/ ./src/
+COPY public/ ./public/
+COPY tailwind.config.js ./
+COPY tsconfig.json ./
+
+# Construir React
+RUN npm run build
+
+# Etapa de producción con Python
 FROM python:3.11-slim
 
 # Variables de entorno
@@ -20,8 +41,11 @@ RUN apt-get update \
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar código de la aplicación
+# Copiar código de la aplicación Django
 COPY . /app/
+
+# Copiar build de React desde la etapa anterior
+COPY --from=frontend-builder /app/build /app/build
 
 # Crear directorio para archivos estáticos
 RUN mkdir -p /app/staticfiles
@@ -34,6 +58,8 @@ echo "SECRET_KEY: ${SECRET_KEY:0:10}..."\n\
 echo "DEBUG: $DEBUG"\n\
 echo "ALLOWED_HOSTS_DEPLOY: $ALLOWED_HOSTS_DEPLOY"\n\
 echo "=== VERIFICANDO ARCHIVOS BUILD ==="\n\
+echo "Contenido de build/:"\n\
+ls -la /app/build/ || echo "No existe build/"\n\
 echo "Contenido de build/static:"\n\
 ls -la /app/build/static/ || echo "No existe build/static"\n\
 echo "Contenido de build/static/media:"\n\
@@ -41,6 +67,8 @@ ls -la /app/build/static/media/ || echo "No existe build/static/media"\n\
 echo "=== EJECUTANDO COLLECTSTATIC ==="\n\
 python manage.py collectstatic --noinput --verbosity=2\n\
 echo "=== VERIFICANDO STATICFILES ==="\n\
+echo "Contenido de staticfiles/:"\n\
+ls -la /app/staticfiles/ || echo "No existe staticfiles/"\n\
 echo "Contenido de staticfiles/media:"\n\
 ls -la /app/staticfiles/media/ || echo "No existe staticfiles/media"\n\
 echo "=== INICIANDO GUNICORN ==="\n\
