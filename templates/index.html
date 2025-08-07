@@ -2,23 +2,50 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description" content="Node.ec - Industria 4.0, Visión por Computadora e IoT" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
-    <link rel="manifest" href="/manifest.json" />
     <title>NODE.EC - Industria 4.0</title>
     
     {% load static %}
-    <!-- CSS estáticos de React -->
-    <link href="{% static 'css/main.c45e9e10.css' %}" rel="stylesheet">
+    
+    <!-- CSS básico de emergencia -->
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        #root {
+            min-height: 100vh;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            font-size: 1.5rem;
+        }
+    </style>
+    
+    <!-- Intentar cargar CSS de React, pero con fallback -->
+    <link href="{% static 'css/main.bf77ca54.css' %}" rel="stylesheet" onerror="console.warn('CSS de React no encontrado')">
 </head>
 <body>
     <noscript>Necesitas habilitar JavaScript para ejecutar esta aplicación.</noscript>
-    <div id="root"></div>
+    
+    <div id="root">
+        <div class="loading">
+            🚀 Cargando NODE.EC...
+        </div>
+    </div>
     
     <!-- JavaScript estáticos de React -->
-    <script src="{% static 'js/main.0d651f57.js' %}"></script>
+    <script src="{% static 'js/main.c6b8fd0a.js' %}" onerror="console.error('Error cargando React JS')"></script>
 </body>
 </html>
