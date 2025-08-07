@@ -47,16 +47,22 @@ if settings.DEBUG:
         document_root=settings.MEDIA_ROOT
     )
 
-# React SPA - Catch-all pattern específico
-# IMPORTANTE: Excluir rutas de API y admin del catch-all
+# React SPA - Catch-all pattern
+# Servir React para todas las rutas que no sean admin, api, static, media
 urlpatterns += [
-    # Health check y test disponibles
-    # path('', views.home_view, name='home'),  # Comentamos temporalmente
+    # Rutas específicas de React para debug
+    path('image-test/', views.ReactAppView.as_view(), name='image-test'),
+    path('pixelation-test/', views.ReactAppView.as_view(), name='pixelation-test'),
+    path('casos/', views.ReactAppView.as_view(), name='casos'),
+    path('servicios/', views.ReactAppView.as_view(), name='servicios'),
+    path('nosotros/', views.ReactAppView.as_view(), name='nosotros'),
+    path('blog/', views.ReactAppView.as_view(), name='blog'),
+    path('contacto/', views.ReactAppView.as_view(), name='contacto'),
+    path('apod/', views.ReactAppView.as_view(), name='apod'),
     
-    # React app para todas las rutas (incluida la principal)
-    re_path(
-        r'^(?!admin|api|static|media|health|test).*$', 
-        views.ReactAppView.as_view(), 
-        name='react-app'
-    ),
+    # Página principal
+    path('', views.ReactAppView.as_view(), name='react-home'),
+    
+    # Catch-all para cualquier otra ruta
+    re_path(r'^.*/$', views.ReactAppView.as_view(), name='react-catchall'),
 ]
