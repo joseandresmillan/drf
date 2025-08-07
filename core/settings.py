@@ -53,7 +53,7 @@ ALLOWED_HOSTS.extend([
 
 # Agregar hosts adicionales si DEBUG está activado
 if DEBUG:
-    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', '0.0.0.0'])
+    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', '0.0.0.0', 'localhost:8000', '127.0.0.1:8000'])
 
 
 # Application definition
@@ -166,8 +166,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     # Archivos compilados de React (CSS, JS, Media)
     os.path.join(BASE_DIR, 'build/static'),
-    # Archivos estáticos de Django (admin, rest_framework, etc.)
-    os.path.join(BASE_DIR, 'static'),
+    # Solo archivos estáticos específicos de Django (no duplicar React)
+    # os.path.join(BASE_DIR, 'static'),  # Comentado para evitar duplicados
 ]
 
 # Configuración para servir archivos de media de React
@@ -177,10 +177,16 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-# Configuración adicional para producción
+# Configuración de WhiteNoise para producción
 if not DEBUG:
-    # Usar WhiteNoise simple sin compresión para evitar errores con archivos faltantes
+    # Usar WhiteNoise para servir archivos estáticos en producción
     STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+    # Configuraciones adicionales de WhiteNoise
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_AUTOREFRESH = True
+else:
+    # En desarrollo, permitir uso de finders para archivos dinámicos
+    WHITENOISE_USE_FINDERS = True
 
 # Media files
 MEDIA_URL = '/media/'

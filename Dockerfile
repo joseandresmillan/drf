@@ -39,7 +39,10 @@ ls -la /app/build/static/ || echo "No existe build/static"\n\
 echo "Contenido de build/static/media:"\n\
 ls -la /app/build/static/media/ || echo "No existe build/static/media"\n\
 echo "=== EJECUTANDO COLLECTSTATIC ==="\n\
-python manage.py collectstatic --noinput --verbosity=2 || echo "Collectstatic falló, continuando..."\n\
+python manage.py collectstatic --noinput --verbosity=2\n\
+echo "=== VERIFICANDO STATICFILES ==="\n\
+echo "Contenido de staticfiles/media:"\n\
+ls -la /app/staticfiles/media/ || echo "No existe staticfiles/media"\n\
 echo "=== INICIANDO GUNICORN ==="\n\
 echo "Ejecutando en puerto 8000..."\n\
 exec gunicorn --bind 0.0.0.0:8000 --workers 2 --timeout 120 core.wsgi:application' > /app/start.sh && \
