@@ -35,7 +35,25 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 # Allowed hosts
-ALLOWED_HOSTS = env('ALLOWED_HOSTS_DEV') if env('DEBUG') else env('ALLOWED_HOSTS_DEPLOY')
+# ALLOWED_HOSTS
+ALLOWED_HOSTS_DEPLOY = env('ALLOWED_HOSTS_DEPLOY', default='localhost,127.0.0.1')
+
+# Verificar si es una cadena o una lista
+if isinstance(ALLOWED_HOSTS_DEPLOY, str):
+    ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS_DEPLOY.split(',') if host.strip()]
+else:
+    ALLOWED_HOSTS = list(ALLOWED_HOSTS_DEPLOY)
+
+# Agregar hosts adicionales para CapRover
+ALLOWED_HOSTS.extend([
+    'node-enterprise.node.ec',  # Host de CapRover
+    'node.ec',
+    'www.node.ec'
+])
+
+# Agregar hosts adicionales si DEBUG está activado
+if DEBUG:
+    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', '0.0.0.0'])
 
 
 # Application definition
@@ -146,9 +164,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    # Solo usar archivos compilados de React para evitar conflictos
-    os.path.join(BASE_DIR, 'build/static'),  # Archivos estáticos compilados de React
-    # os.path.join(BASE_DIR, 'static'),  # Comentado para evitar duplicaciones
+    # Archivos compilados de React (CSS, JS, Media)
+    os.path.join(BASE_DIR, 'build/static'),
+    # Archivos estáticos de Django (admin, rest_framework, etc.)
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Configuración adicional para producción
