@@ -10,11 +10,18 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from . import views
 
 # URLs principales
 urlpatterns = [
     # Panel de administración de Django
     path('admin/', admin.site.urls),
+    
+    # Health check
+    path('health/', views.health_check, name='health-check'),
+    
+    # Test view
+    path('test/', views.home_view, name='test-view'),
     
     # Django REST Framework - Interfaz de autenticación
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -43,9 +50,13 @@ if settings.DEBUG:
 # React SPA - Catch-all pattern específico
 # IMPORTANTE: Excluir rutas de API y admin del catch-all
 urlpatterns += [
+    # Ruta principal temporal para debugging
+    path('', views.home_view, name='home'),
+    
+    # React app para otras rutas
     re_path(
-        r'^(?!admin|api|static|media).*$', 
-        TemplateView.as_view(template_name='index.html'), 
+        r'^(?!admin|api|static|media|health|test).*$', 
+        views.ReactAppView.as_view(), 
         name='react-app'
     ),
 ]

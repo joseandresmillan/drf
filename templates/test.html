@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>NODE.EC - Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .status {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 NODE.EC</h1>
+        <p>Industria 4.0 • Visión por Computadora • IoT</p>
+        
+        <div class="status">
+            <h2>✅ Django está funcionando</h2>
+            <p>El servidor está online y respondiendo correctamente</p>
+            <p><strong>Fecha:</strong> {{ current_time }}</p>
+        </div>
+        
+        <div class="status">
+            <h3>🔧 Estado del sistema:</h3>
+            <p>Aplicación React en proceso de deployment</p>
+            <p>Pronto estará disponible la versión completa</p>
+        </div>
+    </div>
+</body>
+</html>
