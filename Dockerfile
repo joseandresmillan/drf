@@ -23,11 +23,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiar código de la aplicación
 COPY . /app/
 
-# Recopilar archivos estáticos
-RUN python manage.py collectstatic --noinput
+# Crear script de inicio
+RUN echo '#!/bin/bash\n\
+python manage.py collectstatic --noinput\n\
+exec gunicorn --bind 0.0.0.0:8000 core.wsgi:application' > /app/start.sh && \
+    chmod +x /app/start.sh
 
 # Exponer puerto
 EXPOSE 8000
 
 # Comando por defecto
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "core.wsgi:application"]
+CMD ["/app/start.sh"]
