@@ -170,6 +170,13 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+# Configuración para servir archivos de media de React
+# En producción, estos archivos estarán en staticfiles después del collectstatic
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 # Configuración adicional para producción
 if not DEBUG:
     # Usar WhiteNoise simple sin compresión para evitar errores con archivos faltantes
