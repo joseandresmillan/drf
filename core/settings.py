@@ -153,8 +153,8 @@ STATICFILES_DIRS = [
 
 # Configuración adicional para producción
 if not DEBUG:
-    # Configurar whitenoise para servir archivos estáticos
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    # Usar WhiteNoise simple sin compresión para evitar errores con archivos faltantes
+    STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
 
 # Media files
 MEDIA_URL = '/media/'

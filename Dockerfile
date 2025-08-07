@@ -33,6 +33,11 @@ echo "Verificando variables de entorno..."\n\
 echo "SECRET_KEY: ${SECRET_KEY:0:10}..."\n\
 echo "DEBUG: $DEBUG"\n\
 echo "ALLOWED_HOSTS_DEPLOY: $ALLOWED_HOSTS_DEPLOY"\n\
+echo "=== VERIFICANDO ARCHIVOS BUILD ==="\n\
+echo "Contenido de build/static:"\n\
+ls -la /app/build/static/ || echo "No existe build/static"\n\
+echo "Contenido de build/static/media:"\n\
+ls -la /app/build/static/media/ || echo "No existe build/static/media"\n\
 echo "=== EJECUTANDO COLLECTSTATIC ==="\n\
 python manage.py collectstatic --noinput --verbosity=2 || echo "Collectstatic falló, continuando..."\n\
 echo "=== INICIANDO GUNICORN ==="\n\
