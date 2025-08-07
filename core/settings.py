@@ -142,8 +142,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    # Solo usar archivos compilados de React para evitar conflictos
     os.path.join(BASE_DIR, 'build/static'),  # Archivos estáticos compilados de React
+    # os.path.join(BASE_DIR, 'static'),  # Comentado para evitar duplicaciones
 ]
 
 # Configuración adicional para producción
