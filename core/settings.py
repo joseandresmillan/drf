@@ -7,19 +7,23 @@ import environ
 env = environ.Env(
     # Set casting and default values
     DEBUG=(bool, False),
+    SECRET_KEY=(str, 'django-insecure-fallback-key-only-for-emergency'),
     ALLOWED_HOSTS_DEV=(list, ['localhost', '127.0.0.1']),
-    ALLOWED_HOSTS_DEPLOY=(list, []),
+    ALLOWED_HOSTS_DEPLOY=(list, ['node.ec', 'www.node.ec']),
     CORS_ORIGIN_WHITELIST_DEV=(str, 'http://localhost:3000'),
-    CORS_ORIGIN_WHITELIST_DEPLOY=(str, ''),
+    CORS_ORIGIN_WHITELIST_DEPLOY=(str, 'https://node.ec,https://www.node.ec'),
     CSRF_TRUSTED_ORIGINS_DEV=(str, 'http://localhost:3000'),
-    CSRF_TRUSTED_ORIGINS_DEPLOY=(str, ''),
+    CSRF_TRUSTED_ORIGINS_DEPLOY=(str, 'https://node.ec,https://www.node.ec'),
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+try:
+    environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+except:
+    pass  # En producción puede no existir el archivo .env
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -174,19 +178,26 @@ REST_FRAMEWORK = {
 }
 
 # CORS Configuration
-if env('DEBUG'):
-    CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEV').split(',')
-    CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEV').split(',')
-else:
-    CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEPLOY').split(',')
-    CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEPLOY').split(',')
-    # Agregar configuraciones adicionales para producción
+try:
+    if env('DEBUG'):
+        CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEV').split(',')
+        CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEV').split(',')
+    else:
+        CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEPLOY').split(',')
+        CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEPLOY').split(',')
+        # Agregar configuraciones adicionales para producción
+        CORS_ALLOW_ALL_ORIGINS = False
+        CORS_ALLOW_CREDENTIALS = True
+        
+        # Configuraciones de seguridad adicionales para producción
+        SECURE_SSL_REDIRECT = True
+        SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+except:
+    # Fallback seguro si las variables no están configuradas
+    CORS_ALLOWED_ORIGINS = ['https://node.ec', 'https://www.node.ec']
+    CSRF_TRUSTED_ORIGINS = ['https://node.ec', 'https://www.node.ec']
     CORS_ALLOW_ALL_ORIGINS = False
     CORS_ALLOW_CREDENTIALS = True
-    
-    # Configuraciones de seguridad adicionales para producción
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Logging Configuration
 LOGGING = {
