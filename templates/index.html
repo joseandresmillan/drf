@@ -9,47 +9,15 @@
     
     {% load static %}
     
-    <!-- CSS básico de emergencia -->
-    <style>
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        #root {
-            min-height: 100vh;
-        }
-        
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: white;
-            font-size: 1.5rem;
-        }
-    </style>
-    
-    <!-- Intentar cargar CSS de React, pero con fallback -->
-    <link href="{% static 'css/main.bf77ca54.css' %}" rel="stylesheet" onerror="console.warn('CSS de React no encontrado')">
+    <!-- CSS de React -->
+    <link href="{% static 'css/main.bf77ca54.css' %}" rel="stylesheet">
 </head>
 <body>
     <noscript>Necesitas habilitar JavaScript para ejecutar esta aplicación.</noscript>
     
-    <div id="root">
-        <div class="loading">
-            🚀 Cargando NODE.EC...
-            <br>
-            <small style="font-size: 0.8rem; opacity: 0.8; margin-top: 10px; display: block;">
-                Ruta: {{ request.path }} | Tiempo: {{ current_time }}
-            </small>
-        </div>
-    </div>
+    <div id="root"></div>
     
-    <!-- JavaScript estáticos de React -->
-    <script src="{% static 'js/main.c6b8fd0a.js' %}" onerror="console.error('Error cargando React JS')"></script>
+    <!-- JavaScript de React -->
+    <script src="{% static 'js/main.c6b8fd0a.js' %}"></script>
 </body>
 </html>
