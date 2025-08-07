@@ -50,10 +50,10 @@ if settings.DEBUG:
 # React SPA - Catch-all pattern específico
 # IMPORTANTE: Excluir rutas de API y admin del catch-all
 urlpatterns += [
-    # Ruta principal temporal para debugging
-    path('', views.home_view, name='home'),
+    # Health check y test disponibles
+    # path('', views.home_view, name='home'),  # Comentamos temporalmente
     
-    # React app para otras rutas
+    # React app para todas las rutas (incluida la principal)
     re_path(
         r'^(?!admin|api|static|media|health|test).*$', 
         views.ReactAppView.as_view(), 
