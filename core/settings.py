@@ -183,11 +183,19 @@ STATICFILES_FINDERS = [
 
 # Configuración de WhiteNoise para producción
 if not DEBUG:
-    # Usar WhiteNoise para servir archivos estáticos en producción
-    STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
+    # Usar WhiteNoise con compresión y MIME types correctos
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     # Configuraciones adicionales de WhiteNoise
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
+    # Configurar MIME types para archivos estáticos
+    WHITENOISE_MIMETYPES = {
+        '.js': 'application/javascript',
+        '.css': 'text/css',
+        '.svg': 'image/svg+xml',
+        '.woff': 'font/woff',
+        '.woff2': 'font/woff2',
+    }
 else:
     # En desarrollo, permitir uso de finders para archivos dinámicos
     WHITENOISE_USE_FINDERS = True
