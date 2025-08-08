@@ -75,7 +75,13 @@ function Footer() {
       <div className="mx-auto max-w-full py-12 px-4 sm:px-6 lg:py-8 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 xl:col-span-1">
-            <img className="" width={110} height={100} src={logoNODE} />
+            <img 
+              className="" 
+              width={110} 
+              height={100} 
+              src={logoNODE} 
+              alt="Node.ec logo"
+            />
             <p className="text-base text-gray-500">
               Becomming part of the solution.
             </p>
@@ -100,7 +106,7 @@ function Footer() {
                 <h3 className="text-base font-medium text-gray-900">
                   Ubicación
                 </h3>
-                <ul role="list" className="mt-4 space-y-4">
+                <ul className="mt-4 space-y-4">
                   {navigation.solutions.map((item) => (
                     <li key={item.name}>
                       <a
@@ -117,7 +123,7 @@ function Footer() {
                 <h3 className="text-base font-medium text-gray-900">
                   Contacto
                 </h3>
-                <ul role="list" className="mt-4 space-y-4">
+                <ul className="mt-4 space-y-4">
                   {navigation.support.map((item) => (
                     <li key={item.name}>
                       <a
@@ -136,7 +142,7 @@ function Footer() {
                 <h3 className="text-base font-medium text-gray-900">
                   Compañia
                 </h3>
-                <ul role="list" className="mt-4 space-y-4">
+                <ul className="mt-4 space-y-4">
                   {navigation.company.map((item) => (
                     <li key={item.name}>
                       <a
@@ -153,7 +159,7 @@ function Footer() {
                 <h3 className="text-base font-medium text-gray-900">
                   Servicios
                 </h3>
-                <ul role="list" className="mt-4 space-y-4">
+                <ul className="mt-4 space-y-4">
                   {navigation.legal.map((item) => (
                     <li key={item.name}>
                       <a
@@ -168,7 +174,7 @@ function Footer() {
               </div>
               <div className="mt-12 md:mt-0">
                 <h3 className="text-base font-medium text-gray-900">APOD</h3>
-                <ul role="list" className="mt-4">
+                <ul className="mt-4">
                   {navigation.apod.map((item) => (
                     <li key={item.name}>
                       <a
