@@ -1,0 +1,56 @@
+# Dockerfile simplificado y confiable - Agencia de Marketing
+FROM node:18-alpine AS frontend-builder
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Configurar solo memoria básica (opción más confiable)
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV GENERATE_SOURCEMAP=false
+
+# Copiar archivos de configuración primero
+COPY package*.json ./
+
+# Instalar dependencias con configuración básica
+RUN npm ci --legacy-peer-deps
+
+# Copiar código fuente
+COPY src/ ./src/
+COPY public/ ./public/
+COPY tailwind.config.js ./
+COPY tsconfig.json ./
+
+# Construir aplicación
+RUN npm run build
+
+#################################################
+# Segunda etapa: Django + contenido estático
+#################################################
+FROM python:3.11-slim
+
+# Configurar directorio de trabajo
+WORKDIR /var/www
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements y instalar dependencias Python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código Django
+COPY . .
+
+# Copiar build de React desde la primera etapa
+COPY --from=frontend-builder /app/build ./build
+
+# Recopilar archivos estáticos
+RUN python manage.py collectstatic --noinput
+
+# Exponer puerto
+EXPOSE 80
+
+# Comando de inicio
+CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
