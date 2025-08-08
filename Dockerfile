@@ -1,5 +1,5 @@
 # Dockerfile para Agencia de Marketing - Django App
-FROM node:18-slim AS frontend-builder
+FROM node:18-alpine AS frontend-builder
 
 # Establecer directorio de trabajo para React
 WORKDIR /app
@@ -7,8 +7,8 @@ WORKDIR /app
 # Copiar package.json y package-lock.json
 COPY package*.json ./
 
-# Instalar dependencias de Node
-RUN npm ci --only=production
+# Instalar dependencias de Node con resolución de conflictos
+RUN npm ci --legacy-peer-deps
 
 # Copiar código fuente de React
 COPY src/ ./src/
