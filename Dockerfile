@@ -85,10 +85,16 @@ if [ -d "/app/staticfiles/media" ]; then\n\
     echo "✓ staticfiles/media creado:"\n\
     ls -la /app/staticfiles/media/\n\
 fi\n\
+echo "=== VARIABLES DE ENTORNO ==="\n\
+echo "DEBUG: $DEBUG"\n\
+echo "ALLOWED_HOSTS_DEPLOY: $ALLOWED_HOSTS_DEPLOY"\n\
+echo "PORT: 3000"\n\
+echo "=== VERIFICANDO DJANGO ==="\n\
+python manage.py check --deploy\n\
 echo "=== INICIANDO GUNICORN ==="\n\
-exec gunicorn core.wsgi:application --bind 0.0.0.0:80 --workers 2\n\
+exec gunicorn core.wsgi:application --bind 0.0.0.0:3000 --workers 2 --timeout 120 --log-level info\n\
 ' > /app/start.sh && chmod +x /app/start.sh
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["/app/start.sh"]

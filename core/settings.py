@@ -48,8 +48,12 @@ else:
 ALLOWED_HOSTS.extend([
     'node-enterprise.node.ec',  # Host de CapRover
     'node.ec',
-    'www.node.ec'
+    'www.node.ec',
+    'localhost',
+    '127.0.0.1',
+    '*'  # Temporalmente para debugging
 ])
+
 
 # Agregar hosts adicionales si DEBUG está activado
 if DEBUG:
