@@ -1,49 +1,53 @@
-# Dockerfile optimizado para memoria - Agencia de Marketing
+# Dockerfile optimizado para droplet de 2GB RAM
 FROM node:18-alpine AS frontend-builder
 
-# Establecer directorio de trabajo
 WORKDIR /app
 
-# Configurar variables de ambiente para optimizar memoria
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# Configurar memoria para 2GB RAM (usar 1.5GB para el build)
+ENV NODE_OPTIONS="--max-old-space-size=1536"
 ENV GENERATE_SOURCEMAP=false
 ENV INLINE_RUNTIME_CHUNK=false
+ENV CI=true
 
-# Instalar dependencias del sistema necesarias
-RUN apk add --no-cache git
+# Información del proceso
+RUN echo "=== INICIANDO BUILD DE REACT ===" && \
+    echo "Memoria disponible: $(free -h)" && \
+    echo "NODE_OPTIONS: $NODE_OPTIONS"
 
-# Copiar archivos de configuración
+# Copiar package files
 COPY package*.json ./
-COPY tailwind.config.js ./
-COPY tsconfig.json ./
 
-# Instalar dependencias con optimizaciones
-RUN echo "📦 Installing Node.js dependencies..." && \
-    npm ci --legacy-peer-deps --no-audit --prefer-offline --silent
-
-# Limpiar cache de npm para liberar memoria
-RUN echo "🧹 Cleaning npm cache..." && \
+# Instalar dependencias
+RUN echo "Instalando dependencias..." && \
+    npm ci --legacy-peer-deps --silent && \
+    echo "Limpiando cache..." && \
     npm cache clean --force
 
 # Copiar código fuente
-COPY src/ ./src/
 COPY public/ ./public/
+COPY src/ ./src/
+COPY tailwind.config.js tsconfig.json ./
 
-# Construir aplicación con configuraciones optimizadas
-RUN echo "🚀 Building React app with memory optimizations..." && \
-    NODE_OPTIONS="--max-old-space-size=4096" npm run build && \
-    echo "✅ React build completed successfully!"
+# Build optimizado
+RUN echo "Iniciando build de React..." && \
+    npm run build && \
+    echo "Build completado exitosamente!" && \
+    ls -la build/static/
 
-# Verificar que build fue exitoso
-RUN ls -la build/ && echo "Build directory contents verified"
+# Verificar que las imágenes estén presentes
+RUN if [ -d "build/static/media" ]; then \
+        echo "✓ Imágenes encontradas:"; \
+        ls -la build/static/media/; \
+    else \
+        echo "⚠ No se encontraron imágenes"; \
+    fi
 
 #################################################
-# Segunda etapa: Django + contenido estático
+# Segunda etapa: Django
 #################################################
 FROM python:3.11-slim
 
-# Configurar directorio de trabajo
-WORKDIR /var/www
+WORKDIR /app
 
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
@@ -60,23 +64,31 @@ COPY . .
 # Copiar build de React desde la primera etapa
 COPY --from=frontend-builder /app/build ./build
 
-# Verificar que el build fue copiado correctamente
-RUN echo "📁 Verificando directorios copiados:" && \
-    ls -la build/ && \
-    ls -la build/static/ 2>/dev/null || echo "No static dir yet" && \
-    echo "🔍 Django files:" && \
-    ls -la manage.py core/
+# Script de inicio con verificaciones
+RUN echo '#!/bin/bash\n\
+set -e\n\
+echo "=== VERIFICANDO BUILD DE REACT ==="\n\
+if [ -d "/app/build/static" ]; then\n\
+    echo "✓ Build de React encontrado"\n\
+    if [ -d "/app/build/static/media" ]; then\n\
+        echo "✓ Imágenes encontradas:"\n\
+        ls -la /app/build/static/media/\n\
+    fi\n\
+else\n\
+    echo "❌ ERROR: Build de React no encontrado"\n\
+    exit 1\n\
+fi\n\
+echo "=== EJECUTANDO COLLECTSTATIC ==="\n\
+python manage.py collectstatic --noinput --verbosity=2\n\
+echo "=== VERIFICANDO STATICFILES ==="\n\
+if [ -d "/app/staticfiles/media" ]; then\n\
+    echo "✓ staticfiles/media creado:"\n\
+    ls -la /app/staticfiles/media/\n\
+fi\n\
+echo "=== INICIANDO GUNICORN ==="\n\
+exec gunicorn core.wsgi:application --bind 0.0.0.0:80 --workers 2\n\
+' > /app/start.sh && chmod +x /app/start.sh
 
-# Recopilar archivos estáticos
-RUN python manage.py collectstatic --noinput --verbosity=2
-
-# Verificar archivos estáticos recopilados
-RUN echo "📦 Archivos estáticos recopilados:" && \
-    ls -la staticfiles/ && \
-    ls -la staticfiles/media/ 2>/dev/null || echo "No media in staticfiles"
-
-# Exponer puerto
 EXPOSE 80
 
-# Comando de inicio
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD ["/app/start.sh"]
