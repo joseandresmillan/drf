@@ -5,7 +5,7 @@ FROM node:18-alpine AS frontend-builder
 WORKDIR /app
 
 # Configurar variables de ambiente para optimizar memoria
-ENV NODE_OPTIONS="--max-old-space-size=4096 --optimize-for-size --gc-interval=100"
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 ENV GENERATE_SOURCEMAP=false
 ENV INLINE_RUNTIME_CHUNK=false
 
@@ -18,10 +18,12 @@ COPY tailwind.config.js ./
 COPY tsconfig.json ./
 
 # Instalar dependencias con optimizaciones
-RUN npm ci --legacy-peer-deps --no-audit --prefer-offline
+RUN echo "📦 Installing Node.js dependencies..." && \
+    npm ci --legacy-peer-deps --no-audit --prefer-offline --silent
 
 # Limpiar cache de npm para liberar memoria
-RUN npm cache clean --force
+RUN echo "🧹 Cleaning npm cache..." && \
+    npm cache clean --force
 
 # Copiar código fuente
 COPY src/ ./src/
@@ -29,7 +31,7 @@ COPY public/ ./public/
 
 # Construir aplicación con configuraciones optimizadas
 RUN echo "🚀 Building React app with memory optimizations..." && \
-    npm run build && \
+    NODE_OPTIONS="--max-old-space-size=4096" npm run build && \
     echo "✅ React build completed successfully!"
 
 # Verificar que build fue exitoso
