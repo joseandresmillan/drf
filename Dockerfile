@@ -7,7 +7,7 @@ WORKDIR /app
 ENV NODE_OPTIONS="--max-old-space-size=1536"
 ENV GENERATE_SOURCEMAP=false
 ENV INLINE_RUNTIME_CHUNK=false
-ENV CI=true
+ENV CI=false
 
 # Información del proceso
 RUN echo "=== INICIANDO BUILD DE REACT ===" && \
