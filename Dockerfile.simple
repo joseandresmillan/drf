@@ -1,0 +1,73 @@
+# Dockerfile simplificado que evita npm ci
+
+# Declarar build-args de CapRover para evitar advertencias
+ARG ALLOWED_HOSTS_DEPLOY
+ARG CAPROVER_GIT_COMMIT_SHA
+ARG CORS_ORIGIN_WHITELIST_DEPLOY
+ARG CSRF_TRUSTED_ORIGINS_DEPLOY
+ARG DEBUG
+ARG SECRET_KEY
+
+FROM node:18 AS frontend-builder
+
+WORKDIR /app
+
+# Configurar memoria y variables de entorno
+ENV NODE_OPTIONS="--max-old-space-size=1200"
+ENV GENERATE_SOURCEMAP=false
+ENV INLINE_RUNTIME_CHUNK=false
+ENV CI=false
+
+# Copiar package.json (sin package-lock.json)
+COPY package.json ./
+
+# Usar npm install en lugar de npm ci
+RUN echo "=== INSTALANDO DEPENDENCIAS CON NPM INSTALL ===" && \
+    npm cache clean --force && \
+    npm install --legacy-peer-deps --no-optional && \
+    echo "Dependencias instaladas exitosamente!"
+
+# Copiar código fuente
+COPY public/ ./public/
+COPY src/ ./src/
+COPY tailwind.config.js tsconfig.json ./
+
+# Build de React
+RUN echo "=== INICIANDO BUILD DE REACT ===" && \
+    npm run build && \
+    echo "Build completado exitosamente!"
+
+#################################################
+# Segunda etapa: Django
+#################################################
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements y instalar dependencias Python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código Django
+COPY . .
+
+# Copiar build de React desde la primera etapa
+COPY --from=frontend-builder /app/build ./build
+
+# Ejecutar collectstatic y iniciar gunicorn con logging
+CMD python manage.py collectstatic --noinput && \
+    echo "Iniciando servidor Django en puerto 8080..." && \
+    gunicorn core.wsgi:application \
+    --bind 0.0.0.0:8080 \
+    --workers 2 \
+    --timeout 120 \
+    --log-level info \
+    --access-logfile - \
+    --error-logfile -
+
+EXPOSE 8080
