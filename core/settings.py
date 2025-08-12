@@ -164,10 +164,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    # Archivos compilados de React (CSS, JS, Media)
-    os.path.join(BASE_DIR, 'build/static'),
-    # Archivos del build de React (favicon, manifest, etc.)
+    # Archivos del build de React (favicon, manifest, etc.) - PRIMERO
     os.path.join(BASE_DIR, 'build'),
+    # Archivos compilados de React (CSS, JS, Media) - SEGUNDO
+    os.path.join(BASE_DIR, 'build/static'),
     # Solo archivos estáticos específicos de Django (no duplicar React)
     # os.path.join(BASE_DIR, 'static'),  # Comentado para evitar duplicados
 ]
@@ -213,17 +213,46 @@ REST_FRAMEWORK = {
     ],
 }
 
-# CORS Configuration
+# CORS Configuration - Simplificado para SPA en mismo dominio
 try:
     if env('DEBUG'):
         CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEV').split(',')
         CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEV').split(',')
     else:
+        # Para producción - SPA en el mismo dominio
         CORS_ALLOWED_ORIGINS = env('CORS_ORIGIN_WHITELIST_DEPLOY').split(',')
         CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS_DEPLOY').split(',')
-        # Agregar configuraciones adicionales para producción
+        
+        # Configuraciones para SPA - Permitir requests del mismo origen
         CORS_ALLOW_ALL_ORIGINS = False
         CORS_ALLOW_CREDENTIALS = True
+        CORS_ALLOW_SAME_ORIGIN = True
+        
+        # Para SPA, también permitir requests sin CORS para el mismo dominio
+        CORS_ALLOW_PRIVATE_NETWORK = True
+        
+        # Headers permitidos
+        CORS_ALLOW_HEADERS = [
+            'accept',
+            'accept-encoding',
+            'authorization',
+            'content-type',
+            'dnt',
+            'origin',
+            'user-agent',
+            'x-csrftoken',
+            'x-requested-with',
+        ]
+        
+        # Métodos permitidos
+        CORS_ALLOW_METHODS = [
+            'DELETE',
+            'GET',
+            'OPTIONS',
+            'PATCH',
+            'POST',
+            'PUT',
+        ]
         
         # Configuraciones de seguridad adicionales para producción
         SECURE_SSL_REDIRECT = True
@@ -234,6 +263,7 @@ except:
     CSRF_TRUSTED_ORIGINS = ['https://node.ec', 'https://www.node.ec']
     CORS_ALLOW_ALL_ORIGINS = False
     CORS_ALLOW_CREDENTIALS = True
+    CORS_ALLOW_SAME_ORIGIN = True
 
 # Logging Configuration
 LOGGING = {
