@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
+import ThreeBackground from "../three/ThreeBackground";
 
-function Header({ words, links, backgroundClass }) {
+function Header({ words, links, backgroundClass, useThreeBackground = false, showCameraControls = false }) {
   return (
     <main>
-      <div className={`relative px-6 lg:px-8 bg-cover bg-center ${backgroundClass}`}>
-        <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
-          <div>
-            <h1 className="text-4xl text-node-text font-sora tracking-tight sm:text-center sm:text-6xl whitespace-nowrap">
+      <div className={`relative px-4 sm:px-6 lg:px-8 ${useThreeBackground ? '' : `bg-cover bg-center ${backgroundClass}`}`}>
+        {useThreeBackground && <ThreeBackground showControls={showCameraControls} />}
+        <div className="mx-auto max-w-7xl pt-16 pb-40 sm:pt-20 sm:pb-48 lg:pt-24 lg:pb-56 relative z-10 pointer-events-none">
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-node-text font-sora tracking-tight font-bold leading-tight relative z-20 pointer-events-none px-4">
               <Typewriter
                 words={words}
                 loop={0}
@@ -19,25 +21,27 @@ function Header({ words, links, backgroundClass }) {
                 delaySpeed={1000}
               />
             </h1>
-            <ul className="flex gap-8 items-center justify-center py-12">
-              {links.map((link, index) => (
-                <li
-                  key={index}
-                  className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out"
-                >
-                  <Link
-                    to={link.path}
-                    className="mt-6 text-lg font-sora font-thin leading-8 text-node-text sm:text-center"
+            <div className="mt-8 sm:mt-12 relative z-20 pointer-events-none">
+              <ul className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 items-center justify-center px-4">
+                {links.map((link, index) => (
+                  <li
+                    key={index}
+                    className="inline-flex hover:underline border-transparent hover:border-blue-button transition duration-300 ease-in-out pointer-events-auto"
                   >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                    <Link
+                      to={link.path}
+                      className="text-base sm:text-lg lg:text-xl font-sora font-thin leading-relaxed text-node-text text-center pointer-events-auto px-2 py-1 rounded hover:bg-blue-button/10"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+          <div className="absolute inset-x-0 top-[calc(100%-8rem)] sm:top-[calc(100%-13rem)] lg:top-[calc(100%-30rem)] -z-10 transform-gpu overflow-hidden blur-3xl">
             <svg
-              className="relative left-[calc(50%+3rem)] h-[21.1875rem] max-w-none -translate-x-1/2 sm:left-[calc(50%+36rem)] sm:h-[42.375rem]"
+              className="relative left-[calc(50%+1rem)] sm:left-[calc(50%+3rem)] lg:left-[calc(50%+36rem)] h-[16rem] sm:h-[21.1875rem] lg:h-[42.375rem] max-w-none -translate-x-1/2"
               viewBox="0 0 1155 678"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

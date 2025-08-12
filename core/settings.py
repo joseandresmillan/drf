@@ -48,12 +48,8 @@ else:
 ALLOWED_HOSTS.extend([
     'node-enterprise.node.ec',  # Host de CapRover
     'node.ec',
-    'www.node.ec',
-    'localhost',
-    '127.0.0.1',
-    '*'  # Temporalmente para debugging
+    'www.node.ec'
 ])
-
 
 # Agregar hosts adicionales si DEBUG está activado
 if DEBUG:
@@ -183,21 +179,11 @@ STATICFILES_FINDERS = [
 
 # Configuración de WhiteNoise para producción
 if not DEBUG:
-    # Usar WhiteNoise simple (sin manifest) para archivos ya hasheados por React
+    # Usar WhiteNoise para servir archivos estáticos en producción
     STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
     # Configuraciones adicionales de WhiteNoise
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
-    # Configurar MIME types para archivos estáticos
-    WHITENOISE_MIMETYPES = {
-        '.js': 'application/javascript',
-        '.css': 'text/css',
-        '.svg': 'image/svg+xml',
-        '.woff': 'font/woff',
-        '.woff2': 'font/woff2',
-    }
-    # Configurar max age para cache (ya que React usa hashes)
-    WHITENOISE_MAX_AGE = 31536000  # 1 año
 else:
     # En desarrollo, permitir uso de finders para archivos dinámicos
     WHITENOISE_USE_FINDERS = True

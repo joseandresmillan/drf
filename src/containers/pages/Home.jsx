@@ -6,6 +6,9 @@ import Incentives from "components/home/Incentives";
 import UseCases from "components/home/UseCases";
 
 function Home() {
+  // Cambia esto a false si quieres volver a la imagen estática
+  const useThreeJS = true;
+
   return (
     <Layout>
       <Navbar />
@@ -23,7 +26,9 @@ function Home() {
             
             
           ]}
-          backgroundClass="bg-header-background"
+          useThreeBackground={useThreeJS}
+          showCameraControls={false}
+          backgroundClass={useThreeJS ? "" : "bg-header-background"}
         />
         <Incentives />
         <UseCases />
