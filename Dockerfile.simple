@@ -61,6 +61,7 @@ COPY --from=frontend-builder /app/build ./build
 
 # Ejecutar collectstatic y iniciar gunicorn con logging
 CMD python manage.py collectstatic --noinput && \
+    echo "=== INICIANDO GUNICORN ===" && \
     echo "Iniciando servidor Django en puerto 8080..." && \
     gunicorn core.wsgi:application \
     --bind 0.0.0.0:8080 \
