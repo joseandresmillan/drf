@@ -1,4 +1,13 @@
 # Dockerfile optimizado para droplet de 2GB RAM
+
+# Declarar build-args de CapRover para evitar advertencias
+ARG ALLOWED_HOSTS_DEPLOY
+ARG CAPROVER_GIT_COMMIT_SHA
+ARG CORS_ORIGIN_WHITELIST_DEPLOY
+ARG CSRF_TRUSTED_ORIGINS_DEPLOY
+ARG DEBUG
+ARG SECRET_KEY
+
 FROM node:18 AS frontend-builder
 
 WORKDIR /app
@@ -91,10 +100,16 @@ if [ -d "/app/staticfiles/media" ]; then\n\
     echo "✓ staticfiles/media creado:"\n\
     ls -la /app/staticfiles/media/\n\
 fi\n\
-echo "=== INICIANDO GUNICORN ==="\n\
-exec gunicorn core.wsgi:application --bind 0.0.0.0:80 --workers 2\n\
+echo "=== INICIANDO GUNICORN EN PUERTO 8080 ==="\n\
+exec gunicorn core.wsgi:application \\\n\
+    --bind 0.0.0.0:8080 \\\n\
+    --workers 2 \\\n\
+    --timeout 120 \\\n\
+    --log-level info \\\n\
+    --access-logfile - \\\n\
+    --error-logfile -\n\
 ' > /app/start.sh && chmod +x /app/start.sh
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["/app/start.sh"]
