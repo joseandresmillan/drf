@@ -181,11 +181,21 @@ STATICFILES_FINDERS = [
 
 # Configuración de WhiteNoise para producción
 if not DEBUG:
-    # Usar WhiteNoise para servir archivos estáticos en producción  
+    # Usar WhiteNoise simple (sin manifest) para archivos ya hasheados por React
     STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
     # Configuraciones adicionales de WhiteNoise
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
+    # Configurar MIME types para archivos estáticos
+    WHITENOISE_MIMETYPES = {
+        '.js': 'application/javascript',
+        '.css': 'text/css',
+        '.svg': 'image/svg+xml',
+        '.woff': 'font/woff',
+        '.woff2': 'font/woff2',
+    }
+    # Configurar max age para cache (ya que React usa hashes)
+    WHITENOISE_MAX_AGE = 31536000  # 1 año
 else:
     # En desarrollo, permitir uso de finders para archivos dinámicos
     WHITENOISE_USE_FINDERS = True
