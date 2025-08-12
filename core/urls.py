@@ -34,9 +34,6 @@ urlpatterns = [
     # Health check
     path('health/', views.health_check, name='health-check'),
     
-    # Favicon
-    path('favicon.ico', views.favicon_view, name='favicon'),
-    
     # Test view
     path('test/', views.home_view, name='test-view'),
     
