@@ -166,6 +166,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     # Archivos compilados de React (CSS, JS, Media)
     os.path.join(BASE_DIR, 'build/static'),
+    # Archivos del build de React (favicon, manifest, etc.)
+    os.path.join(BASE_DIR, 'build'),
     # Solo archivos estáticos específicos de Django (no duplicar React)
     # os.path.join(BASE_DIR, 'static'),  # Comentado para evitar duplicados
 ]

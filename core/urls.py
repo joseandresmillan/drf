@@ -10,13 +10,26 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from django.views.static import serve
+from django.http import HttpResponse
 from . import views
 import os
+
+def favicon_view(request):
+    """Redirigir favicon.ico al archivo estático correcto"""
+    try:
+        from django.shortcuts import redirect
+        return redirect('/static/favicon.ico')
+    except:
+        return HttpResponse(status=404)
 
 # URLs principales
 urlpatterns = [
     # Panel de administración de Django
     path('admin/', admin.site.urls),
+    
+    # Favicon específico
+    path('favicon.ico', favicon_view, name='favicon'),
     
     # Health check
     path('health/', views.health_check, name='health-check'),
