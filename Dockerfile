@@ -1,25 +1,31 @@
 # Dockerfile optimizado para droplet de 2GB RAM
-FROM node:18-alpine AS frontend-builder
+FROM node:18 AS frontend-builder
 
 WORKDIR /app
 
-# Configurar memoria para 2GB RAM (usar 1.5GB para el build)
-ENV NODE_OPTIONS="--max-old-space-size=1536"
+# Configurar memoria para 2GB RAM (usar 1.2GB para el build)
+ENV NODE_OPTIONS="--max-old-space-size=1200"
 ENV GENERATE_SOURCEMAP=false
 ENV INLINE_RUNTIME_CHUNK=false
 ENV CI=false
 
+# Instalar dependencias del sistema para Alpine (si fuera necesario)
+# RUN apk add --no-cache python3 make g++
+
 # Información del proceso
 RUN echo "=== INICIANDO BUILD DE REACT ===" && \
-    echo "Memoria disponible: $(free -h)" && \
-    echo "NODE_OPTIONS: $NODE_OPTIONS"
+    echo "NODE_OPTIONS: $NODE_OPTIONS" && \
+    echo "Node version: $(node --version)" && \
+    echo "NPM version: $(npm --version)"
 
 # Copiar package files
 COPY package*.json ./
 
-# Instalar dependencias
+# Instalar dependencias con manejo de errores mejorado
 RUN echo "Instalando dependencias..." && \
-    npm ci --legacy-peer-deps --silent && \
+    npm cache clean --force && \
+    npm ci --legacy-peer-deps --verbose --no-optional && \
+    echo "Dependencias instaladas exitosamente!" && \
     echo "Limpiando cache..." && \
     npm cache clean --force
 
