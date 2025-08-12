@@ -84,7 +84,7 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'core.middleware.CustomWhiteNoiseMiddleware',  # Middleware personalizado para tipos MIME
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -181,13 +181,11 @@ STATICFILES_FINDERS = [
 
 # Configuración de WhiteNoise para producción
 if not DEBUG:
-    # Usar WhiteNoise CompressedStaticFilesStorage para mejor manejo de MIME types
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+    # Usar WhiteNoise para servir archivos estáticos en producción  
+    STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
     # Configuraciones adicionales de WhiteNoise
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
-    # Importante: No usar manifest para archivos React pre-hasheados
-    WHITENOISE_MANIFEST_STRICT = False
 else:
     # En desarrollo, permitir uso de finders para archivos dinámicos
     WHITENOISE_USE_FINDERS = True
