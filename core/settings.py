@@ -271,3 +271,36 @@ LOGGING = {
     },
 }
 
+# ===================================
+# CONFIGURACIÓN DE TIPOS MIME
+# ===================================
+
+# Configuración de tipos MIME para WhiteNoise
+# Esto resuelve el problema de archivos JS/CSS servidos como text/html
+WHITENOISE_MIMETYPES = {
+    '.js': 'application/javascript',
+    '.jsx': 'application/javascript',
+    '.ts': 'application/javascript',
+    '.tsx': 'application/javascript',
+    '.css': 'text/css',
+    '.scss': 'text/css',
+    '.sass': 'text/css',
+    '.map': 'application/json',
+    '.json': 'application/json',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+    '.ttf': 'font/ttf',
+    '.eot': 'application/vnd.ms-fontobject',
+    '.svg': 'image/svg+xml',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.ico': 'image/x-icon',
+    '.webp': 'image/webp',
+}
+
+# Configurar caching para archivos estáticos en producción
+if not DEBUG:
+    WHITENOISE_MAX_AGE = 31536000  # 1 año en segundos
+    WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br']
