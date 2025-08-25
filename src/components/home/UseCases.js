@@ -1,16 +1,33 @@
 import bananacv from "assets/images/bananacv.jpg";
 import sleepcv from "assets/images/somnolenciacv.png";
-import biopay from "assets/images/biopay.png";
+import conteo from "assets/images/conteo.png";
+import deteccion_en_muelle from "assets/images/deteccion_en_muelle.png";
 import { BsPersonFill } from "react-icons/bs";
 
 const posts = [
-  
+  {
+    title: "Detección de camiones y validación con ERP",
+    href: "/caso-muelles",
+    category: { name: "Solucion IoT", href: "/servicios" },
+    description:
+      "Sistema inteligente que combina visión por computadora para detectar y clasificar camiones en tiempo real, integrándose con sistemas ERP para validar automáticamente las entregas contra los registros esperados. Optimiza la logística y reduce discrepancias entre lo programado y la realidad operativa.",
+    date: "Aug 15, 2024",
+    datetime: "2024-08-15",
+    imageUrl: deteccion_en_muelle,
+    readingTime: "6 min",
+    author: {
+      name: "Andrés Millán",
+      href: "#",
+      imageUrl: "",
+      icon: BsPersonFill,
+    },
+  },
   {
     title: "Detección de Plagas con Visión por Computadora",
     href: "/casos",
     category: { name: "Solucion IoT", href: "/servicios" },
     description:
-      "Utilizamos tecnologías avanzadas de visión por computadora para identificar y monitorear plagas en cultivos o espacios agrícolas. Nuestro sistema detecta anomalías en tiempo real, ayudando a los productores a tomar decisiones informadas y reducir pérdidas.",
+      "Desarrollamos un sistema avanzado de monitoreo agrícola que utiliza algoritmos de deep learning para identificar plagas y enfermedades en cultivos. Mediante análisis de imágenes en tiempo real, nuestro sistema detecta anomalías tempranas, permitiendo intervenciones preventivas que reducen pérdidas de hasta un 40% y optimizan el uso de pesticidas.",
     date: "Nov 20, 2024",
     datetime: "2024-11-20",
     imageUrl: bananacv,
@@ -27,7 +44,7 @@ const posts = [
     href: "/casos",
     category: { name: "Solución IoT", href: "/servicios" },
     description:
-      "Utilizamos cámaras para capturar imágenes o videos del conductor el cual analiza patrones faciales, como parpadeos frecuentes, cierre de ojos prolongado, inclinación de la cabeza y otras señales de somnolencia.",
+      "Sistema de seguridad vehicular que monitorea continuamente el estado de alerta del conductor mediante análisis facial en tiempo real. Detecta signos de fatiga como parpadeos prolongados, cabeceos y micro-sueños, activando alertas preventivas que pueden reducir accidentes por somnolencia hasta en un 70%.",
     date: "Oct 18, 2024",
     datetime: "2024-10-18",
     imageUrl: sleepcv,
@@ -44,10 +61,10 @@ const posts = [
     href: "/casos",
     category: { name: "Solucion para Retail", href: "/servicios" },
     description:
-      ".",
+      "Implementamos un sistema automatizado de conteo que utiliza algoritmos de visión por computadora para detectar, clasificar y car cajas en almacenes. Esta solución mejora la precisión del inventario, reduce errores humanos y optimiza los procesos logísticos en tiempo real.",
     date: "Sept 30, 2024",
     datetime: "2024-09-30",
-    imageUrl: biopay,
+    imageUrl: conteo,
     readingTime: "8 min",
     author: {
       name: "Andrés Millán",
@@ -56,6 +73,7 @@ const posts = [
       icon: BsPersonFill,
     },
   },
+  
 
 ];
 
@@ -71,7 +89,7 @@ export default function UseCases() {
             Algunos de nuestros casos
           </h2>
         </div>
-        <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
+        <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-2 xl:grid-cols-2">
           {posts.map((post) => (
             <div
               key={post.title}

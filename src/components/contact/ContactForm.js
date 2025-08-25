@@ -23,7 +23,7 @@ function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white p-8 shadow-lg rounded-lg">
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+        <label className="block text-black text-sm font-bold mb-2" htmlFor="name">
           Name
         </label>
         <input
@@ -32,12 +32,12 @@ function ContactForm() {
           id="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 text-black"
           required
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+        <label className="block text-sm font-bold mb-2 text-black" htmlFor="email">
           Email
         </label>
         <input
@@ -51,7 +51,7 @@ function ContactForm() {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="message">
+        <label className="block text-black text-sm font-bold mb-2" htmlFor="message">
           Message
         </label>
         <textarea
@@ -59,7 +59,7 @@ function ContactForm() {
           id="message"
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+          className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500 text-black"
           rows="5"
           required
         ></textarea>
