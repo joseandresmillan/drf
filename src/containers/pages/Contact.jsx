@@ -7,8 +7,8 @@ function Contact() {
   return (
     <Layout>
       <Navbar />
-      <div className="container mx-auto px-6 lg:px-20 mt-32">
-        <h1 className="text-3xl font-semibold text-center mb-8">Contact Us</h1>
+  <div className="container mx-auto px-6 lg:px-20 mt-32 mb-16 bg-white rounded-xl shadow">
+        <h1 className="text-3xl font-semibold text-center text-black mb-8">Contact Us</h1>
         <ContactForm />
       </div>
       <Footer />

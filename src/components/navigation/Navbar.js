@@ -34,12 +34,11 @@ function Navbar() {
           <Link to="/" className="flex-shrink-0">
             <img className="" width={90} height={80} src={logoNODE} alt="Logo de Node" />
           </Link>
-          
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6">
             <NavLink
               to="/casos"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline hover:underline-blue-button ${
+              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
@@ -47,7 +46,7 @@ function Navbar() {
             </NavLink>
             <NavLink
               to="/servicios"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline hover:underline-blue-button ${
+              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
@@ -55,7 +54,7 @@ function Navbar() {
             </NavLink>
             <NavLink
               to="/nosotros"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline hover:underline-blue-button ${
+              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
@@ -63,7 +62,7 @@ function Navbar() {
             </NavLink>
             <NavLink
               to="/blog"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline hover:underline-blue-button ${
+              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
@@ -71,14 +70,13 @@ function Navbar() {
             </NavLink>
             <NavLink
               to="/contacto"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline hover:underline-blue-button ${
+              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
               Contacto
             </NavLink>
           </div>
-
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
@@ -119,7 +117,6 @@ function Navbar() {
             </button>
           </div>
         </div>
-
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4">

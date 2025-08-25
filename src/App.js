@@ -8,7 +8,7 @@ import About from "containers/pages/About";
 import Blog from "containers/pages/Blog";
 import Contact from "containers/pages/Contact";
 import ApodPage from "containers/pages/ApodPage";
-import ImageTest from './components/common/ImageTest';
+import Muelles from "containers/pages/cases/Muelles";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
 function App() {
   return (
@@ -17,12 +17,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/casos" element={<Cases />} />
+          <Route path="/caso-muelles" element={<Muelles />} />
           <Route path="/servicios" element={<Services />} />
           <Route path="/nosotros" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/apod" element={<ApodPage />} /> 
-          <Route path="/image-test" element={<ImageTest />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
