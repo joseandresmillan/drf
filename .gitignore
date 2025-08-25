@@ -308,4 +308,5 @@ tmp/
 
 # Markdown files
 *.md
-
+.sh
+.bat
