@@ -57,8 +57,8 @@ class ProductionMimeTypeMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         
-        # Solo aplicar en producción y para archivos estáticos
-        if not settings.DEBUG and request.path.startswith('/static/'):
+        # Aplicar para archivos estáticos independientemente del modo DEBUG
+        if request.path.startswith('/static/'):
             # Obtener la extensión del archivo
             _, ext = os.path.splitext(request.path.lower())
             
@@ -81,11 +81,14 @@ class ProductionMimeTypeMiddleware:
                 '.webp': 'image/webp',
             }
             
-            # Forzar el tipo MIME correcto
-            if ext in mime_types and hasattr(response, '__setitem__'):
+            # Forzar el tipo MIME correcto SIEMPRE
+            if ext in mime_types:
                 response['Content-Type'] = mime_types[ext]
                 # Headers adicionales para seguridad
                 response['X-Content-Type-Options'] = 'nosniff'
+                
+                # Log para debugging en producción
+                print(f"MIME Fix: {request.path} -> {mime_types[ext]}")
         
         return response
 

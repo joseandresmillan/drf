@@ -84,8 +84,8 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'core.middleware.ProductionMimeTypeMiddleware',  # CRÍTICO para CapRover - ANTES de WhiteNoise
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'core.middleware.ProductionMimeTypeMiddleware',  # CRÍTICO para CapRover
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
