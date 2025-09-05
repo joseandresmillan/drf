@@ -1,5 +1,0 @@
-{
-  "schemaVersion": 2,
-  "dockerfileFromMethod": "DOCKERFILE_PATH",
-  "dockerfilePath": "./Dockerfile.optimized"
-}

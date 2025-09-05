@@ -107,8 +107,8 @@ function Footer() {
                   Ubicación
                 </h3>
                 <ul className="mt-4 space-y-4">
-                  {navigation.solutions.map((item) => (
-                    <li key={item.name}>
+                  {navigation.solutions.map((item, idx) => (
+                    <li key={item.name || idx}>
                       <a
                         href={item.href}
                         className="text-base text-gray-500 hover:text-gray-900"
@@ -124,8 +124,8 @@ function Footer() {
                   Contacto
                 </h3>
                 <ul className="mt-4 space-y-4">
-                  {navigation.support.map((item) => (
-                    <li key={item.name}>
+                  {navigation.support.map((item, idx) => (
+                    <li key={item.name || idx}>
                       <a
                         href={item.href}
                         className="text-base text-gray-500 hover:text-gray-900"
@@ -143,8 +143,8 @@ function Footer() {
                   Compañia
                 </h3>
                 <ul className="mt-4 space-y-4">
-                  {navigation.company.map((item) => (
-                    <li key={item.name}>
+                  {navigation.company.map((item, idx) => (
+                    <li key={item.name || idx}>
                       <a
                         href={item.href}
                         className="text-base text-gray-500 hover:text-gray-900"
@@ -160,8 +160,8 @@ function Footer() {
                   Servicios
                 </h3>
                 <ul className="mt-4 space-y-4">
-                  {navigation.legal.map((item) => (
-                    <li key={item.name}>
+                  {navigation.legal.map((item, idx) => (
+                    <li key={item.name || idx}>
                       <a
                         href={item.href}
                         className="text-base text-gray-500 hover:text-gray-900"
@@ -175,8 +175,8 @@ function Footer() {
               <div className="mt-12 md:mt-0">
                 <h3 className="text-base font-medium text-gray-900">APOD</h3>
                 <ul className="mt-4">
-                  {navigation.apod.map((item) => (
-                    <li key={item.name}>
+                  {navigation.apod.map((item, idx) => (
+                    <li key={item.name || idx}>
                       <a
                         href={item.href}
                         className="text-base text-gray-500 hover:text-gray-900"
