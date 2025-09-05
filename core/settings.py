@@ -85,6 +85,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'core.middleware.ProductionMimeTypeMiddleware',  # CRÍTICO para CapRover
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -202,16 +203,18 @@ WHITENOISE_MIMETYPES = {
     '.webp': 'image/webp',
 }
 
+# Configuraciones específicas por entorno
 if not DEBUG:
-    # Usar WhiteNoise simple (sin manifest) para archivos ya hasheados por React
+    # PRODUCCIÓN: CapRover
     STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
-    # Configuraciones adicionales de WhiteNoise
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
-    # Configurar max age para cache (ya que React usa hashes)
     WHITENOISE_MAX_AGE = 31536000  # 1 año
+    
+    # CRÍTICO: Forzar tipos MIME en producción
+    WHITENOISE_ADD_HEADERS_FUNCTION = 'core.utils.add_headers_function'
 else:
-    # En desarrollo, permitir uso de finders para archivos dinámicos
+    # DESARROLLO: Local
     WHITENOISE_USE_FINDERS = True
 
 # Media files

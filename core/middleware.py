@@ -47,6 +47,49 @@ class CustomWhiteNoiseMiddleware(WhiteNoiseMiddleware):
         return response
 
 
+class ProductionMimeTypeMiddleware:
+    """
+    Middleware específico para producción (CapRover) que fuerza tipos MIME correctos
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        
+        # Solo aplicar en producción y para archivos estáticos
+        if not settings.DEBUG and request.path.startswith('/static/'):
+            # Obtener la extensión del archivo
+            _, ext = os.path.splitext(request.path.lower())
+            
+            # Mapear extensiones a tipos MIME - CRÍTICO para CapRover
+            mime_types = {
+                '.js': 'application/javascript',
+                '.css': 'text/css',
+                '.map': 'application/json',
+                '.json': 'application/json',
+                '.svg': 'image/svg+xml',
+                '.woff': 'font/woff',
+                '.woff2': 'font/woff2',
+                '.ttf': 'font/ttf',
+                '.eot': 'application/vnd.ms-fontobject',
+                '.png': 'image/png',
+                '.jpg': 'image/jpeg',
+                '.jpeg': 'image/jpeg',
+                '.gif': 'image/gif',
+                '.ico': 'image/x-icon',
+                '.webp': 'image/webp',
+            }
+            
+            # Forzar el tipo MIME correcto
+            if ext in mime_types and hasattr(response, '__setitem__'):
+                response['Content-Type'] = mime_types[ext]
+                # Headers adicionales para seguridad
+                response['X-Content-Type-Options'] = 'nosniff'
+        
+        return response
+
+
 class StaticFilesMimeTypeMiddleware:
     """
     Middleware para corregir MIME types de archivos estáticos en desarrollo
