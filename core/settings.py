@@ -211,8 +211,14 @@ if not DEBUG:
     WHITENOISE_MAX_AGE = 31536000  # 1 año
     WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['js', 'css']  # No comprimir para evitar problemas MIME
     
-    # CRÍTICO: Forzar tipos MIME en producción
-    WHITENOISE_ADD_HEADERS_FUNCTION = 'core.utils.add_headers_function'
+    # CRÍTICO: Forzar tipos MIME en producción  
+    # Comentado temporalmente para evitar errores 500
+    # WHITENOISE_ADD_HEADERS_FUNCTION = 'core.utils.add_headers_function'
+    
+    # Configuración agresiva de MIME types para CapRover
+    WHITENOISE_STATIC_PREFIX = '/static/'
+    WHITENOISE_INDEX_FILE = False
+    WHITENOISE_MANIFEST_STRICT = False
     
     # Configurar mimetypes globalmente
     import mimetypes
