@@ -218,9 +218,23 @@ if not DEBUG:
     mimetypes.add_type('application/javascript', '.js')
     mimetypes.add_type('text/css', '.css')
     mimetypes.add_type('application/json', '.map')
+    
+    # Asegurar que el sistema use application/javascript para .js
+    mimetypes.types_map['.js'] = 'application/javascript'
+    
+    # Validación de configuración crítica
+    print("🔧 CONFIGURACIÓN PRODUCCIÓN:")
+    print(f"   📁 STATIC_ROOT: {STATIC_ROOT}")
+    print(f"   📂 STATICFILES_DIRS: {STATICFILES_DIRS}")
+    print(f"   🌐 STATIC_URL: {STATIC_URL}")
+    print(f"   ⚙️  WhiteNoise: {'✓ Configurado' if 'whitenoise.middleware.WhiteNoiseMiddleware' in MIDDLEWARE else '❌ NO configurado'}")
 else:
-    # DESARROLLO: Local
+    # DESARROLLO
     WHITENOISE_USE_FINDERS = True
+    print("🔧 CONFIGURACIÓN DESARROLLO:")
+    print(f"   📁 STATIC_ROOT: {STATIC_ROOT}")
+    print(f"   📂 STATICFILES_DIRS: {STATICFILES_DIRS}")
+    print(f"   🌐 STATIC_URL: {STATIC_URL}")
 
 # Media files
 MEDIA_URL = '/media/'

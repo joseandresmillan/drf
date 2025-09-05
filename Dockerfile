@@ -76,6 +76,10 @@ set -e\n\
 echo "=== VERIFICANDO BUILD DE REACT ==="\n\
 if [ -d "/app/build/static" ]; then\n\
     echo "✓ Build de React encontrado"\n\
+    echo "=== ARCHIVOS CSS DISPONIBLES ==="\n\
+    ls -la /app/build/static/css/ || echo "❌ No hay archivos CSS"\n\
+    echo "=== ARCHIVOS JS DISPONIBLES ==="\n\
+    ls -la /app/build/static/js/ || echo "❌ No hay archivos JS"\n\
     if [ -d "/app/build/static/media" ]; then\n\
         echo "✓ Imágenes encontradas:"\n\
         ls -la /app/build/static/media/\n\
@@ -87,6 +91,10 @@ fi\n\
 echo "=== EJECUTANDO COLLECTSTATIC ==="\n\
 python manage.py collectstatic --noinput --verbosity=2\n\
 echo "=== VERIFICANDO STATICFILES ==="\n\
+echo "=== ARCHIVOS CSS EN STATICFILES ==="\n\
+ls -la /app/staticfiles/css/ || echo "❌ No hay CSS en staticfiles"\n\
+echo "=== ARCHIVOS JS EN STATICFILES ==="\n\
+ls -la /app/staticfiles/js/ || echo "❌ No hay JS en staticfiles"\n\
 if [ -d "/app/staticfiles/media" ]; then\n\
     echo "✓ staticfiles/media creado:"\n\
     ls -la /app/staticfiles/media/\n\
