@@ -85,7 +85,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'core.middleware.ProductionMimeTypeMiddleware',  # DESPUÉS de WhiteNoise para corregir headers
+    # 'core.middleware.ProductionMimeTypeMiddleware',  # DESACTIVADO temporalmente - causaba errores 500
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -203,14 +203,21 @@ WHITENOISE_MIMETYPES = {
 
 # Configuraciones específicas por entorno
 if not DEBUG:
-    # PRODUCCIÓN: CapRover
+    # PRODUCCIÓN: CapRover - Configuración más agresiva
     STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
     WHITENOISE_MAX_AGE = 31536000  # 1 año
+    WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['js', 'css']  # No comprimir para evitar problemas MIME
     
     # CRÍTICO: Forzar tipos MIME en producción
     WHITENOISE_ADD_HEADERS_FUNCTION = 'core.utils.add_headers_function'
+    
+    # Configurar mimetypes globalmente
+    import mimetypes
+    mimetypes.add_type('application/javascript', '.js')
+    mimetypes.add_type('text/css', '.css')
+    mimetypes.add_type('application/json', '.map')
 else:
     # DESARROLLO: Local
     WHITENOISE_USE_FINDERS = True
