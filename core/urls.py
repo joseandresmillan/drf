@@ -49,11 +49,29 @@ urlpatterns = [
 
 # Configuración para servir archivos estáticos y media
 if settings.DEBUG:
-    # En desarrollo: Django sirve archivos estáticos
+    # En desarrollo: Servir archivos estáticos con tipos MIME correctos
+    from django.views.static import serve
+    import os
+    
+    # Servir archivos estáticos desde staticfiles
     urlpatterns += static(
         settings.STATIC_URL, 
         document_root=settings.STATIC_ROOT
     )
+    
+    # Servir archivos específicamente desde build (con override para desarrollo)
+    urlpatterns += [
+        re_path(
+            r'^static/static/(?P<path>.*)$',
+            serve,
+            {'document_root': os.path.join(settings.BASE_DIR, 'build', 'static')},
+        ),
+        re_path(
+            r'^static/(?P<path>favicon\.ico|manifest\.json|robots\.txt|logo.*\.png)$',
+            serve,
+            {'document_root': os.path.join(settings.BASE_DIR, 'build')},
+        ),
+    ]
     
     # Archivos media (uploads de usuarios)
     urlpatterns += static(
@@ -66,10 +84,6 @@ else:
         settings.MEDIA_URL, 
         document_root=settings.MEDIA_ROOT
     )
-    
-    # IMPORTANTE: En producción, WhiteNoise automáticamente sirve archivos de STATIC_ROOT
-    # que incluye todo el contenido de build/static después de collectstatic
-    # No necesitamos rutas manuales adicionales para archivos estáticos
 
 # React SPA - Catch-all pattern específico
 # IMPORTANTE: Excluir rutas de API y admin del catch-all

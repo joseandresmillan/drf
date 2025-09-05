@@ -2,7 +2,10 @@
 Middleware personalizado para manejar tipos MIME
 """
 from whitenoise.middleware import WhiteNoiseMiddleware
+from django.http import HttpResponse
+from django.conf import settings
 import mimetypes
+import os
 
 class CustomWhiteNoiseMiddleware(WhiteNoiseMiddleware):
     """
@@ -41,4 +44,43 @@ class CustomWhiteNoiseMiddleware(WhiteNoiseMiddleware):
             elif request.path.endswith('.css'):
                 response['Content-Type'] = 'text/css'
                 
+        return response
+
+
+class StaticFilesMimeTypeMiddleware:
+    """
+    Middleware para corregir MIME types de archivos estáticos en desarrollo
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+        # Configurar tipos MIME adicionales
+        mimetypes.add_type('application/javascript', '.js')
+        mimetypes.add_type('text/css', '.css')
+        mimetypes.add_type('application/json', '.map')
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        
+        # Solo aplicar en desarrollo
+        if settings.DEBUG and request.path.startswith('/static/'):
+            # Obtener la extensión del archivo
+            _, ext = os.path.splitext(request.path)
+            
+            # Mapear extensiones a tipos MIME
+            mime_types = {
+                '.js': 'application/javascript',
+                '.css': 'text/css',
+                '.map': 'application/json',
+                '.json': 'application/json',
+                '.svg': 'image/svg+xml',
+                '.woff': 'font/woff',
+                '.woff2': 'font/woff2',
+                '.ttf': 'font/ttf',
+                '.eot': 'application/vnd.ms-fontobject',
+            }
+            
+            # Aplicar el tipo MIME correcto si está disponible
+            if ext in mime_types and hasattr(response, '__setitem__'):
+                response['Content-Type'] = mime_types[ext]
+        
         return response

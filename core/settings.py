@@ -167,9 +167,7 @@ STATICFILES_DIRS = [
     # Archivos del build de React (favicon, manifest, etc.) - PRIMERO
     os.path.join(BASE_DIR, 'build'),
     # Archivos compilados de React (CSS, JS, Media) - SEGUNDO
-    os.path.join(BASE_DIR, 'build/static'),
-    # Solo archivos estáticos específicos de Django (no duplicar React)
-    # os.path.join(BASE_DIR, 'static'),  # Comentado para evitar duplicados
+    os.path.join(BASE_DIR, 'build', 'static'),
 ]
 
 # Configuración para servir archivos de media de React
@@ -180,20 +178,36 @@ STATICFILES_FINDERS = [
 ]
 
 # Configuración de WhiteNoise para producción
+# Configurar MIME types tanto para desarrollo como producción
+WHITENOISE_MIMETYPES = {
+    '.js': 'application/javascript',
+    '.jsx': 'application/javascript',
+    '.ts': 'application/javascript',
+    '.tsx': 'application/javascript',
+    '.css': 'text/css',
+    '.scss': 'text/css',
+    '.sass': 'text/css',
+    '.map': 'application/json',
+    '.json': 'application/json',
+    '.woff': 'font/woff',
+    '.woff2': 'font/woff2',
+    '.ttf': 'font/ttf',
+    '.eot': 'application/vnd.ms-fontobject',
+    '.svg': 'image/svg+xml',
+    '.png': 'image/png',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.gif': 'image/gif',
+    '.ico': 'image/x-icon',
+    '.webp': 'image/webp',
+}
+
 if not DEBUG:
     # Usar WhiteNoise simple (sin manifest) para archivos ya hasheados por React
     STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
     # Configuraciones adicionales de WhiteNoise
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
-    # Configurar MIME types para archivos estáticos
-    WHITENOISE_MIMETYPES = {
-        '.js': 'application/javascript',
-        '.css': 'text/css',
-        '.svg': 'image/svg+xml',
-        '.woff': 'font/woff',
-        '.woff2': 'font/woff2',
-    }
     # Configurar max age para cache (ya que React usa hashes)
     WHITENOISE_MAX_AGE = 31536000  # 1 año
 else:
