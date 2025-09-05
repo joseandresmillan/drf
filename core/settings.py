@@ -165,9 +165,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional locations of static files
 STATICFILES_DIRS = [
-    # Archivos del build de React (favicon, manifest, etc.) - PRIMERO
-    os.path.join(BASE_DIR, 'build'),
-    # Archivos compilados de React (CSS, JS, Media) - SEGUNDO
+    # Apuntar directamente a build/static para evitar rutas dobles
     os.path.join(BASE_DIR, 'build', 'static'),
 ]
 
