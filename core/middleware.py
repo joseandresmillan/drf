@@ -57,38 +57,41 @@ class ProductionMimeTypeMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         
-        # Aplicar para archivos estáticos independientemente del modo DEBUG
-        if request.path.startswith('/static/'):
-            # Obtener la extensión del archivo
-            _, ext = os.path.splitext(request.path.lower())
-            
-            # Mapear extensiones a tipos MIME - CRÍTICO para CapRover
-            mime_types = {
-                '.js': 'application/javascript',
-                '.css': 'text/css',
-                '.map': 'application/json',
-                '.json': 'application/json',
-                '.svg': 'image/svg+xml',
-                '.woff': 'font/woff',
-                '.woff2': 'font/woff2',
-                '.ttf': 'font/ttf',
-                '.eot': 'application/vnd.ms-fontobject',
-                '.png': 'image/png',
-                '.jpg': 'image/jpeg',
-                '.jpeg': 'image/jpeg',
-                '.gif': 'image/gif',
-                '.ico': 'image/x-icon',
-                '.webp': 'image/webp',
-            }
-            
-            # Forzar el tipo MIME correcto SIEMPRE
-            if ext in mime_types:
-                response['Content-Type'] = mime_types[ext]
-                # Headers adicionales para seguridad
-                response['X-Content-Type-Options'] = 'nosniff'
+        # Solo aplicar si es una respuesta HTTP válida con headers
+        if hasattr(response, 'status_code') and response.status_code == 200:
+            # Aplicar para archivos estáticos
+            if request.path.startswith('/static/'):
+                # Obtener la extensión del archivo
+                import os
+                _, ext = os.path.splitext(request.path.lower())
                 
-                # Log para debugging en producción
-                print(f"MIME Fix: {request.path} -> {mime_types[ext]}")
+                # Mapear extensiones a tipos MIME - CRÍTICO para CapRover
+                mime_types = {
+                    '.js': 'application/javascript',
+                    '.css': 'text/css',
+                    '.map': 'application/json',
+                    '.json': 'application/json',
+                    '.svg': 'image/svg+xml',
+                    '.woff': 'font/woff',
+                    '.woff2': 'font/woff2',
+                    '.ttf': 'font/ttf',
+                    '.eot': 'application/vnd.ms-fontobject',
+                    '.png': 'image/png',
+                    '.jpg': 'image/jpeg',
+                    '.jpeg': 'image/jpeg',
+                    '.gif': 'image/gif',
+                    '.ico': 'image/x-icon',
+                    '.webp': 'image/webp',
+                }
+                
+                # Forzar el tipo MIME correcto solo si es seguro hacerlo
+                if ext in mime_types and hasattr(response, '__setitem__'):
+                    try:
+                        response['Content-Type'] = mime_types[ext]
+                        response['X-Content-Type-Options'] = 'nosniff'
+                    except Exception:
+                        # Silenciar errores para evitar 500s
+                        pass
         
         return response
 
