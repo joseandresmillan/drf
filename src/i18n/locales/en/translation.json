@@ -1,0 +1,281 @@
+{
+  "nav": {
+    "cases": "Case Studies",
+    "services": "Services",
+    "about": "About Us",
+    "blog": "Blog",
+    "contact": "Contact",
+    "apod": "Astronomy Picture"
+  },
+  "home": {
+    "title": "Node.ec - Connecting the Digital Future",
+    "subtitle": "Innovative technological solutions",
+    "description": "We integrate advanced technologies like Web3, computer vision, and automation software to drive efficiency and sustainable development.",
+    "hero": {
+      "typewriter": {
+        "digitalTransformation": "Digital Transformation",
+        "computerVision": "Computer Vision",
+        "industry40": "Industry 4.0"
+      }
+    },
+    "cta": {
+      "primary": "Start Project",
+      "secondary": "View Success Cases"
+    },
+    "incentives": {
+      "title": "Why choose Node.ec?",
+      "subtitle": "We drive your business with cutting-edge technologies",
+      "web3": {
+        "title": "ML Ops",
+        "description": "Node.ec offers machine machine learning, ensuring transparency, security and traceability in all stages of your operation."
+      },
+      "scalability": {
+        "title": "Scalability of IoT",
+        "description": "From the beginning, our solutions are designed to scale, allowing you to integrate more devices, more users and more services as your business expands."
+      },
+      "interoperability": {
+        "title": "Interoperability between Systems",
+        "description": "We facilitate seamless integration of different technological platforms, from legacy systems to new solutions based on IoT and IA."
+      }
+    }
+  },
+  "cases": {
+    "title": "Case Studies",
+    "subtitle": "Successful Projects that Transform Businesses",
+    "description": "Discover how we have helped companies solve complex challenges through innovative technological solutions.",
+    "viewCase": "View Full Case",
+    "challenge": "Challenge",
+    "solution": "Solution",
+    "results": "Results",
+    "technologies": "Technologies Used",
+    "muelles": {
+      "title": "Truck Detection and ERP Validation",
+      "description": "Intelligent system that combines computer vision to detect and classify trucks in real time, integrating with ERP systems to automatically validate deliveries against expected records. Optimizes logistics and reduces discrepancies between scheduled and operational reality.",
+      "challenge": "Manual verification of truck arrivals caused delays and discrepancies between scheduled and actual deliveries",
+      "solution": "Computer vision system with AI that automatically detects trucks and validates against ERP data in real time",
+      "results": "85% reduction in verification time and 95% accuracy in delivery validation"
+    },
+    "plagas": {
+      "title": "Pest Detection with Computer Vision",
+      "description": "We developed an advanced agricultural monitoring system that uses deep learning algorithms to identify pests and diseases in crops. Through real-time image analysis, our system detects early anomalies, enabling preventive interventions that reduce losses by up to 40% and optimize pesticide use.",
+      "challenge": "Traditional pest detection methods require costly and slow manual inspections, causing significant losses due to late detection",
+      "solution": "AI system with deep learning algorithms that analyzes crop images 24/7 to automatically detect pests and diseases",
+      "results": "40% reduction in crop losses, 60% optimization in pesticide use and 94% accuracy in early detection"
+    },
+    "somnolencia": {
+      "title": "Computer Vision in Drowsiness Accident Prevention",
+      "description": "Vehicle safety system that continuously monitors the driver's alertness state through real-time facial analysis. Detects signs of fatigue such as prolonged blinking, nodding and micro-sleep, activating preventive alerts that can reduce drowsiness accidents by up to 70%."
+    },
+    "conteo": {
+      "title": "Box Counting using Computer Vision",
+      "description": "We implemented an automated counting system that uses computer vision algorithms to detect, classify and count boxes in warehouses. This solution improves inventory accuracy, reduces human errors and optimizes logistics processes in real time.",
+      "challenge": "Currently manual inventory counting is inaccurate, slow and prone to human errors, causing stock discrepancies",
+      "solution": "AI system with deep learning algorithms that automatically detects and counts boxes with over 99% accuracy",
+      "results": "99.5% counting accuracy, 90% reduction in inventory time and complete elimination of human errors"
+    }
+  },
+  "about": {
+    "title": "About Node.ec",
+    "subtitle": "Connecting Technological Nodes",
+    "description": "We are a technology company dedicated to offering innovative solutions that integrate advanced technologies to create intelligent networks.",
+    "mission": {
+      "title": "Our Mission",
+      "description": "Connect nodes –people, companies and technologies– to create intelligent networks that drive efficiency and sustainable development."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be leaders in digital transformation, creating solutions that connect the present with the technological future."
+    },
+    "values": {
+      "title": "Our Values",
+      "innovation": "Constant Innovation",
+      "quality": "Exceptional Quality",
+      "sustainability": "Sustainable Development",
+      "collaboration": "Strategic Collaboration"
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "Professionals specialized in emerging technologies and software development."
+    }
+  },
+  "blog": {
+    "title": "Technology Blog",
+    "subtitle": "Insights and Trends in Technology",
+    "description": "Stay updated with the latest trends in web development, blockchain, artificial intelligence and more.",
+    "readMore": "Read More",
+    "categories": {
+      "all": "All Articles",
+      "web3": "Web3 & Blockchain",
+      "ai": "Artificial Intelligence",
+      "development": "Web Development",
+      "automation": "Automation"
+    },
+    "searchPlaceholder": "Search articles...",
+    "noResults": "No articles found",
+    "publishedOn": "Published on",
+    "readTime": "min read",
+    "shareArticle": "Share Article"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Ready to turn your idea into reality?",
+    "description": "We are here to help you develop innovative technological solutions. Let's talk about your next project.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "company": "Company",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "projectType": "Project Type",
+      "budget": "Estimated Budget",
+      "timeline": "Estimated Timeline",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again."
+    },
+    "info": {
+      "title": "Contact Information",
+      "address": "Guayaquil, Ecuador",
+      "email": "joseandresmillan16@gmail.com",
+      "phone": "+593 XXX XXXX",
+      "hours": "Mon - Fri: 9:00 AM - 6:00 PM"
+    },
+    "projectTypes": {
+      "web": "Web Development",
+      "mobile": "Mobile Application",
+      "blockchain": "Blockchain/Web3",
+      "ai": "Artificial Intelligence",
+      "automation": "Automation",
+      "consulting": "Consulting"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "We offer comprehensive technological solutions that connect people, companies and technologies to create intelligent networks that drive efficiency and sustainable development.",
+    "mainTitle": "Control all your",
+    "mainTitleHighlight": "technological environments",
+    "mainTitleEnd": "from a single platform",
+    "mainDescription": "We connect technological nodes to create intelligent solutions that drive efficiency, automation and sustainable development of your business.",
+    "popularServices": "🔥 Most Popular Services",
+    "popularDescription": "The most requested services by our clients",
+    "categories": {
+      "all": "All Services",
+      "development": "Web Development",
+      "blockchain": "Web3 & Blockchain",
+      "ai": "Artificial Intelligence",
+      "automation": "Automation",
+      "consulting": "Consulting",
+      "devops": "DevOps & Cloud"
+    },
+    "card": {
+      "technologies": "Technologies:",
+      "from": "From",
+      "viewMore": "View More",
+      "popular": "Popular"
+    },
+    "items": {
+      "fullstack": {
+        "name": "Full-Stack Development",
+        "description": "Modern web applications with Django REST Framework and React. From MVP to scalable enterprise applications."
+      },
+      "web3": {
+        "name": "Web3 & Blockchain",
+        "description": "Decentralized solutions, smart contracts and DeFi applications that connect the digital future."
+      },
+      "ai": {
+        "name": "Computer Vision",
+        "description": "Custom computer vision systems based on the specific problem."
+      },
+      "automation": {
+        "name": "Process Automation",
+        "description": "Custom automation software that optimizes workflows and reduces operational costs."
+      },
+      "consulting": {
+        "name": "Technology Consulting",
+        "description": "Strategic advice on software architecture, digital transformation and process optimization."
+      },
+      "devops": {
+        "name": "DevOps & Cloud",
+        "description": "Implementation of CI/CD pipelines, containerization with Docker and cloud deployment."
+      }
+    },
+    "timeline": {
+      "weeks": "weeks"
+    },
+    "emptyState": {
+      "title": "No services found",
+      "description": "Try a different category or contact us for custom services."
+    },
+    "cta": {
+      "title": "Can't find what you're looking for?",
+      "description": "We create customized solutions adapted to your business specific needs.",
+      "freeConsult": "Free Consultation",
+      "viewPortfolio": "View Portfolio"
+    }
+  },
+  "modal": {
+    "projectDetails": "📋 Project Details",
+    "duration": "Duration:",
+    "price": "Price:",
+    "category": "Category:",
+    "technologies": "🛠️ Included Technologies",
+    "process": "🚀 Work Process",
+    "processSteps": {
+      "analysis": {
+        "title": "Analysis",
+        "description": "We understand your needs"
+      },
+      "design": {
+        "title": "Design",
+        "description": "We create the ideal solution"
+      },
+      "development": {
+        "title": "Development",
+        "description": "We implement with quality"
+      },
+      "delivery": {
+        "title": "Delivery",
+        "description": "Deploy and continuous support"
+      }
+    },
+    "popularService": "🏆 Popular Service",
+    "popularDescription": "This is one of our most requested services, with a high customer satisfaction rate and proven results in multiple projects.",
+    "benefits": "✨ Key Benefits",
+    "benefitsList": [
+      "Clean and documented code",
+      "24/7 technical support",
+      "Guaranteed scalability",
+      "Agile methodologies",
+      "Automated testing",
+      "Automatic deployment"
+    ],
+    "freeConsult": "💬 Free Consultation",
+    "viewPortfolio": "📄 View Portfolio"
+  },
+  "footer": {
+    "description": "Becoming part of the solution a pixel at a time.",
+    "company": "Company",
+    "services": "Services",
+    "contact": "Contact",
+    "location": "Location",
+    "rights": "All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "nodeEc": "Node.ec",
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "backToHome": "Back to Home",
+    "pageNotFound": "Page not found",
+    "error": "Error",
+    "success": "Success",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "confirm": "Confirm"
+  }
+}

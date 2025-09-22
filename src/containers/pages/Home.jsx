@@ -14,18 +14,6 @@ function Home() {
       <Navbar />
       <div>
         <Header
-          words={[
-            "Transformación Digital",
-            "Computer Vision",
-            "Industria 4.0",
-          ]}
-          links={[
-            { label: "Transformación Digital", path: "/servicios" },
-            { label: "Computer Vision", path: "/servicios"},
-            { label: "Industria 4.0", path: "/servicios" },
-            
-            
-          ]}
           useThreeBackground={useThreeJS}
           showCameraControls={false}
           backgroundClass={useThreeJS ? "" : "bg-header-background"}

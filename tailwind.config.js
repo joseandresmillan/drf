@@ -13,7 +13,8 @@ module.exports = {
         
       },
       fontFamily:{
-        'sora': ["Sora", 'sans-serif']
+        'sora': ["Sora", 'sans-serif'],
+        'chakra': ["Chakra Petch", 'monospace', 'sans-serif']
       },
       fontWeight:{
         ligth:300,

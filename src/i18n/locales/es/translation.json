@@ -1,0 +1,281 @@
+{
+  "nav": {
+    "cases": "Casos de Éxito",
+    "services": "Servicios",
+    "about": "Nosotros",
+    "blog": "Blog",
+    "contact": "Contacto",
+    "apod": "Imagen Astronómica"
+  },
+  "home": {
+    "title": "Node.ec - Conectando el Futuro Digital",
+    "subtitle": "Soluciones tecnológicas innovadoras",
+    "description": "Integramos tecnologías avanzadas como Web3, visión por computadora y software de automatización para impulsar la eficiencia y el desarrollo sostenible.",
+    "hero": {
+      "typewriter": {
+        "digitalTransformation": "Transformación Digital",
+        "computerVision": "Visión por Computadora",
+        "industry40": "Industria 4.0"
+      }
+    },
+    "cta": {
+      "primary": "Iniciar Proyecto",
+      "secondary": "Ver Casos de Éxito"
+    },
+    "incentives": {
+      "title": "¿Por qué elegir Node.ec?",
+      "subtitle": "Impulsamos tu negocio con tecnologías de vanguardia",
+      "web3": {
+        "title": "ML Ops",
+        "description": "Node.ec ofrece soluciones de ML y DL asegurando transparencia, seguridad y trazabilidad en todas las etapas de tu operación."
+      },
+      "scalability": {
+        "title": "Escalabilidad de Soluciones IoT",
+        "description": "Desde el inicio, nuestras soluciones están diseñadas para escalar, permitiendo integrar más dispositivos, más usuarios y más servicios conforme tu negocio se expande."
+      },
+      "interoperability": {
+        "title": "Interoperabilidad entre Sistemas",
+        "description": "Facilitamos la integración fluida de diferentes plataformas tecnológicas, desde sistemas legacy hasta nuevas soluciones basadas en IoT e IA."
+      }
+    }
+  },
+  "cases": {
+    "title": "Algunos de nuestros casos",
+    "subtitle": "Descubre cómo transformamos negocios con soluciones tecnológicas innovadoras",
+    "description": "Cada proyecto representa un desafío único que resolvemos con tecnología de vanguardia, desde inteligencia artificial hasta IoT y visión por computadora.",
+    "technologies": "Tecnologías",
+    "challenge": "Desafío",
+    "solution": "Solución",
+    "results": "Resultados",
+    "viewCase": "Ver caso",
+    "muelles": {
+      "title": "Detección de camiones y validación con ERP",
+      "description": "Sistema inteligente que combina visión por computadora para detectar y clasificar camiones en tiempo real, integrándose con sistemas ERP para validar automáticamente las entregas contra los registros esperados. Optimiza la logística y reduce discrepancias entre lo programado y la realidad operativa.",
+      "challenge": "La verificación manual de llegada de camiones causaba retrasos y discrepancias entre entregas programadas y reales",
+      "solution": "Sistema de visión por computadora con IA que detecta automáticamente camiones y valida contra datos ERP en tiempo real",
+      "results": "85% de reducción en tiempo de verificación y 95% de precisión en validación de entregas"
+    },
+    "plagas": {
+      "title": "Detección de Plagas con Visión por Computadora",
+      "description": "Desarrollamos un sistema avanzado de monitoreo agrícola que utiliza algoritmos de deep learning para identificar plagas y enfermedades en cultivos. Mediante análisis de imágenes en tiempo real, nuestro sistema detecta anomalías tempranas, permitiendo intervenciones preventivas que reducen pérdidas de hasta un 40% y optimizan el uso de pesticidas.",
+      "challenge": "Los métodos tradicionales de detección de plagas requieren inspecciones manuales costosas y lentas, causando pérdidas significativas por detección tardía",
+      "solution": "Sistema de IA con algoritmos de deep learning que analiza imágenes de cultivos 24/7 para detectar plagas y enfermedades automáticamente",
+      "results": "40% reducción en pérdidas de cultivos, 60% optimización en uso de pesticidas y 94% precisión en detección temprana"
+    },
+    "somnolencia": {
+      "title": "Visión por computadora en la prevención de accidentes por somnolencia",
+      "description": "Sistema de seguridad vehicular que monitorea continuamente el estado de alerta del conductor mediante análisis facial en tiempo real. Detecta signos de fatiga como parpadeos prolongados, cabeceos y micro-sueños, activando alertas preventivas que pueden reducir accidentes por somnolencia hasta en un 70%."
+    },
+    "conteo": {
+      "title": "Conteo de cajas utilizando visión por computadora",
+      "description": "Implementamos un sistema automatizado de conteo que utiliza algoritmos de visión por computadora para detectar, clasificar y contar cajas en almacenes. Esta solución mejora la precisión del inventario, reduce errores humanos y optimiza los procesos logísticos en tiempo real.",
+      "challenge": "Actualmente el conteo manual de inventarios es impreciso, lento y propenso a errores humanos, causando discrepancias en el stock",
+      "solution": "Sistema de IA con algoritmos de deep learning que detecta y cuenta automáticamente cajas con precisión superior al 99%",
+      "results": "99.5% precisión en conteo, 90% reducción en tiempo de inventario y eliminación total de errores humanos"
+    }
+  },
+  "about": {
+    "title": "Acerca de Node.ec",
+    "subtitle": "Conectando Nodos Tecnológicos",
+    "description": "Somos una empresa de tecnología dedicada a ofrecer soluciones innovadoras que integran tecnologías avanzadas para crear redes inteligentes.",
+    "mission": {
+      "title": "Nuestra Misión",
+      "description": "Conectar nodos –personas, empresas y tecnologías– para crear redes inteligentes que impulsen la eficiencia y el desarrollo sostenible."
+    },
+    "vision": {
+      "title": "Nuestra Visión",
+      "description": "Ser líderes en transformación digital, creando soluciones que conecten el presente con el futuro tecnológico."
+    },
+    "values": {
+      "title": "Nuestros Valores",
+      "innovation": "Innovación Constante",
+      "quality": "Calidad Excepcional",
+      "sustainability": "Desarrollo Sostenible",
+      "collaboration": "Colaboración Estratégica"
+    },
+    "team": {
+      "title": "Nuestro Equipo",
+      "description": "Profesionales especializados en tecnologías emergentes y desarrollo de software."
+    }
+  },
+  "blog": {
+    "title": "Blog de Tecnología",
+    "subtitle": "Perspectivas y Tendencias en Tecnología",
+    "description": "Mantente actualizado con las últimas tendencias en desarrollo web, blockchain, inteligencia artificial y más.",
+    "readMore": "Leer Más",
+    "categories": {
+      "all": "Todos los Artículos",
+      "web3": "Web3 y Blockchain",
+      "ai": "Inteligencia Artificial",
+      "development": "Desarrollo Web",
+      "automation": "Automatización"
+    },
+    "searchPlaceholder": "Buscar artículos...",
+    "noResults": "No se encontraron artículos",
+    "publishedOn": "Publicado el",
+    "readTime": "min de lectura",
+    "shareArticle": "Compartir Artículo"
+  },
+  "contact": {
+    "title": "Contáctanos",
+    "subtitle": "¿Listo para convertir tu idea en realidad?",
+    "description": "Estamos aquí para ayudarte a desarrollar soluciones tecnológicas innovadoras. Hablemos sobre tu próximo proyecto.",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Dirección de Correo",
+      "company": "Empresa",
+      "phone": "Teléfono",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "projectType": "Tipo de Proyecto",
+      "budget": "Presupuesto Estimado",
+      "timeline": "Cronograma Estimado",
+      "send": "Enviar Mensaje",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado exitosamente!",
+      "error": "Error al enviar mensaje. Por favor intenta de nuevo."
+    },
+    "info": {
+      "title": "Información de Contacto",
+      "address": "Guayaquil, Ecuador",
+      "email": "joseandresmillan16@gmail.com",
+      "phone": "+593 964105123",
+      "hours": "Lun - Vie: 9:00 AM - 6:00 PM"
+    },
+    "projectTypes": {
+      "web": "Desarrollo Web",
+      "mobile": "Aplicación Móvil",
+      "blockchain": "Blockchain/Web3",
+      "ai": "Inteligencia Artificial",
+      "automation": "Automatización",
+      "consulting": "Consultoría"
+    }
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "subtitle": "Ofrecemos soluciones tecnológicas integrales que conectan personas, empresas y tecnologías para crear redes inteligentes que impulsan la eficiencia y el desarrollo sostenible.",
+    "mainTitle": "Controla todos tus",
+    "mainTitleHighlight": "entornos tecnológicos",
+    "mainTitleEnd": "desde una sola plataforma",
+    "mainDescription": "Conectamos nodos tecnológicos para crear soluciones inteligentes que impulsan la eficiencia, automatización y desarrollo sostenible de tu negocio.",
+    "popularServices": "🔥 Servicios Más Populares",
+    "popularDescription": "Los servicios más solicitados por nuestros clientes",
+    "categories": {
+      "all": "Todos los Servicios",
+      "development": "Desarrollo Web",
+      "blockchain": "Web3 y Blockchain",
+      "ai": "Inteligencia Artificial",
+      "automation": "Automatización",
+      "consulting": "Consultoría",
+      "devops": "DevOps y Cloud"
+    },
+    "card": {
+      "technologies": "Tecnologías:",
+      "from": "Desde",
+      "viewMore": "Ver Más",
+      "popular": "Popular"
+    },
+    "items": {
+      "fullstack": {
+        "name": "Desarrollo Full-Stack",
+        "description": "Aplicaciones web modernas con Django REST Framework y React. Desde MVP hasta aplicaciones empresariales escalables."
+      },
+      "web3": {
+        "name": "Web3 y Blockchain",
+        "description": "Soluciones descentralizadas, contratos inteligentes y aplicaciones DeFi que conectan el futuro digital."
+      },
+      "ai": {
+        "name": "Visión por Computadora",
+        "description": "Sistemas de visión por computadora personalizados basados en el problema específico."
+      },
+      "automation": {
+        "name": "Automatización de Procesos",
+        "description": "Software de automatización personalizado que optimiza flujos de trabajo y reduce costos operativos."
+      },
+      "consulting": {
+        "name": "Consultoría Tecnológica",
+        "description": "Asesoría estratégica en arquitectura de software, transformación digital y optimización de procesos."
+      },
+      "devops": {
+        "name": "DevOps y Cloud",
+        "description": "Implementación de pipelines CI/CD, containerización con Docker y despliegue en la nube."
+      }
+    },
+    "timeline": {
+      "weeks": "semanas"
+    },
+    "emptyState": {
+      "title": "No se encontraron servicios",
+      "description": "Prueba con una categoría diferente o contáctanos para servicios personalizados."
+    },
+    "cta": {
+      "title": "¿No encuentras lo que buscas?",
+      "description": "Creamos soluciones personalizadas adaptadas a las necesidades específicas de tu negocio.",
+      "freeConsult": "Consulta Gratuita",
+      "viewPortfolio": "Ver Portafolio"
+    }
+  },
+  "modal": {
+    "projectDetails": "📋 Detalles del Proyecto",
+    "duration": "Duración:",
+    "price": "Precio:",
+    "category": "Categoría:",
+    "technologies": "🛠️ Tecnologías Incluidas",
+    "process": "🚀 Proceso de Trabajo",
+    "processSteps": {
+      "analysis": {
+        "title": "Análisis",
+        "description": "Entendemos tus necesidades"
+      },
+      "design": {
+        "title": "Diseño",
+        "description": "Creamos la solución ideal"
+      },
+      "development": {
+        "title": "Desarrollo",
+        "description": "Implementamos con calidad"
+      },
+      "delivery": {
+        "title": "Entrega",
+        "description": "Despliegue y soporte continuo"
+      }
+    },
+    "popularService": "🏆 Servicio Popular",
+    "popularDescription": "Este es uno de nuestros servicios más solicitados, con un alto índice de satisfacción del cliente y resultados comprobados en múltiples proyectos.",
+    "benefits": "✨ Beneficios Clave",
+    "benefitsList": [
+      "Código limpio y documentado",
+      "Soporte técnico 24/7",
+      "Escalabilidad garantizada",
+      "Metodologías ágiles",
+      "Testing automatizado",
+      "Despliegue automático"
+    ],
+    "freeConsult": "💬 Consulta Gratuita",
+    "viewPortfolio": "📄 Ver Portafolio"
+  },
+  "footer": {
+    "description": "Formando parte de la solución, un pixel a la vez.",
+    "company": "Empresa",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "location": "Ubicación",
+    "rights": "Todos los derechos reservados."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "nodeEc": "Node.ec",
+    "learnMore": "Conoce Más",
+    "getStarted": "Comenzar",
+    "backToHome": "Volver al Inicio",
+    "pageNotFound": "Página no encontrada",
+    "error": "Error",
+    "success": "Éxito",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar"
+  }
+}

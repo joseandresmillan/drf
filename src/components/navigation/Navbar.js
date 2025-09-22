@@ -1,11 +1,18 @@
 import { connect } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import logoNODE from "assets/images/node-blue.gif";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import LanguageSelector from "../common/LanguageSelector";
 
 function Navbar() {
+  const { t } = useTranslation();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Detectar si estamos en la página principal
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,47 +42,50 @@ function Navbar() {
             <img className="" width={90} height={80} src={logoNODE} alt="Logo de Node" />
           </Link>
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden md:flex items-center space-x-6">
             <NavLink
               to="/casos"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
+              className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
-              Casos de Estudio
+              {t('nav.cases')}
             </NavLink>
             <NavLink
               to="/servicios"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
+              className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
-              Servicios
+              {t('nav.services')}
             </NavLink>
             <NavLink
               to="/nosotros"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
+              className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
-              Nosotros
+              {t('nav.about')}
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/blog"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
+              className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
-              Blog
-            </NavLink>
+              {t('nav.blog')}
+            </NavLink> */}
             <NavLink
               to="/contacto"
-              className={`text-lg font-sora leading-6 transition duration-300 ease-in-out hover:underline-blue-button ${
+              className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
-              Contacto
+              {t('nav.contact')}
             </NavLink>
+            
+            {/* Language Selector */}
+            <LanguageSelector variant={isHomePage && !isScrolled ? "home" : "navbar"} />
           </div>
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -123,39 +133,43 @@ function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white rounded-lg shadow-lg">
               <NavLink
                 to="/casos"
-                className="block px-3 py-2 rounded-md text-base font-medium text-blue-button hover:bg-blue-button hover:text-white transition-colors"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Casos de Estudio
+                {t('nav.cases')}
               </NavLink>
               <NavLink
                 to="/servicios"
-                className="block px-3 py-2 rounded-md text-base font-medium text-blue-button hover:bg-blue-button hover:text-white transition-colors"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Servicios
+                {t('nav.services')}
               </NavLink>
               <NavLink
                 to="/nosotros"
-                className="block px-3 py-2 rounded-md text-base font-medium text-blue-button hover:bg-blue-button hover:text-white transition-colors"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Nosotros
+                {t('nav.about')}
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/blog"
-                className="block px-3 py-2 rounded-md text-base font-medium text-blue-button hover:bg-blue-button hover:text-white transition-colors"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Blog
-              </NavLink>
+                {t('nav.blog')}
+              </NavLink> */}
               <NavLink
                 to="/contacto"
-                className="block px-3 py-2 rounded-md text-base font-medium text-blue-button hover:bg-blue-button hover:text-white transition-colors"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Contacto
+                {t('nav.contact')}
               </NavLink>
+              {/* Language Selector Mobile */}
+              <div className="px-3 py-2">
+                <LanguageSelector variant="mobile" />
+              </div>
             </div>
           </div>
         )}
