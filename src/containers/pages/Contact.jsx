@@ -49,7 +49,7 @@ function Contact() {
                     <span className="text-blue-600 text-xl">📍</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Ubicación</h3>
+                    <h3 className="font-semibold text-gray-900">{t('contact.info.locationLabel')}</h3>
                     <p className="text-gray-600">{t('contact.info.address')}</p>
                   </div>
                 </div>
@@ -59,7 +59,7 @@ function Contact() {
                     <span className="text-green-600 text-xl">📧</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Email</h3>
+                    <h3 className="font-semibold text-gray-900">{t('contact.info.emailLabel')}</h3>
                     <p className="text-gray-600">{t('contact.info.email')}</p>
                   </div>
                 </div>
@@ -69,7 +69,7 @@ function Contact() {
                     <span className="text-purple-600 text-xl">📞</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Teléfono</h3>
+                    <h3 className="font-semibold text-gray-900">{t('contact.info.phoneLabel')}</h3>
                     <p className="text-gray-600">{t('contact.info.phone')}</p>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ function Contact() {
                     <span className="text-orange-600 text-xl">🕒</span>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900">Horarios</h3>
+                    <h3 className="font-semibold text-gray-900">{t('contact.info.hoursLabel')}</h3>
                     <p className="text-gray-600">{t('contact.info.hours')}</p>
                   </div>
                 </div>

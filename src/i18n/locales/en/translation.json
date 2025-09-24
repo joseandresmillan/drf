@@ -26,7 +26,7 @@
       "title": "Why choose Node.ec?",
       "subtitle": "We drive your business with cutting-edge technologies",
       "web3": {
-        "title": "ML Ops",
+        "title": "ML & DL Ops",
         "description": "Node.ec offers machine machine learning, ensuring transparency, security and traceability in all stages of your operation."
       },
       "scalability": {
@@ -137,9 +137,13 @@
     },
     "info": {
       "title": "Contact Information",
+      "locationLabel": "Location",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "hoursLabel": "Hours",
       "address": "Guayaquil, Ecuador",
       "email": "joseandresmillan16@gmail.com",
-      "phone": "+593 XXX XXXX",
+      "phone": "+593 964105123",
       "hours": "Mon - Fri: 9:00 AM - 6:00 PM"
     },
     "projectTypes": {
@@ -149,6 +153,33 @@
       "ai": "Artificial Intelligence",
       "automation": "Automation",
       "consulting": "Consulting"
+    },
+    "placeholders": {
+      "selectType": "Select a type",
+      "selectRange": "Select a range",
+      "selectTime": "Select a timeline",
+      "subjectExample": "I need a web application...",
+      "messageExample": "Describe your project in detail..."
+    },
+    "budgetRanges": {
+      "range1": "$1,000 - $5,000",
+      "range2": "$5,000 - $15,000", 
+      "range3": "$15,000 - $50,000",
+      "range4": "$50,000+"
+    },
+    "timelines": {
+      "urgent": "Urgent (1-2 weeks)",
+      "normal": "Normal (1-2 months)",
+      "flexible": "Flexible (3+ months)"
+    }
+  },
+  "techStack": {
+    "title": "Technologies we use in",
+    "subtitle": "Node to take your project to the top of innovation",
+    "description": "Our technology stack combines the best Machine Learning, web development and DevOps tools to create robust and scalable solutions.",
+    "cta": {
+      "question": "Ready to transform your business with these technologies?",
+      "button": "Start Project"
     }
   },
   "services": {

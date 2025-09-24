@@ -4,6 +4,7 @@ import Layout from "hocs/layouts/Layout"; /*Esqueleto de la pagina*/
 import Header from "components/home/Header";
 import Incentives from "components/home/Incentives";
 import UseCases from "components/home/UseCases";
+import TechStack from "components/home/TechStack";
 
 function Home() {
   // Cambia esto a false si quieres volver a la imagen estática
@@ -20,6 +21,7 @@ function Home() {
         />
         <Incentives />
         <UseCases />
+        <TechStack />
       </div>
       <Footer />
     </Layout>

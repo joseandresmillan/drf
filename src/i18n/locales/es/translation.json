@@ -26,7 +26,7 @@
       "title": "¿Por qué elegir Node.ec?",
       "subtitle": "Impulsamos tu negocio con tecnologías de vanguardia",
       "web3": {
-        "title": "ML Ops",
+        "title": "ML & DL Ops",
         "description": "Node.ec ofrece soluciones de ML y DL asegurando transparencia, seguridad y trazabilidad en todas las etapas de tu operación."
       },
       "scalability": {
@@ -121,7 +121,7 @@
     "subtitle": "¿Listo para convertir tu idea en realidad?",
     "description": "Estamos aquí para ayudarte a desarrollar soluciones tecnológicas innovadoras. Hablemos sobre tu próximo proyecto.",
     "form": {
-      "name": "Nombre Completo",
+      "name": "Nombre",
       "email": "Dirección de Correo",
       "company": "Empresa",
       "phone": "Teléfono",
@@ -137,6 +137,10 @@
     },
     "info": {
       "title": "Información de Contacto",
+      "locationLabel": "Ubicación",
+      "emailLabel": "Email",
+      "phoneLabel": "Teléfono",
+      "hoursLabel": "Horarios",
       "address": "Guayaquil, Ecuador",
       "email": "joseandresmillan16@gmail.com",
       "phone": "+593 964105123",
@@ -149,6 +153,33 @@
       "ai": "Inteligencia Artificial",
       "automation": "Automatización",
       "consulting": "Consultoría"
+    },
+    "placeholders": {
+      "selectType": "Selecciona un tipo",
+      "selectRange": "Selecciona un rango",
+      "selectTime": "Selecciona un tiempo",
+      "subjectExample": "Necesito una aplicación web...",
+      "messageExample": "Describe tu proyecto en detalle..."
+    },
+    "budgetRanges": {
+      "range1": "$1,000 - $5,000",
+      "range2": "$5,000 - $15,000",
+      "range3": "$15,000 - $50,000", 
+      "range4": "$50,000+"
+    },
+    "timelines": {
+      "urgent": "Urgente (1-2 semanas)",
+      "normal": "Normal (1-2 meses)",
+      "flexible": "Flexible (3+ meses)"
+    }
+  },
+  "techStack": {
+    "title": "Tecnologías que utilizamos en",
+    "subtitle": "Node para llevar a tu proyecto a la cima de la innovación",
+    "description": "Nuestro stack tecnológico combina las mejores herramientas de Machine Learning, desarrollo web y DevOps para crear soluciones robustas y escalables.",
+    "cta": {
+      "question": "¿Listo para transformar tu negocio con estas tecnologías?",
+      "button": "Iniciar Proyecto"
     }
   },
   "services": {

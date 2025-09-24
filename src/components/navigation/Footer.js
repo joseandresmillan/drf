@@ -12,8 +12,8 @@ function Footer() {
       { name: "Guayaquil, Ecuador", href: "#" },
     ],
     support: [
-      { name: "Email: joseandresmillan16@gmail.com", href: "mailto:joseandresmillan16@gmail.com" },
-      
+      { name: "Email:", href: "#", isLabel: true },
+      { name: "joseandresmillan16@gmail.com", href: "mailto:joseandresmillan16@gmailcom" },
     ],
     company: [
       { name: t('nav.cases'), href: "/casos" },
@@ -24,7 +24,6 @@ function Footer() {
     ],
     services: [
       { name: "Web Development", href: "/servicios" },
-      { name: "Web3 & Blockchain", href: "/servicios" },
       { name: "AI & Computer Vision", href: "/servicios" },
     ],
     social: [
@@ -78,27 +77,33 @@ function Footer() {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  {t('footer.location')}
+                  {t('footer.contact')}
                 </h3>
                 <ul className="mt-6 space-y-4">
-                  {navigation.solutions.map((item, idx) => (
+                  {navigation.support.map((item, idx) => (
                     <li key={item.name || idx}>
-                      <a
-                        href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors"
-                      >
-                        {item.name}
-                      </a>
+                      {item.isLabel ? (
+                        <span className="text-sm font-medium leading-6 text-gray-700 block mb-2">
+                          {item.name}
+                        </span>
+                      ) : (
+                        <a
+                          href={item.href}
+                          className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors"
+                        >
+                          {item.name}
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  {t('footer.contact')}
+                  {t('footer.location')}
                 </h3>
                 <ul className="mt-6 space-y-4">
-                  {navigation.support.map((item, idx) => (
+                  {navigation.solutions.map((item, idx) => (
                     <li key={item.name || idx}>
                       <a
                         href={item.href}
