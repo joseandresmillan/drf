@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Res
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/casos" element={<Cases />} />

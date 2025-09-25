@@ -265,7 +265,6 @@ const ConnectionLine = React.memo(({ tech, index, circleRefs, containerRef, bina
 export default function TechStack() {
   const { t } = useTranslation();
   const [binaryData, setBinaryData] = useState('');
-  const [matrixConnections, setMatrixConnections] = useState([]);
   const circleRefs = useRef([]);
   const containerRef = useRef(null);
   const binaryRef = useRef(null);
@@ -359,11 +358,13 @@ export default function TechStack() {
   const floatingRefs = useRef([]);
 
   const generateFloatingPositions = useCallback(() => {
-    const containerWidth = 280; // Increased from 200 to give more space
-    const containerHeight = 350; // Increased from 300 to give more space
+    // Get dynamic container dimensions instead of fixed values
+    const containerRect = containerRef.current?.getBoundingClientRect();
+    const containerWidth = containerRect ? Math.min(containerRect.width * 0.25, 280) : 280; // Scale to 25% of container width, max 280px for responsiveness
+    const containerHeight = containerRect ? containerRect.height : 350; // Use actual height
     const iconSize = 48; // w-12 = 48px
-    const margin = 15; // Increased margin for more breathing room
-    const minDistance = iconSize + 25; // Increased from 10 to 25 for more space between elements
+    const margin = Math.min(15, containerWidth * 0.05); // Responsive margin, max 15px
+    const minDistance = iconSize + Math.min(25, containerWidth * 0.1); // Responsive min distance
 
     const positions = [];
     const maxAttempts = 50; // Maximum attempts to place each item
@@ -380,7 +381,7 @@ export default function TechStack() {
         const candidate = {
           x: Math.random() * maxX + margin,
           y: Math.random() * maxY + margin,
-          rotation: Math.random() * 10 - 5, // Slight rotation
+          rotation: Math.random() * 10 - 5,
         };
 
         // Check collision with existing positions
@@ -424,26 +425,42 @@ export default function TechStack() {
     setFloatingPositions(generateFloatingPositions());
   }, [generateFloatingPositions]);
 
+  // Add ResizeObserver for dynamic updates
+  useEffect(() => {
+    const currentContainer = containerRef.current;
+    const resizeObserver = new ResizeObserver(() => {
+      setFloatingPositions(generateFloatingPositions());
+    });
+
+    if (currentContainer) {
+      resizeObserver.observe(currentContainer);
+    }
+
+    return () => {
+      if (currentContainer) {
+        resizeObserver.unobserve(currentContainer);
+      }
+    };
+  }, [generateFloatingPositions]);
+
   // ANIMATION: Continuous floating movement - updates positions every 8s for very slow, natural drift
   useEffect(() => {
     const interval = setInterval(() => {
       setFloatingPositions(prev => {
+        const containerRect = containerRef.current?.getBoundingClientRect();
+        const containerWidth = containerRect ? Math.min(containerRect.width * 0.25, 280) : 280;
+        const containerHeight = containerRect ? containerRect.height : 350;
         const iconSize = 48;
-        const containerWidth = 280; // Increased from 200
-        const containerHeight = 350; // Increased from 300
-        const margin = 15; // Increased margin
+        const margin = Math.min(15, containerWidth * 0.05);
 
         return prev.map((pos, index) => {
-          // Add some variation to movement speed for more natural feel
-          const speedMultiplier = 0.8 + Math.random() * 0.4; // Random speed between 0.8-1.2
-          const baseMovement = 4 * speedMultiplier; // Reduced from 6 to 4 for slower movement
+          const speedMultiplier = 0.8 + Math.random() * 0.4;
+          const baseMovement = Math.min(4, containerWidth * 0.01) * speedMultiplier; // Scale movement to container size
           
-          // Smaller, more frequent movements for natural flow
           let newX = pos.x + (Math.random() - 0.5) * baseMovement;
           let newY = pos.y + (Math.random() - 0.5) * baseMovement;
-          let newRotation = pos.rotation + (Math.random() - 0.5) * 0.6; // Slightly reduced rotation
+          let newRotation = pos.rotation + (Math.random() - 0.5) * 0.6;
 
-          // Keep within bounds
           newX = Math.max(margin, Math.min(containerWidth - iconSize - margin, newX));
           newY = Math.max(margin, Math.min(containerHeight - iconSize - margin, newY));
 
@@ -457,33 +474,6 @@ export default function TechStack() {
     }, 8000); // Doubled from 4000ms for even slower speed
 
     return () => clearInterval(interval);
-  }, []);
-
-  // Fixed matrix-to-screen connection line (static positioning)
-  useEffect(() => {
-    // Use container dimensions to calculate proper coordinates
-    if (containerRef.current) {
-      const containerRect = containerRef.current.getBoundingClientRect();
-      const containerWidth = containerRect.width;
-      const containerHeight = containerRect.height;
-
-      // Matrix column is ~25% + 40% = 65% of width
-      // Screen column starts at ~68% of width
-      // Cut the line in half and move it left - from 63% to 64.5%
-      const matrixRightEdge = containerWidth * 0.63;
-      const lineMidpoint = containerWidth * 0.657; // Midpoint between 0.63 and 0.66 (moved left)
-      const centerY = containerHeight * 0.5;
-
-      console.log('Container dimensions:', { width: containerWidth, height: containerHeight });
-      console.log('Line coordinates:', { start: matrixRightEdge, end: lineMidpoint, y: centerY });
-
-      const positions = [{
-        start: { x: matrixRightEdge, y: centerY },
-        end: { x: lineMidpoint, y: centerY }
-      }];
-
-      setMatrixConnections(positions);
-    }
   }, []);
 
   return (
@@ -517,9 +507,9 @@ export default function TechStack() {
         </motion.div>
 
         {/* Main Visualization - 3 columnas */}
-        <div ref={containerRef} className="relative min-h-[350px] md:min-h-[400px] flex flex-col md:flex-row gap-4 md:gap-0">
+        <div ref={containerRef} className="relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] flex flex-col items-center md:flex-row md:justify-center gap-2 md:gap-1 lg:gap-0">
           {/* Columna 1 - Technology Inputs - Now floating */}
-          <div className="w-full md:w-1/4 md:pr-6 mb-4 md:mb-0 relative" style={{ height: '350px' }}>
+          <div className="w-full md:w-1/5 lg:w-1/4 md:pr-1 lg:pr-4 mb-2 md:mb-0 relative" style={{ height: 'auto', minHeight: '300px' }}> {/* Removed fixed height, use auto with min-height */}
             {technologies.map((tech, index) => {
               const floatingPos = floatingPositions[index];
               return (
@@ -614,13 +604,13 @@ export default function TechStack() {
           </div>
 
           {/* Columna 2 - Binary Data Stream (Processing) */}
-          <div className="w-full md:w-2/5 px-2 md:px-3 flex items-center justify-center mb-4 md:mb-0">
+          <div className="w-1/2 md:w-1/3 lg:w-1/3 px-1 md:px-2 lg:px-3 flex items-center justify-center mb-2 md:mb-0">
             <motion.div
               ref={binaryRef}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="bg-gray-900/90 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-4 w-full max-h-[280px] overflow-hidden relative"
+              className="bg-gray-900/90 backdrop-blur-sm border border-cyan-500/30 rounded-lg p-2 sm:p-3 md:p-4 w-full max-h-[120px] sm:max-h-[180px] md:max-h-[220px] lg:max-h-[250px] xl:max-h-[280px] overflow-hidden relative"
               style={{ zIndex: 10 }}
             >
               <div className="mb-2 flex items-center space-x-2">
@@ -640,7 +630,7 @@ export default function TechStack() {
                 <span className="text-cyan-400 text-xs font-mono">Processing Matrix</span>
               </div>
               
-              <div className="overflow-hidden h-[190px] px-1 flex items-center justify-center">
+              <div className="overflow-hidden h-[90px] sm:h-[140px] md:h-[170px] lg:h-[190px] px-1 flex items-center justify-center">
                 <BinaryStream binaryData={binaryData} />
               </div>
               
@@ -659,17 +649,17 @@ export default function TechStack() {
           </div>
 
           {/* Columna 3 - WebGL Screen Result */}
-          <div className="w-full md:w-1/3 pl-2 md:pl-4 flex items-center justify-center">
+          <div className="w-1/2 md:w-1/2 lg:w-2/5 pl-1 md:pl-2 lg:pl-4 flex items-center justify-center relative">
             {/* ANIMATION: WebGL screen - slide from right entrance (0.8s) for smooth reveal */}
             <motion.div
               ref={resultRef}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex items-center justify-center"
+              className="flex items-center justify-center w-full"
             >
               {/* Render the WebGL preview/screenshot component */}
-              <div className="w-[370px] h-[260px] sm:w-[400px] sm:h-[300px] rounded-lg overflow-hidden shadow-lg bg-black/70">
+              <div className="w-[180px] h-[110px] sm:w-[200px] sm:h-[130px] md:w-[250px] md:h-[160px] lg:w-[300px] lg:h-[200px] xl:w-[320px] xl:h-[220px] 2xl:w-[370px] 2xl:h-[260px] rounded-lg overflow-hidden shadow-lg bg-black/70 mx-auto">
                 <WebGLScreen className="w-full h-full" style={{ display: 'block' }} />
               </div>
             </motion.div>
@@ -688,75 +678,6 @@ export default function TechStack() {
                 binaryRef={binaryRef}
               />
             ))}
-
-            {/* Líneas que conectan la matriz con la pantalla WebGL - Single centered connection */}
-            {matrixConnections.length > 0 && (
-              <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible', pointerEvents: 'none', zIndex: 30 }}>
-                <defs>
-                  <linearGradient id={`matrix-to-screen-gradient`} x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#e3f520" stopOpacity="0.95" />
-                    <stop offset="100%" stopColor="#0260d4" stopOpacity="0.75" />
-                  </linearGradient>
-                </defs>
-                {matrixConnections.map((pos, i) => {
-                  const { start, end } = pos;
-                  // Create straight line between centers for cleaner connection
-                  const d = `M ${start.x} ${start.y} L ${end.x} ${end.y}`;
-                  return (
-                    <g key={`matrix-line-${i}`}>
-                      {/* Simple pulsing connection line */}
-                      <motion.path
-                        d={d}
-                        stroke="#e3f520"
-                        strokeWidth="3"
-                        fill="none"
-                        strokeLinecap="round"
-                        initial={{ opacity: 0.3, pathLength: 0 }}
-                        animate={{
-                          opacity: [0.3, 1, 0.3],
-                          pathLength: 1
-                        }}
-                        transition={{
-                          opacity: {
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                          },
-                          pathLength: {
-                            duration: 1,
-                            ease: "easeOut"
-                          }
-                        }}
-                      />
-
-                      {/* Traveling particle */}
-                      <motion.circle
-                        r="2.5"
-                        fill="#e3f520"
-                        opacity="0.8"
-                        initial={{
-                          cx: start.x,
-                          cy: start.y,
-                          opacity: 0
-                        }}
-                        animate={{
-                          cx: [start.x, end.x],
-                          cy: [start.y, end.y],
-                          opacity: [0, 0.8, 0.8, 0]
-                        }}
-                        transition={{
-                          duration: 3,
-                          delay: 1,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                          times: [0, 0.1, 0.9, 1]
-                        }}
-                      />
-                    </g>
-                  );
-                })}
-              </svg>
-            )}
 
           </div>
         </div>
