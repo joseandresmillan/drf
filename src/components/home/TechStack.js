@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import roboflowLogo from '../../assets/logos/logo-roboflow.png';
 import opencvLogo from '../../assets/logos/logo-opencv.png';
-import WebGLScreen from '../WebGLScreen';
+// Removed WebGLScreen import
 import { 
   SiPython, 
   SiOpenai, 
@@ -77,6 +77,84 @@ const BinaryStream = React.memo(({ binaryData }) => {
           })}
         </div>
       ))}
+    </motion.div>
+  );
+});
+
+// Decrypted Text Animation Component
+const DecryptedText = React.memo(({ text, className = "" }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [isComplete, setIsComplete] = useState(false);
+  const intervalRef = useRef(null);
+
+  // Characters for scrambling effect
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+  useEffect(() => {
+    const lines = text.split('\n');
+    const maxLineLength = Math.max(...lines.map(line => line.length));
+    let iteration = 0;
+
+    intervalRef.current = setInterval(() => {
+      const newLines = lines.map(line => {
+        const newLine = line.split('').map((char, charIndex) => {
+          if (charIndex < iteration) {
+            return char; // Reveal correct character progressively from left to right
+          }
+          return chars[Math.floor(Math.random() * chars.length)]; // Random character
+        }).join('');
+
+        // Pad shorter lines to maintain alignment
+        return newLine + ' '.repeat(Math.max(0, maxLineLength - newLine.length));
+      });
+
+      setDisplayText(newLines.join('\n'));
+
+      iteration += 1;
+
+      if (iteration >= maxLineLength) {
+        setDisplayText(text);
+        setIsComplete(true);
+        clearInterval(intervalRef.current);
+      }
+    }, 40); // Smooth timing for simultaneous line reveal
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [text]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, delay: 0.8 }}
+      className={`font-mono text-lg md:text-xl lg:text-2xl font-bold text-center whitespace-pre-line ${className}`}
+    >
+      <span className={`${isComplete ? 'text-green-400' : 'text-cyan-400'} transition-colors duration-300 ${isComplete ? 'drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]' : ''}`}>
+        {displayText}
+      </span>
+
+      {/* Glitch effect overlay */}
+      {!isComplete && (
+        <motion.div
+          animate={{
+            opacity: [0, 0.1, 0],
+            x: [0, -0.3, 0.3, 0]
+          }}
+          transition={{
+            duration: 0.02,
+            repeat: Infinity,
+            repeatType: "loop"
+          }}
+          className="absolute inset-0 text-red-400 pointer-events-none"
+          style={{ textShadow: '0.3px 0 #ff0000, -0.3px 0 #00ffff' }}
+        >
+          {displayText}
+        </motion.div>
+      )}
     </motion.div>
   );
 });
@@ -268,7 +346,7 @@ export default function TechStack() {
   const circleRefs = useRef([]);
   const containerRef = useRef(null);
   const binaryRef = useRef(null);
-  const resultRef = useRef(null);
+  // Removed resultRef
 
   const technologies = useMemo(() => [
     {
@@ -506,7 +584,7 @@ export default function TechStack() {
           </p>
         </motion.div>
 
-        {/* Main Visualization - 3 columnas */}
+        {/* Main Visualization - 3 columns */}
         <div ref={containerRef} className="relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] flex flex-col items-center md:flex-row md:justify-center gap-2 md:gap-1 lg:gap-0">
           {/* Columna 1 - Technology Inputs - Now floating */}
           <div className="w-full md:w-1/5 lg:w-1/4 md:pr-1 lg:pr-4 mb-2 md:mb-0 relative" style={{ height: 'auto', minHeight: '300px' }}> {/* Removed fixed height, use auto with min-height */}
@@ -648,20 +726,16 @@ export default function TechStack() {
             </motion.div>
           </div>
 
-          {/* Columna 3 - WebGL Screen Result */}
+          {/* Columna 3 - Decrypted Text Result */}
           <div className="w-1/2 md:w-1/2 lg:w-2/5 pl-1 md:pl-2 lg:pl-4 flex items-center justify-center relative">
-            {/* ANIMATION: WebGL screen - slide from right entrance (0.8s) for smooth reveal */}
+            {/* ANIMATION: Decrypted text - slide from right entrance (0.8s) for smooth reveal */}
             <motion.div
-              ref={resultRef}
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex items-center justify-center w-full"
             >
-              {/* Render the WebGL preview/screenshot component */}
-              <div className="w-[180px] h-[110px] sm:w-[200px] sm:h-[130px] md:w-[250px] md:h-[160px] lg:w-[300px] lg:h-[200px] xl:w-[320px] xl:h-[220px] 2xl:w-[370px] 2xl:h-[260px] rounded-lg overflow-hidden shadow-lg bg-black/70 mx-auto">
-                <WebGLScreen className="w-full h-full" style={{ display: 'block' }} />
-              </div>
+              <DecryptedText text={`Construimos sobre un stack que trasciende,\nfusionando estabilidad y evolución constante.\nTecnología que no solo funciona,\nsino que abre las puertas al futuro.`} />
             </motion.div>
           </div>
 
