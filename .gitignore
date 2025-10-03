@@ -309,3 +309,6 @@ tmp/
 # Markdown files
 *.md
 
+*staticfiles
+*build
+*scripts
