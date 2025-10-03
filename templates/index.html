@@ -2,23 +2,37 @@
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Agencia de Marketing Digital" />
-    <link rel="apple-touch-icon" href="/logo192.png" />
-    <link rel="manifest" href="/manifest.json" />
-    <title>Agencia de Marketing</title>
+    <meta name="description" content="Node.ec - Industria 4.0, Visión por Computadora e IoT" />
+    <title>NODE.EC - Industria 4.0</title>
     
     {% load static %}
-    <!-- CSS estáticos de React -->
-    <link href="{% static 'css/main.c45e9e10.css' %}" rel="stylesheet">
+    
+    <!-- CSS de React - DINÁMICO: se actualiza automáticamente -->
+    {% if react_css %}
+        <link href="{% static react_css %}" rel="stylesheet" type="text/css">
+    {% else %}
+        <!-- Fallback en caso de error -->
+        <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+    {% endif %}
 </head>
 <body>
     <noscript>Necesitas habilitar JavaScript para ejecutar esta aplicación.</noscript>
+    
     <div id="root"></div>
     
-    <!-- JavaScript estáticos de React -->
-    <script src="{% static 'js/main.0d651f57.js' %}"></script>
+    <!-- JavaScript de React - DINÁMICO: se actualiza automáticamente -->
+    {% if react_js %}
+        <script src="{% static react_js %}" type="application/javascript"></script>
+    {% else %}
+        <!-- Fallback en caso de error -->
+        <script src="{% static 'js/main.js' %}" type="application/javascript"></script>
+    {% endif %}
+    
+    <!-- Debug info (solo en desarrollo) -->
+    {% if debug %}
+        <!-- Assets cargados: CSS={{ react_css }}, JS={{ react_js }} -->
+    {% endif %}
 </body>
 </html>

@@ -2,6 +2,7 @@ import Navbar from "components/navigation/Navbar"
 import Footer from "components/navigation/Footer"
 import Layout from "hocs/layouts/Layout" /*Esqueleto de la pagina*/
 import UseCases from "components/home/UseCases";
+import TechStack from "components/home/TechStack";
 
 
 function Cases(){
@@ -9,6 +10,7 @@ function Cases(){
         <Layout> 
             <Navbar/>
             <UseCases/>
+            <TechStack/>
             <Footer/>
         </Layout> 
     );

@@ -10,6 +10,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
 
 /* Variables CSS personalizadas */
 :root {
@@ -60,6 +61,10 @@
 }
 
 html {
+  /* Fallback para navegadores que no soportan scroll-behavior */
+  -webkit-scroll-behavior: smooth;
+  -moz-scroll-behavior: smooth;
+  -ms-scroll-behavior: smooth;
   scroll-behavior: smooth;
   font-size: 16px;
 }
@@ -90,10 +95,10 @@ body {
   border-radius: 1px;
 }
 
-/* Scrollbar personalizado */
+/* Scrollbar con color node-text */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -102,19 +107,22 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-gradient);
+  background: #E5F620;
   border-radius: var(--radius-lg);
   transition: var(--transition-normal);
+  opacity: 0.7;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-gradient);
-  transform: scale(1.1);
+  background: #E5F620;
+  opacity: 1;
 }
 
 /* Utilidades generales */
 .glass-effect {
   background: rgba(255, 255, 255, 0.1);
+  /* Prefijos para compatibilidad con Safari */
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-lg);
@@ -311,6 +319,40 @@ body {
   font-weight: 500;
   line-height: 1.4;
   margin-bottom: 0.5rem;
+}
+
+/* Estilos específicos para header y navbar con Chakra Petch */
+.header-title {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.navbar-link {
+  font-family: 'Chakra Petch', monospace, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.navbar-link:hover {
+  font-weight: 500;
+}
+
+/* Espaciado mejorado para header en móviles */
+.header-container {
+  padding-top: 8rem; /* 128px en móviles */
+}
+
+@media (min-width: 640px) {
+  .header-container {
+    padding-top: 9rem; /* 144px en tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-container {
+    padding-top: 10rem; /* 160px en desktop */
+  }
 }
 
 /* Responsive */
