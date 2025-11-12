@@ -2,97 +2,25 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import rpihat from '../../assets/images/rpihat.png';
+import { Link } from 'react-router-dom';
 
 const blogs = [
   {
     id: 1,
+    slug: "raspberry-pi-ai-hat",
     title: {
-      es: "Fundamentos de SEO: Guía para Principiantes",
-      en: "SEO Basics: Beginner's Guide to SEO Success"
+      es: "Raspberry Pi y su AI HAT: Potenciando Proyectos de IA",
+      en: "Raspberry Pi and its AI HAT: Empowering AI Projects"
     },
     description: {
-      es: "Durante el último año, Node.ec ha experimentado muchos cambios. Después de meses de preparación y trabajo duro, nos mudamos a nuestra nueva oficina.",
-      en: "Over the past year, Node.ec has undergone many changes! After months of preparation and some hard work, we moved to our new office."
+      es: "Descifrando el mundo de la computacion al borde.",
+      en: "Deciphering the word of edge computing."
     },
-    image: "https://via.placeholder.com/400x200",
-    category: "web3",
-    readTime: 5,
-    publishedDate: "2024-01-15",
-    link: "#",
-  },
-  {
-    id: 2,
-    title: {
-      es: "Cómo desplegar rápidamente un sitio web estático",
-      en: "How to quickly deploy a static website"
-    },
-    description: {
-      es: "Aprende las mejores prácticas para el despliegue rápido y eficiente de sitios web estáticos usando herramientas modernas.",
-      en: "Learn best practices for quick and efficient deployment of static websites using modern tools."
-    },
-    category: "development",
-    readTime: 8,
-    publishedDate: "2024-01-10",
-    link: "#",
-  },
-  {
-    id: 3,
-    title: {
-      es: "Cómo Posicionarse Mejor en Google (6 Pasos Fáciles)",
-      en: "How to Rank Higher on Google (6 Easy Steps)"
-    },
-    description: {
-      es: "Estrategias probadas para mejorar tu posicionamiento en los motores de búsqueda y aumentar tu visibilidad online.",
-      en: "Proven strategies to improve your search engine ranking and increase your online visibility."
-    },
+    image:rpihat,
     category: "ai",
-    readTime: 12,
-    publishedDate: "2024-01-05",
-    link: "#",
-  },
-  {
-    id: 4,
-    title: {
-      es: "¿Qué es SEO? Optimización para Motores de Búsqueda Explicada",
-      en: "What is SEO? Search Engine Optimization Explained"
-    },
-    description: {
-      es: "Una introducción completa al mundo del SEO, conceptos fundamentales y por qué es crucial para tu negocio digital.",
-      en: "A complete introduction to the world of SEO, fundamental concepts and why it's crucial for your digital business."
-    },
-    category: "automation",
-    readTime: 6,
-    publishedDate: "2023-12-28",
-    link: "#",
-  },
-  {
-    id: 5,
-    title: {
-      es: "12 Mejores Prácticas de SEO que Todos Deberían Seguir",
-      en: "12 SEO Best Practices That Everyone Should Follow"
-    },
-    description: {
-      es: "Técnicas esenciales de SEO que todo profesional digital debe conocer para maximizar el rendimiento de su sitio web.",
-      en: "Essential SEO techniques that every digital professional should know to maximize their website performance."
-    },
-    category: "web3",
-    readTime: 15,
-    publishedDate: "2023-12-20",
-    link: "#",
-  },
-  {
-    id: 6,
-    title: {
-      es: "Cómo programar tus Tweets para enviar más tarde",
-      en: "How to schedule your Tweets to send later"
-    },
-    description: {
-      es: "Herramientas y estrategias para automatizar tu presencia en redes sociales y maximizar el engagement.",
-      en: "Tools and strategies to automate your social media presence and maximize engagement."
-    },
-    category: "automation",
-    readTime: 4,
-    publishedDate: "2023-12-15",
+    readTime: 25,
+    publishedDate: "2025-11-12",
     link: "#",
   },
 ];
@@ -104,10 +32,8 @@ function BlogPage() {
 
   const categories = [
     { key: 'all', icon: '📚' },
-    { key: 'web3', icon: '🔗' },
     { key: 'ai', icon: '🤖' },
-    { key: 'development', icon: '💻' },
-    { key: 'automation', icon: '⚡' }
+     
   ];
 
   const filteredBlogs = blogs.filter(blog => {
@@ -235,8 +161,8 @@ function BlogPage() {
                     {blog.description[i18n.language]}
                   </p>
                   
-                  <a
-                    href={blog.link}
+                  <Link 
+                    to={`/blog/${blog.slug}`}
                     className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group"
                   >
                     <span>{t('blog.readMore')}</span>
@@ -248,7 +174,7 @@ function BlogPage() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </motion.article>
             ))}
