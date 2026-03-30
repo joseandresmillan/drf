@@ -375,7 +375,7 @@ export default function TechStack() {
     },
     {
       name: 'OpenCV',
-      icon: <img src={opencvLogo} alt="OpenCV" className="w-6 h-6" />,
+      icon: <img src={opencvLogo} alt="OpenCV" className="w-6 h-6 object-contain" loading="lazy" />,
       color: 'from-green-500 to-blue-500',
       delay: 0.8
     },
@@ -387,7 +387,7 @@ export default function TechStack() {
     },
     {
       name: 'Roboflow',
-      icon: <img src={roboflowLogo} alt="Roboflow" className="w-6 h-6 object-contain" />,
+      icon: <img src={roboflowLogo} alt="Roboflow" className="w-6 h-6 object-contain" loading="lazy" />,
       color: 'from-purple-500 to-pink-400',
       delay: 1.2
     },

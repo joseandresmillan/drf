@@ -39,7 +39,7 @@ function Navbar() {
       <div className="px-4 sm:px-6">
         <div className="flex items-center justify-between md:px-14 px-2">
           <Link to="/" className="flex-shrink-0">
-            <img className="" width={90} height={80} src={logoNODE} alt="Logo de Node" />
+            <img className="w-[90px]" src={logoNODE} alt="Logo de Node" fetchpriority="high" />
           </Link>
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
