@@ -6,11 +6,12 @@
 @import './components.css';
 @import './animations.css';
 
-/* Fuentes modernas */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;1,300;1,400;1,500&display=swap');
+/* 
+  NOTA IMPORTANTE: Las fuentes ahora se cargan en public/index.html para mejor rendimiento
+  - Chakra Petch: Fuente crítica con preload
+  - Inter, Poppins, Sora: Carga asíncrona con menor prioridad
+  Esto mejora significativamente el LCP (Largest Contentful Paint)
+*/
 
 /* Variables CSS personalizadas */
 :root {

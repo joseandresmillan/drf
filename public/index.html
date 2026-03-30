@@ -2,15 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/png" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" type="image/png" />
+    <!-- Favicon optimizado - usar ICO para mejor compatibilidad y rendimiento -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="any" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" sizes="180x180" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="NODE.EC - Soluciones de IA, Visión por Computadora y Transformación Digital. Expertos en proyectos de Machine Learning e Industria 4.0"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.png" />
+    
+    <!-- Preconnect a dominios externos para mejorar rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- DNS Prefetch para recursos externos -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- Precargar fuentes críticas para mejorar LCP -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&display=swap" media="print" onload="this.media='all'" />
+    
+    <!-- Otras fuentes con menor prioridad -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'" />
+    
+    <!-- Fallback para navegadores sin JS -->
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" />
+    </noscript>
+    
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
