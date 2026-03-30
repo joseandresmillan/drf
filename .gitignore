@@ -312,6 +312,6 @@ tmp/
 *.md
 .sh
 .bat
-scripts
 package-lock.json
 package.json
+scripts

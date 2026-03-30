@@ -67,14 +67,14 @@ function Navbar() {
             >
               {t('nav.about')}
             </NavLink>
-            {/* <NavLink
+            {<NavLink
               to="/blog"
               className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
                 isScrolled ? "text-blue-button" : "text-node-text"
               }`}
             >
               {t('nav.blog')}
-            </NavLink> */}
+            </NavLink>}
             <NavLink
               to="/contacto"
               className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
@@ -152,13 +152,13 @@ function Navbar() {
               >
                 {t('nav.about')}
               </NavLink>
-              {/* <NavLink
+              <NavLink
                 to="/blog"
                 className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.blog')}
-              </NavLink> */}
+              </NavLink>
               <NavLink
                 to="/contacto"
                 className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
