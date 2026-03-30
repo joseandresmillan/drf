@@ -7,7 +7,7 @@ import opencvLogo from '../../assets/logos/logo-opencv.png';
 // Removed WebGLScreen import
 import { 
   SiPython, 
-  SiOpenai, 
+  SiClaude, 
   SiDocker, 
   SiReact,  
   SiGithub,
@@ -356,8 +356,8 @@ export default function TechStack() {
       delay: 0
     },
     {
-      name: 'OpenAI',
-      icon: <SiOpenai className="w-6 h-6 text-black" />,
+      name: 'Claude',
+      icon: <SiClaude className="w-6 h-6 text-black" />,
       color: 'from-gray-800 to-gray-600',
       delay: 0.2
     },
