@@ -1,6 +1,7 @@
 
 import React from "react";
-import deteccion_en_muelle from "../../../assets/images/deteccion_en_muelle.png";
+import deteccion_en_muelleWebp from "../../../assets/images/deteccion_en_muelle.webp";
+import deteccion_en_muellePng from "../../../assets/images/deteccion_en_muelle.png";
 import Navbar from "components/navigation/Navbar";
 import Footer from "components/navigation/Footer";
 import Layout from "hocs/layouts/Layout";
@@ -11,7 +12,10 @@ export default function Muelles() {
       <Navbar />
   <div className="max-w-4xl mx-auto py-12 px-4 mt-20">
         <h1 className="text-3xl font-bold mb-6 text-indigo-700">Muelles Inteligentes: Visibilidad y Validación Automática</h1>
-        <img src={deteccion_en_muelle} alt="Muelles" className="rounded-lg shadow mb-8 w-full h-64 object-cover" />
+        <picture>
+          <source srcSet={deteccion_en_muelleWebp} type="image/webp" />
+          <img src={deteccion_en_muellePng} alt="Muelles" className="rounded-lg shadow mb-8 w-full h-64 object-cover" />
+        </picture>
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2 text-blue-700">Resumen</h2>
           <ul className="list-disc pl-6 text-lg">

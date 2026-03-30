@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 const BlogCard = ({ blog, index }) => {
   const { t, i18n } = useTranslation();
   
-  // Normalize language code (es-ES -> es, en-US -> en)
-  const lang = i18n.language.split('-')[0];
+  // Normalize language code (es-ES -> es, en-US -> en) with fallback to 'es'
+  const lang = i18n.language ? i18n.language.split('-')[0] : 'es';
 
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -32,11 +32,15 @@ const BlogCard = ({ blog, index }) => {
       >
         {blog.image && (
           <div className="relative overflow-hidden">
-            <img
-              src={blog.image}
-              alt={blog.title[lang]}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
+            <picture>
+              <source srcSet={blog.image} type="image/webp" />
+              <img
+                src={blog.imageFallback || blog.image}
+                alt={blog.title[lang]}
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            </picture>
             <div className="absolute top-4 left-4">
               <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full">
                 {t(`blog.categories.${blog.category}`)}

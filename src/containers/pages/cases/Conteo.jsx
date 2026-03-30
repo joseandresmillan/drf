@@ -1,5 +1,6 @@
 import React from "react";
-import conteo from "../../../assets/images/conteo.png";
+import conteoWebp from "../../../assets/images/conteo.webp";
+import conteoPng from "../../../assets/images/conteo.png";
 import Navbar from "components/navigation/Navbar";
 import Footer from "components/navigation/Footer";
 import Layout from "hocs/layouts/Layout";
@@ -10,7 +11,10 @@ export default function Conteo() {
       <Navbar />
       <div className="max-w-4xl mx-auto py-12 px-4 mt-20">
         <h1 className="text-3xl font-bold mb-6 text-indigo-700">Conteo de Cajas con Visión por Computadora</h1>
-        <img src={conteo} alt="Conteo de Cajas" className="rounded-lg shadow mb-8 w-full h-64 object-cover" />
+        <picture>
+          <source srcSet={conteoWebp} type="image/webp" />
+          <img src={conteoPng} alt="Conteo de Cajas" className="rounded-lg shadow mb-8 w-full h-64 object-cover" />
+        </picture>
         
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2 text-blue-700">Resumen</h2>

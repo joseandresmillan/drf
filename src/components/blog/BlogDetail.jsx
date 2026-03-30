@@ -14,6 +14,9 @@ export default function BlogDetail() {
   const navigate = useNavigate();
   const post = getPostBySlug(slug);
 
+  // Normalize language code with fallback to 'es'
+  const lang = i18n.language ? i18n.language.split('-')[0] : 'es';
+
   // Estados para el contenido y la carga
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
@@ -24,7 +27,7 @@ export default function BlogDetail() {
     if (post && post.seo) {
       // Actualizar meta tags para SEO
       document.title =
-        post.seo.metaTitle?.[i18n.language] || post.title[i18n.language];
+        post.seo.metaTitle?.[lang] || post.title[lang];
 
       const metaDescription = document.querySelector(
         'meta[name="description"]'
@@ -32,11 +35,11 @@ export default function BlogDetail() {
       if (metaDescription && post.seo.metaDescription) {
         metaDescription.setAttribute(
           "content",
-          post.seo.metaDescription[i18n.language]
+          post.seo.metaDescription[lang]
         );
       }
     }
-  }, [slug, post, i18n.language]);
+  }, [slug, post, lang]);
 
   //  Cargar contenido cuando cambie el post o el idioma
   useEffect(() => {
@@ -50,7 +53,7 @@ export default function BlogDetail() {
 
       try {
         // El contenido ya está cargado desde posts.js
-        const postContent = post.content[i18n.language];
+        const postContent = post.content[lang];
         setContent(postContent);
       } catch (error) {
         console.error("Error loading content:", error);
@@ -61,7 +64,7 @@ export default function BlogDetail() {
     };
 
     loadContent();
-  }, [post, i18n.language]);
+  }, [post, lang]);
 
   // Función global para copiar código de los code blocks
   useEffect(() => {
@@ -71,7 +74,7 @@ export default function BlogDetail() {
 
       navigator.clipboard.writeText(code).then(() => {
         const originalHTML = button.innerHTML;
-        const copiedText = i18n.language === "es" ? "Copiado!" : "Copied!";
+        const copiedText = lang === "es" ? "Copiado!" : "Copied!";
         button.innerHTML = `
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -90,7 +93,7 @@ export default function BlogDetail() {
     return () => {
       delete window.copyCode;
     };
-  }, [i18n.language]);
+  }, [lang]);
 
   if (!post) {
     return (
@@ -128,7 +131,7 @@ export default function BlogDetail() {
               {/* Breadcrumb */}
               <nav className="flex items-center space-x-2 text-sm mb-6 text-white/90">
                 <Link to="/" className="hover:text-white transition-colors">
-                  {i18n.language === "es" ? "Inicio" : "Home"}
+                  {lang === "es" ? "Inicio" : "Home"}
                 </Link>
                 <span>/</span>
                 <Link to="/blog" className="hover:text-white transition-colors">
@@ -136,7 +139,7 @@ export default function BlogDetail() {
                 </Link>
                 <span>/</span>
                 <span className="text-white font-medium truncate max-w-xs">
-                  {post.title[i18n.language]}
+                  {post.title[lang]}
                 </span>
               </nav>
 
@@ -154,7 +157,7 @@ export default function BlogDetail() {
 
               {/* Title */}
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight max-w-4xl">
-                {post.title[i18n.language]}
+                {post.title[lang]}
               </h1>
 
               {/* Meta Info */}
@@ -167,7 +170,7 @@ export default function BlogDetail() {
                     <p className="font-medium text-white">{post.author.name}</p>
                     {post.author.bio && (
                       <p className="text-xs text-white/80">
-                        {post.author.bio[i18n.language]}
+                        {post.author.bio[lang]}
                       </p>
                     )}
                   </div>
@@ -177,7 +180,7 @@ export default function BlogDetail() {
                   <span>📅</span>
                   <time className="text-sm">
                     {new Date(post.publishedDate).toLocaleDateString(
-                      i18n.language === "es" ? "es-ES" : "en-US",
+                      lang === "es" ? "es-ES" : "en-US",
                       { year: "numeric", month: "long", day: "numeric" }
                     )}
                   </time>
@@ -205,11 +208,16 @@ export default function BlogDetail() {
               {/* Featured Image */}
               {post.image && (
                 <div className="mb-8 rounded-xl overflow-hidden shadow-2xl mx-auto max-w-2xl">
-                  <img
-                    src={post.image}
-                    alt={post.title[i18n.language]}
-                    className="w-full h-auto"
-                  />
+                  <picture>
+                    <source srcSet={post.image} type="image/webp" />
+                    <img
+                      src={post.imageFallback || post.image}
+                      alt={post.title[lang]}
+                      className="w-full h-auto"
+                      loading="eager"
+                      fetchpriority="high"
+                    />
+                  </picture>
                 </div>
               )}
 
@@ -232,7 +240,7 @@ export default function BlogDetail() {
                   <div className="flex flex-col items-center justify-center py-20">
                     <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mb-4"></div>
                     <p className="text-gray-600 text-lg">
-                      {i18n.language === "es"
+                      {lang === "es"
                         ? "Cargando contenido..."
                         : "Loading content..."}
                     </p>
@@ -264,7 +272,7 @@ export default function BlogDetail() {
                       d="M10 19l-7-7m0 0l7-7m-7 7h18"
                     />
                   </svg>
-                  {i18n.language === "es" ? "Volver al blog" : "Back to Blog"}
+                  {lang === "es" ? "Volver al blog" : "Back to Blog"}
                 </button>
               </div>
             </motion.article>

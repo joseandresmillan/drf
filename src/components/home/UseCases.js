@@ -1,7 +1,11 @@
-import bananacv from "assets/images/bananacv.jpg";
-import sleepcv from "assets/images/somnolenciacv.png";
-import conteo from "assets/images/conteo.png";
-import deteccion_en_muelle from "assets/images/deteccion_en_muelle.png";
+import bananacvWebp from "assets/images/bananacv.webp";
+import bananacvJpg from "assets/images/bananacv.jpg";
+import sleepcvWebp from "assets/images/somnolenciacv.webp";
+import sleepcvPng from "assets/images/somnolenciacv.png";
+import conteoWebp from "assets/images/conteo.webp";
+import conteoPng from "assets/images/conteo.png";
+import deteccion_en_muelleWebp from "assets/images/deteccion_en_muelle.webp";
+import deteccion_en_muellePng from "assets/images/deteccion_en_muelle.png";
 import { BsPersonFill } from "react-icons/bs";
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
@@ -24,7 +28,8 @@ export default function UseCases() {
       results: t('cases.muelles.results'),
       date: "Aug 15, 2024",
       datetime: "2024-08-15",
-      imageUrl: deteccion_en_muelle,
+      imageUrl: deteccion_en_muelleWebp,
+      imageFallback: deteccion_en_muellePng,
       readingTime: "6 min",
       technologies: ["TensorFlow", "OpenCV", "Python", "Docker"],
       author: {
@@ -48,7 +53,8 @@ export default function UseCases() {
       results: t('cases.plagas.results'),
       date: "Nov 20, 2024",
       datetime: "2024-11-20",
-      imageUrl: bananacv,
+      imageUrl: bananacvWebp,
+      imageFallback: bananacvJpg,
       readingTime: "4 min",
       technologies: ["Deep Learning", "Python", "OpenCV", "FastAPI"],
       author: {
@@ -67,7 +73,8 @@ export default function UseCases() {
       description: t('cases.somnolencia.description'),
       date: "Oct 18, 2024",
       datetime: "2024-10-18",
-      imageUrl: sleepcv,
+      imageUrl: sleepcvWebp,
+      imageFallback: sleepcvPng,
       readingTime: "5 min",
       technologies: ["Computer Vision", "TensorFlow", "React", "IoT"],
       author: {
@@ -91,7 +98,8 @@ export default function UseCases() {
       results: t('cases.conteo.results'),
       date: "Sept 30, 2024",
       datetime: "2024-09-30",
-      imageUrl: conteo,
+      imageUrl: conteoWebp,
+      imageFallback: conteoPng,
       readingTime: "8 min",
       technologies: ["YOLO", "OpenCV", "Python", "PostgreSQL"],
       author: {
@@ -152,11 +160,15 @@ export default function UseCases() {
               className="flex flex-col overflow-hidden rounded-xl shadow-lg bg-white hover:shadow-xl transition-all duration-300 group"
             >
               <div className="flex-shrink-0 relative overflow-hidden">
-                <img
-                  className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  src={post.imageUrl}
-                  alt={post.title}
-                />
+                <picture>
+                  <source srcSet={post.imageUrl} type="image/webp" />
+                  <img
+                    className="h-64 w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    src={post.imageFallback || post.imageUrl}
+                    alt={post.title}
+                    loading="lazy"
+                  />
+                </picture>
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full">
                     {post.category.name}
@@ -225,9 +237,10 @@ export default function UseCases() {
                     <div className="flex-shrink-0">
                       {post.author.imageUrl ? (
                         <img
-                          className="h-8 w-8 rounded-full"
+                          className="h-8 w-8 rounded-full object-cover"
                           src={post.author.imageUrl}
                           alt={post.author.name}
+                          loading="lazy"
                         />
                       ) : (
                         <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">

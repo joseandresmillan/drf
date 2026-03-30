@@ -1,5 +1,6 @@
 import React from "react";
-import bananacv from "../../../assets/images/bananacv.jpg";
+import bananacvWebp from "../../../assets/images/bananacv.webp";
+import bananacvJpg from "../../../assets/images/bananacv.jpg";
 import Navbar from "components/navigation/Navbar";
 import Footer from "components/navigation/Footer";
 import Layout from "hocs/layouts/Layout";
@@ -10,7 +11,10 @@ export default function Plagas() {
       <Navbar />
       <div className="max-w-4xl mx-auto py-12 px-4 mt-20">
         <h1 className="text-3xl font-bold mb-6 text-indigo-700">Detección de Plagas con Visión por Computadora</h1>
-        <img src={bananacv} alt="Plagas" className="rounded-lg shadow mb-8 w-full h-64 object-cover" />
+        <picture>
+          <source srcSet={bananacvWebp} type="image/webp" />
+          <img src={bananacvJpg} alt="Plagas" className="rounded-lg shadow mb-8 w-full h-64 object-cover" />
+        </picture>
         
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2 text-blue-700">Resumen</h2>

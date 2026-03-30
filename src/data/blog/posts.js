@@ -1,4 +1,5 @@
-import rpihat from '../../assets/images/rpihat.png';
+import rpihatWebp from '../../assets/images/rpihat.webp';
+import rpihatPng from '../../assets/images/rpihat.png';
 import { raspberryPiAiHatContentEs } from './content/raspberrypi-ai-hat/raspberry-pi-ai-hat.es';
 import { raspberryPiAiHatContentEn } from './content/raspberrypi-ai-hat/raspberry-pi-ai-hat.en';
 
@@ -23,7 +24,8 @@ export const blogPosts = [
       es: raspberryPiAiHatContentEs,
       en: raspberryPiAiHatContentEn
     },
-    image: rpihat,
+    image: rpihatWebp,
+    imageFallback: rpihatPng,
     author: {
       name: "Andrés Millán",
       avatar: null,
