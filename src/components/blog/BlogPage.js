@@ -2,13 +2,16 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { blogPosts } from '../../data/blog';
+import { blogPosts } from 'data/blog';
 import BlogCard from './BlogCard';
 
 function BlogPage() {
   const { t, i18n } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  
+  // Normalize language code (es-ES -> es, en-US -> en)
+  const lang = i18n.language.split('-')[0];
 
   const categories = [
     { key: 'all', icon: '📚' },
@@ -18,8 +21,8 @@ function BlogPage() {
 
   const filteredBlogs = blogPosts.filter(blog => {
     const matchesCategory = selectedCategory === 'all' || blog.category === selectedCategory;
-    const matchesSearch = blog.title[i18n.language]?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         blog.description[i18n.language]?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = blog.title[lang]?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         blog.description[lang]?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 

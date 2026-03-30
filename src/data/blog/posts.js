@@ -1,6 +1,6 @@
 import rpihat from '../../assets/images/rpihat.png';
-import { raspberryPiAiHatContentEs } from './content/raspberry-pi-ai-hat.es';
-import { raspberryPiAiHatContentEn } from './content/raspberry-pi-ai-hat.en';
+import { raspberryPiAiHatContentEs } from './content/raspberrypi-ai-hat/raspberry-pi-ai-hat.es';
+import { raspberryPiAiHatContentEn } from './content/raspberrypi-ai-hat/raspberry-pi-ai-hat.en';
 
 // Array principal con todos los posts del blog
 export const blogPosts = [
