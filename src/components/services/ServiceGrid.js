@@ -84,23 +84,11 @@ export default function ServiceGrid() {
           />
 
           {/* Grid de Servicios */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <ServiceCard service={service} index={index} />
-              </motion.div>
+              <ServiceCard key={service.id} service={service} index={index} />
             ))}
-          </motion.div>
+          </div>
 
           {/* Empty State */}
           {services.length === 0 && (

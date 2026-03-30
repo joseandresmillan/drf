@@ -1,0 +1,58 @@
+/* ServiceModal.css - Prevent flickering and ensure smooth scrolling */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.modal-content {
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: scroll-position;
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  /* Hardware acceleration */
+  transform: translate3d(0, 0, 0);
+}
+
+/* Custom scrollbar for better UX */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Prevent animations during scroll */
+.modal-content * {
+  pointer-events: auto;
+}
+
+/* Body lock class */
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}

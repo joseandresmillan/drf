@@ -1,16 +1,57 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import './ServiceModal.css';
 
 const ServiceModal = ({ service, isOpen, onClose }) => {
   const { t } = useTranslation();
+  
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      // Lock scroll
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      
+      // Store scroll position
+      document.body.dataset.scrollY = scrollY.toString();
+    }
+    
+    // Cleanup function to restore scroll
+    return () => {
+      if (isOpen) {
+        const scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+        
+        // Restore body styles
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.paddingRight = '';
+        delete document.body.dataset.scrollY;
+        
+        // Restore scroll position
+        window.scrollTo(0, scrollY);
+      }
+    };
+  }, [isOpen]);
+  
   if (!service) return null;
 
   const modalVariants = {
     hidden: { 
       opacity: 0, 
-      scale: 0.8,
-      y: 50 
+      scale: 0.95,
+      y: 20 
     },
     visible: { 
       opacity: 1, 
@@ -19,15 +60,17 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
       transition: {
         type: "spring",
         stiffness: 300,
-        damping: 30
+        damping: 30,
+        mass: 0.8
       }
     },
     exit: { 
       opacity: 0, 
-      scale: 0.8,
-      y: 50,
+      scale: 0.95,
+      y: 20,
       transition: {
-        duration: 0.2
+        duration: 0.15,
+        ease: "easeOut"
       }
     }
   };
@@ -44,23 +87,30 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
     }
   };
 
+  const handleModalClick = (e) => {
+    // Prevent clicks inside modal from closing it
+    e.stopPropagation();
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
+          className="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm"
           variants={overlayVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
           onClick={handleOverlayClick}
+          style={{ overflow: 'hidden' }}
         >
           <motion.div
-            className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            className="modal-content bg-white rounded-2xl shadow-2xl max-w-2xl w-full relative"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
+            onClick={handleModalClick}
           >
             {/* Header */}
             <div className="relative p-8 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-t-2xl">
@@ -172,20 +222,16 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                <button
+                  className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 active:scale-95 transition-all duration-200"
                 >
                   {t('modal.freeConsult')}
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex-1 border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-lg font-medium hover:bg-blue-50 transition-colors"
+                </button>
+                <button
+                  className="flex-1 border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-lg font-medium hover:bg-blue-50 active:scale-95 transition-all duration-200"
                 >
                   {t('modal.viewPortfolio')}
-                </motion.button>
+                </button>
               </div>
             </div>
           </motion.div>
