@@ -10,8 +10,8 @@ function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Normalize language code (es-ES -> es, en-US -> en)
-  const lang = i18n.language.split('-')[0];
+  // Normalize language code (es-ES -> es, en-US -> en) with fallback to 'es'
+  const lang = i18n.language ? i18n.language.split('-')[0] : 'es';
 
   const categories = [
     { key: 'all', icon: '📚' },
