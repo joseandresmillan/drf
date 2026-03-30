@@ -47,6 +47,7 @@ function Footer() {
               className="h-10"
               src={logoNODE}
               alt="Node.ec"
+              loading="lazy"
             />
             <p className="text-sm leading-6 text-gray-600">
               {t('footer.description')}
@@ -89,7 +90,7 @@ function Footer() {
                       ) : (
                         <a
                           href={item.href}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors"
+                          className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors break-words inline-block max-w-full"
                         >
                           {item.name}
                         </a>
@@ -156,7 +157,7 @@ function Footer() {
         </div>
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-xs leading-5 text-gray-500">
-            &copy; 2025 {t('common.nodeEc')}. {t('footer.rights')}
+            &copy; 2026 {t('common.nodeEc')}. {t('footer.rights')}
           </p>
         </div>
       </div>
