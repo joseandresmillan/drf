@@ -51,7 +51,7 @@ RUN if [ -d "build/static/media" ]; then \
 #################################################
 # Segunda etapa: Django
 #################################################
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
