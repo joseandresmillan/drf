@@ -27,7 +27,7 @@ jsonschema-specifications==2025.9.1
 mcp==1.27.0
 mcp-server-time==2026.1.26
 pillow==12.2.0
-psycopg2==2.9.12
+psycopg2-binary==2.9.12
 pycparser==3.0
 pydantic==2.13.3
 pydantic-settings==2.14.0
