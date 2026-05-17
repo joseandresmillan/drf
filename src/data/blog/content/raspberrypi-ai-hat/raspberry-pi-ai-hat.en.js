@@ -261,6 +261,25 @@ python basic_pipelines/detection_simple.py -i usb</code>
 
 <p>If everything is working correctly, you should see the AI HAT information displayed, confirming successful installation.</p>
 
+
+<h2>🌾 Edge AI in Agriculture: The Real-World Impact</h2>
+
+<p>While cloud-based AI has dominated headlines, <strong>Edge AI</strong> is quietly transforming industries where connectivity is scarce and latency is unacceptable. Agriculture is the perfect example.</p>
+
+<h3>Why Edge Beats Cloud in the Field</h3>
+
+<ul>
+<li><strong>No Internet Required:</strong> Farms in Cayambe, Ecuador sit at 2,800m altitude. 4G coverage is spotty at best. Edge AI processes everything locally — zero dependency on connectivity.</li>
+<li><strong>Real-Time Decisions:</strong> A rose ready for harvest has a 24-hour optimal window. Cloud round-trips add seconds of latency. Edge inference on a Hailo-8L runs at 30 FPS — the decision happens at the camera.</li>
+<li><strong>Data Sovereignty:</strong> Crop images never leave the farm. No cloud storage costs, no privacy concerns, no data breach risks.</li>
+<li><strong>Cost at Scale:</strong> Processing 4 cameras x 11.9 MP images daily in the cloud costs ~$200/month in API fees. A single Raspberry Pi 5 + Hailo-8L does the same for $0/month after the $200 hardware purchase.</li>
+<li><strong>Power Efficiency:</strong> The Hailo-8L delivers 13 TOPS at just 5W. Compare that to a cloud GPU burning 300W per inference request — Edge AI is not just cheaper, it's greener.</li>
+</ul>
+
+<h3>The 10BASE-T1S Advantage</h3>
+
+<p>Hellbender's VineCam system uses <strong>10BASE-T1S</strong> — a single twisted-pair bus that carries both data and 48V power. One cable. No switches. No repeaters. Cameras daisy-chain across the field like Christmas lights. This is edge infrastructure designed for the real world, not the data center.</p>
+
 <h2>🎯 Conclusion & Key Takeaways</h2>
 
 <ul>
