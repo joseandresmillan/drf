@@ -261,6 +261,25 @@ python basic_pipelines/detection_simple.py -i usb</code>
 
 <p>Si todo funciona correctamente, deberías ver la información del AI HAT, confirmando la instalación exitosa.</p>
 
+
+<h2>🌾 Edge AI en la Agricultura: El Impacto en el Mundo Real</h2>
+
+<p>Mientras la IA basada en la nube ha dominado los titulares, el <strong>Edge AI</strong> está transformando silenciosamente industrias donde la conectividad es escasa y la latencia es inaceptable. La agricultura es el ejemplo perfecto.</p>
+
+<h3>Por qué Edge supera a la Nube en el campo</h3>
+
+<ul>
+<li><strong>Sin necesidad de internet:</strong> Las fincas en Cayambe, Ecuador, están a 2,800 msnm. La cobertura 4G es irregular. Edge AI procesa todo localmente — cero dependencia de conectividad.</li>
+<li><strong>Decisiones en tiempo real:</strong> Una rosa lista para cosecha tiene una ventana óptima de 24 horas. Los viajes de ida y vuelta a la nube añaden segundos de latencia. La inferencia Edge en un Hailo-8L corre a 30 FPS — la decisión ocurre en la cámara.</li>
+<li><strong>Soberanía de datos:</strong> Las imágenes de cultivos nunca salen de la finca. Sin costos de almacenamiento en la nube, sin preocupaciones de privacidad, sin riesgos de filtración de datos.</li>
+<li><strong>Costo a escala:</strong> Procesar 4 cámaras x imágenes 11.9 MP diarias en la nube cuesta ~$200/mes en tarifas de API. Una sola Raspberry Pi 5 + Hailo-8L hace lo mismo por $0/mes después de la compra de $200 en hardware.</li>
+<li><strong>Eficiencia energética:</strong> El Hailo-8L ofrece 13 TOPS con solo 5W. Compáralo con una GPU en la nube consumiendo 300W por solicitud de inferencia — Edge AI no solo es más barato, es más ecológico.</li>
+</ul>
+
+<h3>La ventaja 10BASE-T1S</h3>
+
+<p>El sistema VineCam de Hellbender utiliza <strong>10BASE-T1S</strong> — un bus de un solo par trenzado que transporta datos y alimentación de 48V. Un solo cable. Sin switches. Sin repetidores. Las cámaras se conectan en cadena a través del campo como luces navideñas. Esta es infraestructura edge diseñada para el mundo real, no para el centro de datos.</p>
+
 <h2>🎯 Conclusión y Conclusiones Clave</h2>
 
 <ul>
