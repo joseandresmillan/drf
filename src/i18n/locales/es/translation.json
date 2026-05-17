@@ -164,7 +164,7 @@
     "budgetRanges": {
       "range1": "$1,000 - $5,000",
       "range2": "$5,000 - $15,000",
-      "range3": "$15,000 - $50,000", 
+      "range3": "$15,000 - $50,000",
       "range4": "$50,000+"
     },
     "timelines": {
@@ -217,8 +217,8 @@
         "description": "Soluciones descentralizadas, contratos inteligentes y aplicaciones DeFi que conectan el futuro digital."
       },
       "ai": {
-        "name": "Visión por Computadora",
-        "description": "Sistemas de visión por computadora personalizados basados en el problema específico."
+        "name": "Edge AI y Visión por Computadora",
+        "description": "Sistemas de visión por computadora con Edge AI que procesan datos localmente — sin nube, sin latencia, sin necesidad de internet. Inferencia en tiempo real con aceleradores Hailo para aplicaciones industriales, logísticas y agrícolas."
       },
       "automation": {
         "name": "Automatización de Procesos",
