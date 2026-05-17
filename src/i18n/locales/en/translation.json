@@ -163,7 +163,7 @@
     },
     "budgetRanges": {
       "range1": "$1,000 - $5,000",
-      "range2": "$5,000 - $15,000", 
+      "range2": "$5,000 - $15,000",
       "range3": "$15,000 - $50,000",
       "range4": "$50,000+"
     },
@@ -217,8 +217,8 @@
         "description": "Decentralized solutions, smart contracts and DeFi applications that connect the digital future."
       },
       "ai": {
-        "name": "Computer Vision",
-        "description": "Custom computer vision systems based on the specific problem."
+        "name": "Edge AI & Computer Vision",
+        "description": "Edge AI computer vision systems that process data locally — no cloud, no latency, no internet required. Real-time inference with Hailo accelerators for industrial, logistics, and agricultural applications."
       },
       "automation": {
         "name": "Process Automation",
