@@ -34,7 +34,7 @@ export const useServices = () => {
       name: t('services.items.ai.name'),
       description: t('services.items.ai.description'),
       icon: "👁️",
-      features: ["Object Detection", "Image Recognition", "MLOps", "TensorFlow", "OpenCV"],
+      features: ["Object Detection", "Image Recognition", "Edge AI Inference", "Hailo-8L Accelerator", "Real-Time Processing", "Offline-First"],
       category: "ai",
       timeline: "8-16 " + t('services.timeline.weeks'),
       popular: true
