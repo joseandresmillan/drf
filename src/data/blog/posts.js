@@ -2,6 +2,8 @@ import rpihatWebp from '../../assets/images/rpihat.webp';
 import rpihatPng from '../../assets/images/rpihat.png';
 import { raspberryPiAiHatContentEs } from './content/raspberrypi-ai-hat/raspberry-pi-ai-hat.es';
 import { raspberryPiAiHatContentEn } from './content/raspberrypi-ai-hat/raspberry-pi-ai-hat.en';
+import { roseaiMonitorContentEs } from './content/roseai-monitor/roseai-monitor.es';
+import { roseaiMonitorContentEn } from './content/roseai-monitor/roseai-monitor.en';
 
 // Array principal con todos los posts del blog
 export const blogPosts = [
@@ -41,13 +43,55 @@ export const blogPosts = [
     updatedDate: "2025-11-12",
     featured: true,
     seo: {
-      metaTitle: {
-        es: "Raspberry Pi AI HAT: Guía Completa de Edge Computing 2025",
-        en: "Raspberry Pi AI HAT: Complete Edge Computing Guide 2025"
-      },
-      metaDescription: {
-        es: "Descubre cómo usar el Raspberry Pi AI HAT para proyectos de inteligencia artificial. Guía completa con casos de uso prácticos y ejemplos.",
-        en: "Learn how to use Raspberry Pi AI HAT for artificial intelligence projects. Complete guide with practical use cases and examples."
+      keywords: {
+        es: ["raspberry pi", "ai hat", "hailo-8l", "edge ai", "inteligencia artificial"],
+        en: ["raspberry pi", "ai hat", "hailo-8l", "edge ai", "artificial intelligence"]
+      }
+    }
+  },
+  {
+    id: 2,
+    slug: "roseai-monitor-edge-ai",
+    title: {
+      es: "RoseAI: Agricultura de Precisión en el Borde con Hailo-8L",
+      en: "RoseAI: Precision Agriculture at the Edge with Hailo-8L"
+    },
+    description: {
+      es: "Monitoreo inteligente de cultivos de rosas automatizando el fenotipado.",
+      en: "Smart monitoring of rose crops automating phenotyping."
+    },
+    excerpt: {
+      es: "Descubre cómo el RoseAI Monitor automatiza el seguimiento del crecimiento y fenotipado de rosas en Cayambe utilizando la arquitectura VineCam 10BASE-T1S y aceleración Hailo-8L, reduciendo los costos de nube a cero.",
+      en: "Discover how the RoseAI Monitor automates growth tracking and rose phenotyping in Cayambe using the VineCam 10BASE-T1S architecture and Hailo-8L acceleration, reducing cloud costs to zero."
+    },
+    content: {
+      es: roseaiMonitorContentEs,
+      en: roseaiMonitorContentEn
+    },
+    image: "https://raw.githubusercontent.com/joseandresmillan/node_services/main/images/cayambe_greenhouse_ai_monitoring.png",
+    imageFallback: "https://raw.githubusercontent.com/joseandresmillan/node_services/main/images/cayambe_greenhouse_ai_monitoring.png",
+    author: {
+      name: "Andrés Millán",
+      avatar: null,
+      bio: {
+        es: "Arquitecto de Edge AI e IoT",
+        en: "Edge AI and IoT Architect"
+      }
+    },
+    category: "ai",
+    tags: ["roseai", "hailo-8l", "precision-agriculture", "edge-ai", "computer-vision", "10base-t1s"],
+    readTime: 15,
+    publishedDate: "2026-05-18",
+    updatedDate: "2026-05-18",
+    featured: true,
+    seo: {
+      keywords: {
+        es: ["roseai", "agricultura de precision", "hailo-8l", "vinecam", "fenotipado"],
+        en: ["roseai", "precision agriculture", "hailo-8l", "vinecam", "phenotyping"]
+      }
+    }
+  }
+];
       },
       keywords: ["raspberry pi", "ai hat", "edge computing", "machine learning", "computer vision", "iot"]
     }
