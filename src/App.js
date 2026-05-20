@@ -12,6 +12,8 @@ import ApodPage from "containers/pages/ApodPage";
 import Muelles from "containers/pages/cases/Muelles";
 import Plagas from "containers/pages/cases/Plagas";
 import Conteo from "containers/pages/cases/Conteo";
+import Login from "containers/auth/Login";
+import Register from "containers/auth/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/apod" element={<ApodPage />} /> 
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Register />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
