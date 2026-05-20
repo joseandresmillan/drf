@@ -1,6 +1,6 @@
 export const roseaiMonitorContentEn = `
 <h1 style="text-align: center;">RoseAI: Precision Agriculture at the Edge</h1>
-<p class="subtitle" style="text-align: center; font-size: 1.5em; color: #666; margin-bottom: 2rem;">Smart Rose Crop Monitoring with VineCam and Hailo-8L</p>
+<p class="subtitle" style="text-align: center; font-size: 1.5em; color: #666; margin-bottom: 2rem;">Smart Rose Crop Monitoring with VineCam and Hailo-8</p>
 
 <h2>The Challenge in Floriculture</h2>
 
@@ -16,12 +16,12 @@ export const roseaiMonitorContentEn = `
 
 <img src="https://raw.githubusercontent.com/joseandresmillan/node_services/main/images/cayambe_greenhouse_ai_monitoring.png" alt="AI Monitoring in greenhouse" style="width: 100%; border-radius: 8px; margin: 2rem 0;" />
 
-<h2>Brain at the Edge: Hailo-8L</h2>
+<h2>Brain at the Edge: Hailo-8</h2>
 
-<p>The magic happens in the central server (a Raspberry Pi 5 node) equipped with a <strong>Hailo-8L</strong> accelerator. Instead of sending hundreds of high-resolution images to the cloud, inference is executed locally.</p>
+<p>The magic happens in the central server (a Raspberry Pi 5 node) equipped with a <strong>Hailo-8</strong> accelerator. Instead of sending hundreds of high-resolution images to the cloud, inference is executed locally.</p>
 
 <ul>
-  <li><strong>Performance:</strong> 13 TOPS of neural processing with minimal energy consumption (around 5W).</li>
+  <li><strong>Performance:</strong> 26 TOPS of neural processing with minimal energy consumption (around 5W).</li>
   <li><strong>Data Sovereignty:</strong> Images never leave the crop, ensuring privacy and reducing monthly cloud costs to zero ($0/mo vs $200+ in typical cloud solutions).</li>
   <li><strong>Real-Time Metrics:</strong> The system automatically identifies two core classes (<code>rose_small</code> for buds and <code>rose_large</code> for open flowers), calculating the blooming ratio to generate precise harvest alerts.</li>
 </ul>

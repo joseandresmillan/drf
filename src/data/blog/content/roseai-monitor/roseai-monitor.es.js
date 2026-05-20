@@ -1,6 +1,6 @@
 export const roseaiMonitorContentEs = `
 <h1 style="text-align: center;">RoseAI: Agricultura de Precisión en el Borde</h1>
-<p class="subtitle" style="text-align: center; font-size: 1.5em; color: #666; margin-bottom: 2rem;">Monitoreo Inteligente de Cultivos de Rosas con VineCam y Hailo-8L</p>
+<p class="subtitle" style="text-align: center; font-size: 1.5em; color: #666; margin-bottom: 2rem;">Monitoreo Inteligente de Cultivos de Rosas con VineCam y Hailo-8</p>
 
 <h2>El Desafío en la Floricultura</h2>
 
@@ -16,12 +16,12 @@ export const roseaiMonitorContentEs = `
 
 <img src="https://raw.githubusercontent.com/joseandresmillan/node_services/main/images/cayambe_greenhouse_ai_monitoring.png" alt="Monitoreo AI en invernadero" style="width: 100%; border-radius: 8px; margin: 2rem 0;" />
 
-<h2>Cerebro en el Borde: Hailo-8L</h2>
+<h2>Cerebro en el Borde: Hailo-8</h2>
 
-<p>La magia ocurre en el servidor central (un nodo Raspberry Pi 5) equipado con un acelerador <strong>Hailo-8L</strong>. En lugar de enviar cientos de imágenes de alta resolución a la nube, la inferencia se ejecuta localmente.</p>
+<p>La magia ocurre en el servidor central (un nodo Raspberry Pi 5) equipado con un acelerador <strong>Hailo-8</strong>. En lugar de enviar cientos de imágenes de alta resolución a la nube, la inferencia se ejecuta localmente.</p>
 
 <ul>
-  <li><strong>Rendimiento:</strong> 13 TOPS de procesamiento neuronal con un consumo energético mínimo (alrededor de 5W).</li>
+  <li><strong>Rendimiento:</strong> 26 TOPS de procesamiento neuronal con un consumo energético mínimo (alrededor de 5W).</li>
   <li><strong>Soberanía de Datos:</strong> Las imágenes nunca salen del cultivo, garantizando la privacidad y reduciendo los costos mensuales de nube a cero ($0/mo vs $200+ en soluciones cloud típicas).</li>
   <li><strong>Métricas en Tiempo Real:</strong> El sistema identifica automáticamente dos clases fundamentales (<code>rose_small</code> para botones y <code>rose_large</code> para flores abiertas), calculando el ratio de floración para generar alertas de cosecha precisas.</li>
 </ul>
