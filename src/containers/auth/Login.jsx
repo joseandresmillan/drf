@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { login } from '../../redux/actions/auth';
-import Navbar from '../../components/navigation/Navbar';
-import Footer from '../../components/navigation/Footer';
+import { login } from 'redux/actions/auth';
+import Navbar from 'components/navigation/Navbar';
+import Footer from 'components/navigation/Footer';
 
 const Login = ({ login, isAuthenticated }) => {
   const { t } = useTranslation();
@@ -33,13 +33,9 @@ const Login = ({ login, isAuthenticated }) => {
       return;
     }
 
-    try {
-      await login(email, password);
-    } catch (err) {
-      setError(t('auth.login.error'));
-    } finally {
-      setLoading(false);
-    }
+    await login(email, password);
+    // Redux will handle state updates
+    setLoading(false);
   };
 
   // Redirect if logged in
@@ -94,7 +90,7 @@ const Login = ({ login, isAuthenticated }) => {
             </div>
 
             {error && (
-              <div className="text-red-600 text-sm text-center">{error}</div>
+              <div role="alert" className="text-red-600 text-sm text-center">{error}</div>
             )}
 
             <div>
@@ -107,7 +103,7 @@ const Login = ({ login, isAuthenticated }) => {
                     : 'bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'
                 }`}
               >
-                {loading ? '...' : t('auth.login.submit')}
+                {loading ? t('auth.login.submit') + '...' : t('auth.login.submit')}
               </button>
             </div>
 
