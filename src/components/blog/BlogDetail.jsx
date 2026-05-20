@@ -206,7 +206,7 @@ export default function BlogDetail() {
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               {/* Featured Image */}
-              {post.image && (
+              {post.image && post.showFeaturedImage !== false && (
                 <div className="mb-8 rounded-xl overflow-hidden shadow-2xl mx-auto max-w-2xl">
                   <picture>
                     <source srcSet={post.image} type="image/webp" />
