@@ -6,6 +6,7 @@ const ServiceCard = ({ service, index }) => {
   const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const features = Array.isArray(service.features) ? service.features : [];
 
   // Lock body scroll when popup is open
   useEffect(() => {
@@ -54,7 +55,7 @@ const ServiceCard = ({ service, index }) => {
         <div className="flex items-start justify-between mb-6">
           <div className="text-4xl mb-4">{service.icon}</div>
           <span className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-            {service.category}
+            {service.categoryLabel || service.category}
           </span>
         </div>
 
@@ -70,7 +71,7 @@ const ServiceCard = ({ service, index }) => {
         <div className="mb-6">
           <h4 className="text-sm font-semibold text-gray-800 mb-3">{t('services.card.technologies')}</h4>
           <div className="flex flex-wrap gap-2">
-            {service.features.map((feature, idx) => (
+            {features.map((feature, idx) => (
               <span
                 key={idx}
                 className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-green-100 hover:text-green-800 transition-colors"
@@ -78,6 +79,11 @@ const ServiceCard = ({ service, index }) => {
                 {feature}
               </span>
             ))}
+            {features.length === 0 && (
+              <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-md">
+                {t('services.card.technologies')}
+              </span>
+            )}
           </div>
         </div>
 
@@ -145,7 +151,7 @@ const ServiceCard = ({ service, index }) => {
                     🔧 {t('modal.technologies')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {service.features.map((feature, idx) => (
+                    {features.map((feature, idx) => (
                       <span
                         key={idx}
                         className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
@@ -153,6 +159,11 @@ const ServiceCard = ({ service, index }) => {
                         {feature}
                       </span>
                     ))}
+                    {features.length === 0 && (
+                      <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                        {service.name}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -164,11 +175,11 @@ const ServiceCard = ({ service, index }) => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <span className="text-gray-600 text-sm">{t('modal.duration')}</span>
-                      <p className="font-medium text-gray-900">{service.timeline}</p>
+                      <p className="font-medium text-gray-900">{service.timeline || `2-6 ${t('services.timeline.weeks')}`}</p>
                     </div>
                     <div>
                       <span className="text-gray-600 text-sm">{t('modal.category')}</span>
-                      <p className="font-medium text-gray-900 capitalize">{service.category}</p>
+                      <p className="font-medium text-gray-900 capitalize">{service.categoryLabel || service.category}</p>
                     </div>
                   </div>
                 </div>

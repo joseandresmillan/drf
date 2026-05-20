@@ -11,6 +11,7 @@ export default function ServiceGrid() {
   const {
     services,
     categories,
+    loading,
     selectedCategory,
     handleCategoryChange,
     getPopularServices
@@ -44,8 +45,14 @@ export default function ServiceGrid() {
           </p>
         </motion.div>
 
+        {loading && (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+          </div>
+        )}
+
         {/* Servicios Populares */}
-        {popularServices.length > 0 && (
+        {!loading && popularServices.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -91,7 +98,7 @@ export default function ServiceGrid() {
           </div>
 
           {/* Empty State */}
-          {services.length === 0 && (
+          {!loading && services.length === 0 && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

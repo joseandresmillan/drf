@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../common/LanguageSelector";
 
-function Navbar({ isAuthenticated, logout }) {
+function Navbar({ isAuthenticated, user, logout }) {
   const { t } = useTranslation();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -104,14 +104,26 @@ function Navbar({ isAuthenticated, logout }) {
                 </NavLink>
               </>
             ) : (
-              <button
-                onClick={logout}
-                className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                  isScrolled ? "text-blue-button" : "text-node-text"
-                }`}
-              >
-                {t('nav.logout', 'Logout')}
-              </button>
+              <>
+                {user?.is_superuser && (
+                  <NavLink
+                    to="/dashboard"
+                    className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
+                      isScrolled ? "text-blue-button" : "text-node-text"
+                    }`}
+                  >
+                    Dashboard
+                  </NavLink>
+                )}
+                <button
+                  onClick={logout}
+                  className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
+                    isScrolled ? "text-blue-button" : "text-node-text"
+                  }`}
+                >
+                  {t('nav.logout', 'Logout')}
+                </button>
+              </>
             )}
             <LanguageSelector variant={isHomePage && !isScrolled ? "home" : "navbar"} />
           </div>
@@ -235,7 +247,8 @@ function Navbar({ isAuthenticated, logout }) {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);

@@ -1,28 +1,42 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { blogPosts } from 'data/blog';
+import { fetchBlogs } from '../../redux/actions/blog';
+import { fetchCategories } from '../../redux/actions/categories';
+import { adaptApiPost } from '../../utils/blogAdapter';
 import BlogCard from './BlogCard';
 
-function BlogPage() {
+function BlogPage({ apiBlogList, fetchBlogs, apiCategories, fetchCategories }) {
   const { t, i18n } = useTranslation();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
-  
+
+  useEffect(() => {
+    fetchBlogs();
+    fetchCategories();
+  }, [fetchBlogs, fetchCategories]);
+
   // Normalize language code (es-ES -> es, en-US -> en) with fallback to 'es'
   const lang = i18n.language ? i18n.language.split('-')[0] : 'es';
 
+  // Posts from API only
+  const allPosts = apiBlogList.map(adaptApiPost);
+
+  // Build category list from API
+  const apiCategoryItems = apiCategories.map((c) => ({ key: c.slug, icon: '🏷️', label: c.name }));
   const categories = [
     { key: 'all', icon: '📚' },
-    { key: 'ai', icon: '🤖' },
-     
+    ...apiCategoryItems,
   ];
 
-  const filteredBlogs = blogPosts.filter(blog => {
+  const filteredBlogs = allPosts.filter(blog => {
     const matchesCategory = selectedCategory === 'all' || blog.category === selectedCategory;
-    const matchesSearch = blog.title[lang]?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         blog.description[lang]?.toLowerCase().includes(searchTerm.toLowerCase());
+    const title = typeof blog.title === 'object' ? blog.title[lang] : blog.title;
+    const description = typeof blog.description === 'object' ? blog.description[lang] : (blog.description || '');
+    const matchesSearch = title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         description?.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -83,7 +97,11 @@ function BlogPage() {
                 }`}
               >
                 <span>{category.icon}</span>
-                <span>{t(`blog.categories.${category.key}`)}</span>
+                <span>
+                  {category.key === 'all'
+                    ? t('blog.categories.all')
+                    : category.label || t(`blog.categories.${category.key}`, { defaultValue: category.label || category.key })}
+                </span>
               </button>
             ))}
           </div>
@@ -116,4 +134,7 @@ function BlogPage() {
   );
 }
 
-export default BlogPage;
+export default connect(
+  (state) => ({ apiBlogList: state.blog.list, apiCategories: state.categories.list }),
+  { fetchBlogs, fetchCategories }
+)(BlogPage);

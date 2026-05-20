@@ -15,7 +15,6 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
-.md
 
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
@@ -309,7 +308,11 @@ tmp/
 *.tmp
 
 # Markdown files
+# Ignorar Markdown por defecto y permitir solo los necesarios.
 *.md
+!/README.md
+# Si quieres versionar otro .md puntual, agrega su excepción aquí:
+# !docs/GUIA_DESPLIEGUE_PRODUCCION.md
 .sh
 .bat
 package-lock.json

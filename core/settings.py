@@ -70,7 +70,11 @@ DJANGO_APPS = [
 
 # Aplicaciones del proyecto
 PROJECT_APPS = [
-    # Aquí agregarás tus apps personalizadas
+    'core',
+    'apps.blog',
+    'apps.services',
+    'apps.cases',
+    'apps.contacts',
 ]
 
 # Aplicaciones de terceros
@@ -181,6 +185,11 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_RETYPE': True,
     'TOKEN_MODEL': None,
+    'SERIALIZERS': {
+        'user': 'core.serializers.CustomUserSerializer',
+        'current_user': 'core.serializers.CustomUserSerializer',
+        'user_create_password_retype': 'core.serializers.CustomUserCreateSerializer',
+    },
 }
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

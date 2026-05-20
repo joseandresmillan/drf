@@ -43,7 +43,7 @@ const BlogCard = ({ blog, index }) => {
             </picture>
             <div className="absolute top-4 left-4">
               <span className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-full">
-                {t(`blog.categories.${blog.category}`)}
+                {blog.categoryName || t(`blog.categories.${blog.category}`, { defaultValue: blog.category })}
               </span>
             </div>
           </div>

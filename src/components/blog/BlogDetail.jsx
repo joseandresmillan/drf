@@ -1,21 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { getPostBySlug } from "../../data/blog";
+import { fetchBlogs, fetchBlogDetail } from "../../redux/actions/blog";
+import { adaptApiPost } from "../../utils/blogAdapter";
 import Footer from "../navigation/Footer";
 import Layout from "../../hocs/layouts/Layout";
 import LanguageSelector from "../common/LanguageSelector";
 import "../../styles/blogContent.css";
 
-export default function BlogDetail() {
+function BlogDetail({ apiBlogList, apiBlogDetail, fetchBlogs, fetchBlogDetail }) {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const post = getPostBySlug(slug);
 
   // Normalize language code with fallback to 'es'
   const lang = i18n.language ? i18n.language.split('-')[0] : 'es';
+
+  // Step 1: ensure the list is loaded (we need the ID to fetch detail)
+  useEffect(() => {
+    if (apiBlogList.length === 0) {
+      fetchBlogs();
+    }
+  }, [apiBlogList.length, fetchBlogs]);
+
+  // Step 2: once we have the ID from the list, fetch the full detail (includes content)
+  useEffect(() => {
+    const listEntry = apiBlogList.find((p) => p.slug === slug);
+    if (listEntry) {
+      fetchBlogDetail(listEntry.id);
+    }
+  }, [apiBlogList, slug, fetchBlogDetail]);
+
+  // Use the detail post (has content) — fall back to list entry while loading
+  const detailRaw = apiBlogDetail && apiBlogDetail.slug === slug ? apiBlogDetail : null;
+  const listRaw = apiBlogList.find((p) => p.slug === slug);
+  const post = detailRaw ? adaptApiPost(detailRaw) : (listRaw ? adaptApiPost(listRaw) : null);
 
   // Estados para el contenido y la carga
   const [content, setContent] = useState("");
@@ -151,7 +172,7 @@ export default function BlogDetail() {
               {/* Category Badge */}
               <div className="mb-4">
                 <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                  {t(`blog.categories.${post.category}`)}
+                  {post.categoryName || t(`blog.categories.${post.category}`, { defaultValue: post.category })}
                 </span>
               </div>
 
@@ -283,3 +304,8 @@ export default function BlogDetail() {
     </Layout>
   );
 }
+
+export default connect(
+  (state) => ({ apiBlogList: state.blog.list, apiBlogDetail: state.blog.detail }),
+  { fetchBlogs, fetchBlogDetail }
+)(BlogDetail);

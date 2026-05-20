@@ -12,8 +12,23 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.views.static import serve
 from django.http import HttpResponse
+from rest_framework.routers import DefaultRouter
+from apps.blog.views import BlogPostViewSet, CategoryViewSet
+from apps.services.views import ServiceViewSet, ServiceCategoryViewSet
+from apps.cases.views import CaseViewSet
+from apps.contacts.views import ContactViewSet
+from apps.common.admin_users import AdminUserViewSet
 from . import views
 import os
+
+router = DefaultRouter()
+router.register(r'blog', BlogPostViewSet, basename='blog')
+router.register(r'categories', CategoryViewSet, basename='categories')
+router.register(r'services', ServiceViewSet, basename='services')
+router.register(r'service-categories', ServiceCategoryViewSet, basename='service-categories')
+router.register(r'cases', CaseViewSet, basename='cases')
+router.register(r'contacts', ContactViewSet, basename='contacts')
+router.register(r'admin-users', AdminUserViewSet, basename='admin-users')
 
 def favicon_view(request):
     """Redirigir favicon.ico al archivo estático correcto"""
@@ -41,12 +56,9 @@ urlpatterns = [
     
     # Django REST Framework - Interfaz de autenticación
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    
-    # APIs de la aplicación
-    # Descomenta y modifica según tus necesidades:
-    # path('api/v1/auth/', include('apps.authentication.urls')),
-    # path('api/v1/blog/', include('apps.blog.urls')),
-    # path('api/v1/services/', include('apps.services.urls')),
+
+    # API REST
+    path('api/', include(router.urls)),
 ]
 
 # Configuración para servir archivos estáticos y media
