@@ -1,5 +1,7 @@
 import store from "./store";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
+import { useEffect } from "react";
+import { checkAuthenticated, load_user } from "./redux/actions/auth";
 import Error404 from "containers/errors/Error404";
 import Home from "containers/pages/Home";
 import Cases from "containers/pages/Cases";
@@ -15,7 +17,12 @@ import Conteo from "containers/pages/cases/Conteo";
 import Login from "containers/auth/Login";
 import Register from "containers/auth/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
-function App() {
+function App({ checkAuthenticated, load_user }) {
+  useEffect(() => {
+    checkAuthenticated();
+    load_user();
+  }, []);
+
   return (
     <Provider store={store}>
       <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
@@ -40,4 +47,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, { checkAuthenticated, load_user })(App);
