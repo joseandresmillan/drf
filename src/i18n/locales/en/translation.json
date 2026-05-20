@@ -5,7 +5,9 @@
     "about": "About Us",
     "blog": "Blog",
     "contact": "Contact",
-    "apod": "Astronomy Picture"
+    "apod": "Astronomy Picture",
+    "login": "Login",
+    "register": "Register"
   },
   "home": {
     "title": "Node.ec - Connecting the Digital Future",
@@ -309,5 +311,41 @@
     "edit": "Edit",
     "delete": "Delete",
     "confirm": "Confirm"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "password": "Password",
+      "passwordPlaceholder": "Your secure password",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up here",
+      "error": "Login error. Please check your credentials.",
+      "success": "Welcome back!"
+    },
+    "register": {
+      "title": "Create Account",
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "password": "Password",
+      "passwordPlaceholder": "Minimum 8 characters",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat your password",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in here",
+      "passwordMismatch": "Passwords do not match",
+      "error": "Error creating account. Please try again.",
+      "success": "Account created successfully!"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "minLength": "Must be at least {count} characters"
+    }
   }
 }
