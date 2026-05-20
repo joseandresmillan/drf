@@ -73,11 +73,7 @@ PROJECT_APPS = [
     # Aquí agregarás tus apps personalizadas
 ]
 
-# Aplicaciones de terceros
-THIRD_PARTY_APPS = [
-    'corsheaders',
-    'rest_framework',
-]
+# Aplicaciones de terceros\nTHIRD_PARTY_APPS = [\n    'corsheaders',\n    'rest_framework',\n    'djoser',\n    'rest_framework_simplejwt',\n]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
@@ -161,7 +157,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'\n\n# JWT and Djoser Settings\nfrom datetime import timedelta\n\nSIMPLE_JWT = {\n    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),\n    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),\n    'AUTH_HEADER_TYPES': ('JWT', 'Bearer'),\n}\n\nDJOSER = {\n    'USER_ID_FIELD': 'id',\n    'LOGIN_FIELD': 'username',\n    'USER_CREATE_PASSWORD_RETYPE': True,\n    'SET_PASSWORD_RETYPE': True,\n    'PASSWORD_RESET_CONFIRM_RETYPE': True,\n    'TOKEN_MODEL': None,\n}
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional locations of static files
@@ -253,12 +249,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Django REST Framework
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
+# Django REST Framework\nREST_FRAMEWORK = {\n    'DEFAULT_PERMISSION_CLASSES': [\n        'rest_framework.permissions.IsAuthenticatedOrReadOnly'\n    ],\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework_simplejwt.authentication.JWTAuthentication',\n    ),\n    'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],

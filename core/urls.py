@@ -23,12 +23,7 @@ def favicon_view(request):
     except:
         return HttpResponse(status=404)
 
-# URLs principales
-urlpatterns = [
-    # Panel de administración de Django
-    path('admin/', admin.site.urls),
-    
-    # Favicon específico
+# URLs principales\nurlpatterns = [\n    # Panel de administración de Django\n    path('admin/', admin.site.urls),\n    \n    # Autenticación (Djoser y JWT)\n    path('auth/', include('djoser.urls')),\n    path('auth/', include('djoser.urls.jwt')),\n    \n    # Favicon específico
     path('favicon.ico', favicon_view, name='favicon'),
     
     # Health check
