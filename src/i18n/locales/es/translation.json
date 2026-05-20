@@ -7,7 +7,8 @@
     "contact": "Contacto",
     "apod": "Imagen Astronómica",
     "login": "Iniciar Sesión",
-    "register": "Registrarse"
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión"
   },
   "home": {
     "title": "Node.ec - Conectando el Futuro Digital",

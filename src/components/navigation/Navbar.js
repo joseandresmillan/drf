@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { logout } from '../../redux/actions/auth';
 import logoNODE from "assets/images/node-blue.gif";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../common/LanguageSelector";
 
-function Navbar() {
+function Navbar({ isAuthenticated, logout }) {
   const { t } = useTranslation();
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -85,6 +86,33 @@ function Navbar() {
             </NavLink>
             
             {/* Language Selector */}
+            {!isAuthenticated ? (
+              <>
+                <NavLink
+                  to="/login"
+                  className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
+                    isScrolled ? "text-blue-button" : "text-node-text"
+                  }`}
+                >
+                  {t('nav.login')}
+                </NavLink>
+                <NavLink
+                  to="/registro"
+                  className={`px-4 py-2 text-sm font-chakra font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out`}
+                >
+                  {t('nav.register')}
+                </NavLink>
+              </>
+            ) : (
+              <button
+                onClick={logout}
+                className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
+                  isScrolled ? "text-blue-button" : "text-node-text"
+                }`}
+              >
+                {t('nav.logout', 'Logout')}
+              </button>
+            )}
             <LanguageSelector variant={isHomePage && !isScrolled ? "home" : "navbar"} />
           </div>
           {/* Mobile menu button */}
@@ -166,6 +194,34 @@ function Navbar() {
               >
                 {t('nav.contact')}
               </NavLink>
+              {!isAuthenticated ? (
+                <>
+                  <NavLink
+                    to="/login"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition duration-150"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {t('nav.login')}
+                  </NavLink>
+                  <NavLink
+                    to="/registro"
+                    className="block px-3 py-2 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md mx-3 my-2 text-center transition duration-150"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {t('nav.register')}
+                  </NavLink>
+                </>
+              ) : (
+                <button
+                  onClick={() => {
+                    logout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition duration-150"
+                >
+                  {t('nav.logout', 'Logout')}
+                </button>
+              )}
               {/* Language Selector Mobile */}
               <div className="px-3 py-2">
                 <LanguageSelector variant="mobile" />
@@ -178,6 +234,8 @@ function Navbar() {
   );
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(mapStateToProps, {})(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
