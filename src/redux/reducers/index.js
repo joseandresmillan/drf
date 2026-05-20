@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
-import useCasesReducer from "./useCasesSlice";
+import { combineReducers } from 'redux';
+import auth from './auth';
 
 export default combineReducers({
-	useCases: useCasesReducer
-})
+    auth
+});
