@@ -38,7 +38,7 @@ export const blogPosts = [
     },
     category: "ai",
     tags: ["raspberry-pi", "ai", "edge-computing", "machine-learning", "iot"],
-    readTime: 25,
+    readTime: 15,
     publishedDate: "2025-11-12",
     updatedDate: "2025-11-12",
     featured: true,
@@ -53,8 +53,8 @@ export const blogPosts = [
     id: 2,
     slug: "roseai-monitor-edge-ai",
     title: {
-      es: "RoseAI: Agricultura de Precisión en el Borde con Hailo-8L",
-      en: "RoseAI: Precision Agriculture at the Edge with Hailo-8L"
+      es: "RoseAI: Agricultura de Precisión en el Borde con Hailo-8",
+      en: "RoseAI: Precision Agriculture at the Edge with Hailo-8"
     },
     description: {
       es: "Monitoreo inteligente de cultivos de rosas automatizando el fenotipado.",
@@ -70,6 +70,7 @@ export const blogPosts = [
     },
     image: "https://raw.githubusercontent.com/joseandresmillan/node_services/main/images/cayambe_greenhouse_ai_monitoring.png",
     imageFallback: "https://raw.githubusercontent.com/joseandresmillan/node_services/main/images/cayambe_greenhouse_ai_monitoring.png",
+    showFeaturedImage: false,
     author: {
       name: "Andrés Millán",
       avatar: null,
@@ -89,11 +90,6 @@ export const blogPosts = [
         es: ["roseai", "agricultura de precision", "hailo-8l", "vinecam", "fenotipado"],
         en: ["roseai", "precision agriculture", "hailo-8l", "vinecam", "phenotyping"]
       }
-    }
-  }
-];
-      },
-      keywords: ["raspberry pi", "ai hat", "edge computing", "machine learning", "computer vision", "iot"]
     }
   }
 ];
