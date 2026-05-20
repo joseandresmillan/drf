@@ -6,8 +6,8 @@
     "blog": "Blog",
     "contact": "Contact",
     "apod": "Astronomy Picture",
-    "login": "Login",
-    "register": "Register"
+    "login": "Log In",
+    "register": "Sign Up"
   },
   "home": {
     "title": "Node.ec - Connecting the Digital Future",
@@ -314,22 +314,22 @@
   },
   "auth": {
     "login": {
-      "title": "Login",
-      "email": "Email",
+      "title": "Log In",
+      "email": "Email Address",
       "emailPlaceholder": "your@email.com",
       "password": "Password",
       "passwordPlaceholder": "Your secure password",
-      "submit": "Login",
+      "submit": "Log In",
       "noAccount": "Don't have an account?",
       "signUpLink": "Sign up here",
-      "error": "Login error. Please check your credentials.",
+      "error": "Login failed. Please check your credentials.",
       "success": "Welcome back!"
     },
     "register": {
       "title": "Create Account",
       "name": "Full Name",
       "namePlaceholder": "Your full name",
-      "email": "Email",
+      "email": "Email Address",
       "emailPlaceholder": "your@email.com",
       "password": "Password",
       "passwordPlaceholder": "Minimum 8 characters",
@@ -337,9 +337,9 @@
       "confirmPasswordPlaceholder": "Repeat your password",
       "submit": "Create Account",
       "hasAccount": "Already have an account?",
-      "signInLink": "Sign in here",
+      "signInLink": "Log in here",
       "passwordMismatch": "Passwords do not match",
-      "error": "Error creating account. Please try again.",
+      "error": "Failed to create account. Please try again.",
       "success": "Account created successfully!"
     },
     "validation": {
