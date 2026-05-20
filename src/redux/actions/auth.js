@@ -6,7 +6,9 @@ import {
     USER_LOADED_FAIL,
     AUTHENTICATED_SUCCESS,
     AUTHENTICATED_FAIL,
-    LOGOUT
+    LOGOUT,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAIL
 } from './types';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
@@ -105,4 +107,28 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     });
+};
+
+export const signup = (name, email, password, re_password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    };
+
+    const body = JSON.stringify({ name, email, password, re_password });
+
+    try {
+        const res = await axios.post(`${API_URL}/auth/users/`, body, config);
+
+        dispatch({
+            type: SIGNUP_SUCCESS,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: SIGNUP_FAIL
+        });
+        throw err;
+    }
 };
