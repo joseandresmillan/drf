@@ -59,10 +59,10 @@ export const raspberryPiAiHatContentEn = `
   <li><strong>🔑 Key Feature:</strong> A <strong>PCIe 3.0 x1 interface</strong>. This high-speed connection is what allows the Pi to communicate effectively with the Hailo-8L accelerator.</li>
 </ul>
 
-<h3>🚀 Hailo-8L AI Accelerator</h3>
+<h3>🚀 Hailo-8 AI Accelerator</h3>
 <ul>
   <li><strong>Form Factor:</strong> M.2 Key-M</li>
-  <li><strong>Performance:</strong> Up to <strong>13 TOPS</strong> (Tera-Operations Per Second)</li>
+  <li><strong>Performance:</strong> Up to <strong>26 TOPS</strong> (Tera-Operations Per Second)</li>
   <li><strong>Power Efficiency:</strong> Averages only 2.5W</li>
   <li><strong>Purpose:</strong> A specialized chip built from the ground up to run neural networks efficiently, delivering data-center performance in a tiny package.</li>
 </ul>
@@ -273,7 +273,7 @@ python basic_pipelines/detection_simple.py -i usb</code>
 <li><strong>Real-Time Decisions:</strong> A rose ready for harvest has a 24-hour optimal window. Cloud round-trips add seconds of latency. Edge inference on a Hailo-8L runs at 30 FPS — the decision happens at the camera.</li>
 <li><strong>Data Sovereignty:</strong> Crop images never leave the farm. No cloud storage costs, no privacy concerns, no data breach risks.</li>
 <li><strong>Cost at Scale:</strong> Processing 4 cameras x 11.9 MP images daily in the cloud costs ~$200/month in API fees. A single Raspberry Pi 5 + Hailo-8L does the same for $0/month after the $200 hardware purchase.</li>
-<li><strong>Power Efficiency:</strong> The Hailo-8L delivers 13 TOPS at just 5W. Compare that to a cloud GPU burning 300W per inference request — Edge AI is not just cheaper, it's greener.</li>
+<li><strong>Power Efficiency:</strong> The Hailo-8 delivers 26 TOPS at just 5W. Compare that to a cloud GPU burning 300W per inference request — Edge AI is not just cheaper, it's greener.</li>
 </ul>
 
 <h3>The 10BASE-T1S Advantage</h3>

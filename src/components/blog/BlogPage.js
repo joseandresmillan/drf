@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import { blogPosts as staticBlogPosts } from 'data/blog';
 import { fetchBlogs } from '../../redux/actions/blog';
 import { fetchCategories } from '../../redux/actions/categories';
 import { adaptApiPost } from '../../utils/blogAdapter';
@@ -21,14 +22,25 @@ function BlogPage({ apiBlogList, fetchBlogs, apiCategories, fetchCategories }) {
   // Normalize language code (es-ES -> es, en-US -> en) with fallback to 'es'
   const lang = i18n.language ? i18n.language.split('-')[0] : 'es';
 
-  // Posts from API only
-  const allPosts = apiBlogList.map(adaptApiPost);
+  // Combine API posts with static posts that are not yet migrated to DB.
+  const apiPosts = apiBlogList.map(adaptApiPost);
+  const apiSlugs = new Set(apiPosts.map((post) => post.slug));
+  const fallbackStaticPosts = staticBlogPosts.filter((post) => !apiSlugs.has(post.slug));
+  const allPosts = [...apiPosts, ...fallbackStaticPosts];
 
-  // Build category list from API
-  const apiCategoryItems = apiCategories.map((c) => ({ key: c.slug, icon: '🏷️', label: c.name }));
+  // Build category list from current visible posts (API + static fallback).
+  const categoryItems = Array.from(new Set(allPosts.map((post) => post.category).filter(Boolean))).map((key) => {
+    const apiCategory = apiCategories.find((c) => c.slug === key);
+    return {
+      key,
+      icon: '🏷️',
+      label: apiCategory?.name,
+    };
+  });
+
   const categories = [
     { key: 'all', icon: '📚' },
-    ...apiCategoryItems,
+    ...categoryItems,
   ];
 
   const filteredBlogs = allPosts.filter(blog => {

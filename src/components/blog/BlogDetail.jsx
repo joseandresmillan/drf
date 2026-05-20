@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { getPostBySlug } from "../../data/blog";
 import { fetchBlogs, fetchBlogDetail } from "../../redux/actions/blog";
 import { adaptApiPost } from "../../utils/blogAdapter";
 import Footer from "../navigation/Footer";
@@ -36,7 +37,8 @@ function BlogDetail({ apiBlogList, apiBlogDetail, fetchBlogs, fetchBlogDetail })
   // Use the detail post (has content) — fall back to list entry while loading
   const detailRaw = apiBlogDetail && apiBlogDetail.slug === slug ? apiBlogDetail : null;
   const listRaw = apiBlogList.find((p) => p.slug === slug);
-  const post = detailRaw ? adaptApiPost(detailRaw) : (listRaw ? adaptApiPost(listRaw) : null);
+  const staticPost = getPostBySlug(slug);
+  const post = detailRaw ? adaptApiPost(detailRaw) : (listRaw ? adaptApiPost(listRaw) : staticPost || null);
 
   // Estados para el contenido y la carga
   const [content, setContent] = useState("");
@@ -227,7 +229,7 @@ function BlogDetail({ apiBlogList, apiBlogDetail, fetchBlogs, fetchBlogDetail })
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               {/* Featured Image */}
-              {post.image && (
+              {post.image && post.showFeaturedImage !== false && (
                 <div className="mb-8 rounded-xl overflow-hidden shadow-2xl mx-auto max-w-2xl">
                   <picture>
                     <source srcSet={post.image} type="image/webp" />
