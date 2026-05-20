@@ -1,4 +1,5 @@
 import {
+    AUTH_LOADING,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     USER_LOADED_SUCCESS,
@@ -14,13 +15,19 @@ const initialState = {
     access: localStorage.getItem('access'),
     refresh: localStorage.getItem('refresh'),
     isAuthenticated: null,
-    user: null
+    user: null,
+    loading: false
 };
 
 export default function(state = initialState, action) {
     const { type, payload } = action;
 
     switch(type) {
+        case AUTH_LOADING:
+            return {
+                ...state,
+                loading: true
+            };
         case AUTHENTICATED_SUCCESS:
             return {
                 ...state,
@@ -33,7 +40,8 @@ export default function(state = initialState, action) {
                 ...state,
                 isAuthenticated: true,
                 access: payload.access,
-                refresh: payload.refresh
+                refresh: payload.refresh,
+                loading: false
             }
         case USER_LOADED_SUCCESS:
             return {
@@ -69,7 +77,8 @@ export default function(state = initialState, action) {
                 access: null,
                 refresh: null,
                 isAuthenticated: false,
-                user: null
+                user: null,
+                loading: false
             }
         default:
             return state
