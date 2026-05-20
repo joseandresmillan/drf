@@ -19,7 +19,7 @@ const initialState = {
     loading: false
 };
 
-export default function(state = initialState, action) {
+const authReducer = (state = initialState, action) => {
     const { type, payload } = action;
 
     switch(type) {
@@ -46,7 +46,14 @@ export default function(state = initialState, action) {
         case USER_LOADED_SUCCESS:
             return {
                 ...state,
-                user: payload
+                user: payload,
+                loading: false
+            }
+        case USER_LOADED_FAIL:
+            return {
+                ...state,
+                user: null,
+                loading: false
             }
         case AUTHENTICATED_FAIL:
             return {
@@ -84,3 +91,5 @@ export default function(state = initialState, action) {
             return state
     }
 };
+
+export default authReducer;

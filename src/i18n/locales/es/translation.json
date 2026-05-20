@@ -347,6 +347,15 @@
       "required": "Este campo es requerido",
       "invalidEmail": "Correo electrónico inválido",
       "minLength": "Debe tener al menos {count} caracteres"
+    },
+    "profile": {
+      "title": "Mi Perfil",
+      "welcome": "Bienvenido",
+      "username": "Usuario",
+      "email": "Correo Electrónico",
+      "noEmail": "Sin correo registrado",
+      "memberSince": "Miembro desde",
+      "logout": "Cerrar Sesión"
     }
   }
 }

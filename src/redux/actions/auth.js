@@ -50,6 +50,8 @@ export const checkAuthenticated = () => async dispatch => {
 };
 
 export const load_user = () => async dispatch => {
+    dispatch({ type: 'AUTH_LOADING' });
+
     if (localStorage.getItem('access')) {
         const config = {
             headers: {
@@ -78,14 +80,14 @@ export const load_user = () => async dispatch => {
     }
 };
 
-export const login = (email, password) => async dispatch => {
+export const login = (username, password) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
 
-    const body = JSON.stringify({ email, password });
+    const body = JSON.stringify({ username, password });
 
     try {
         const res = await axios.post(`${API_URL}/auth/jwt/create/`, body, config);
@@ -116,7 +118,7 @@ export const signup = (name, email, password, re_password) => async dispatch => 
         }
     };
 
-    const body = JSON.stringify({ name, email, password, re_password });
+    const body = JSON.stringify({ username: name, email, password, re_password });
 
     try {
         const res = await axios.post(`${API_URL}/auth/users/`, body, config);

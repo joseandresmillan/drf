@@ -1,5 +1,5 @@
 import store from "./store";
-import { Provider, connect } from "react-redux";
+import { Provider } from "react-redux";
 import { useEffect } from "react";
 import { checkAuthenticated, load_user } from "./redux/actions/auth";
 import Error404 from "containers/errors/Error404";
@@ -16,11 +16,13 @@ import Plagas from "containers/pages/cases/Plagas";
 import Conteo from "containers/pages/cases/Conteo";
 import Login from "containers/auth/Login";
 import Register from "containers/auth/Register";
+import Profile from "containers/auth/Profile";
+import PrivateRoute from "components/auth/PrivateRoute";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
-function App({ checkAuthenticated, load_user }) {
+function App() {
   useEffect(() => {
-    checkAuthenticated();
-    load_user();
+    store.dispatch(checkAuthenticated());
+    store.dispatch(load_user());
   }, []);
 
   return (
@@ -40,6 +42,11 @@ function App({ checkAuthenticated, load_user }) {
           <Route path="/apod" element={<ApodPage />} /> 
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Register />} />
+          <Route path="/perfil" element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          } />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </Router>
@@ -47,4 +54,4 @@ function App({ checkAuthenticated, load_user }) {
   );
 }
 
-export default connect(null, { checkAuthenticated, load_user })(App);
+export default App;

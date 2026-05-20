@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -9,13 +9,13 @@ import Footer from '../../components/navigation/Footer';
 const Login = ({ login, isAuthenticated }) => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { email, password } = formData;
+  const { username, password } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,14 +27,14 @@ const Login = ({ login, isAuthenticated }) => {
     setLoading(true);
     setError('');
 
-    if (!email || !password) {
+    if (!username || !password) {
       setError(t('auth.validation.required'));
       setLoading(false);
       return;
     }
 
     try {
-      await login(email, password);
+      await login(username, password);
     } catch (err) {
       setError(t('auth.login.error'));
     } finally {
@@ -60,18 +60,18 @@ const Login = ({ login, isAuthenticated }) => {
           <form className="mt-8 space-y-6" onSubmit={onSubmit}>
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
-                <label htmlFor="email" className="sr-only">
-                  {t('auth.login.email')}
+                <label htmlFor="username" className="sr-only">
+                  Usuario
                 </label>
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="username"
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                  placeholder={t('auth.login.emailPlaceholder')}
-                  value={email}
+                  placeholder="Nombre de Usuario"
+                  value={username}
                   onChange={onChange}
                 />
               </div>
