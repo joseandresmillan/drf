@@ -339,6 +339,9 @@
       "submit": "Create Account",
       "hasAccount": "Already have an account?",
       "signInLink": "Log in here",
+      "underConstruction": "We are working on this page",
+      "underConstructionAria": "under construction",
+      "temporarilyUnavailable": "Registration is temporarily unavailable.",
       "passwordMismatch": "Passwords do not match",
       "error": "Failed to create account. Please try again.",
       "success": "Account created successfully!"
