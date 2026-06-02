@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './ServiceModal.css';
 
@@ -227,11 +228,12 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                 >
                   {t('modal.freeConsult')}
                 </button>
-                <button
-                  className="flex-1 border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-lg font-medium hover:bg-blue-50 active:scale-95 transition-all duration-200"
+                <Link
+                  to="/casos"
+                  className="flex-1 border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-lg font-medium hover:bg-blue-50 active:scale-95 transition-all duration-200 text-center"
                 >
                   {t('modal.viewPortfolio')}
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>

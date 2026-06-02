@@ -28,7 +28,7 @@ const BlogCard = ({ blog, index }) => {
         variants={cardVariants}
         initial="hidden"
         animate="visible"
-        className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer"
+        className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-200 dark:border-gray-700"
       >
         {blog.image && (
           <div className="relative overflow-hidden">
@@ -37,7 +37,7 @@ const BlogCard = ({ blog, index }) => {
               <img
                 src={blog.imageFallback || blog.image}
                 alt={blog.title[lang]}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
               />
             </picture>
@@ -50,17 +50,17 @@ const BlogCard = ({ blog, index }) => {
         )}
         
         <div className="p-6">
-          <div className="flex items-center text-sm text-gray-500 mb-3">
+          <div className="flex items-center text-sm text-gray-600 dark:text-gray-400 mb-3">
             <span>{t('blog.publishedOn')} {new Date(blog.publishedDate).toLocaleDateString()}</span>
             <span className="mx-2">•</span>
             <span>{blog.readTime} {t('blog.readTime')}</span>
           </div>
           
-          <h2 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+          <h2 className="text-xl leading-snug font-semibold text-gray-900 dark:text-gray-100 mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {blog.title[lang]}
           </h2>
           
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
             {blog.description[lang]}
           </p>
           

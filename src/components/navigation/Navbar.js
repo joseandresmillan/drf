@@ -5,6 +5,7 @@ import logoNODE from "assets/images/node-blue.gif";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "../common/LanguageSelector";
+import ThemeSelector from "../common/ThemeSelector";
 
 function Navbar({ isAuthenticated, user, logout }) {
   const { t } = useTranslation();
@@ -33,8 +34,8 @@ function Navbar({ isAuthenticated, user, logout }) {
   return (
     <nav
       id="navbar"
-      className={`w-full py-2 top-0 transition duration-300 ease-in-out z-40 fixed ${
-        isScrolled ? "shadow-navbar bg-white" : ""
+      className={`w-full py-2 top-0 transition-all duration-300 ease-in-out z-40 fixed ${
+        (isScrolled || !isHomePage) ? "shadow-navbar bg-white/95 dark:bg-gray-900/95 backdrop-blur-md" : ""
       }`}
     >
       <div className="px-4 sm:px-6">
@@ -47,7 +48,7 @@ function Navbar({ isAuthenticated, user, logout }) {
             <NavLink
               to="/casos"
               className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                isScrolled ? "text-blue-button" : "text-node-text"
+                (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
               }`}
             >
               {t('nav.cases')}
@@ -55,7 +56,7 @@ function Navbar({ isAuthenticated, user, logout }) {
             <NavLink
               to="/servicios"
               className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                isScrolled ? "text-blue-button" : "text-node-text"
+                (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
               }`}
             >
               {t('nav.services')}
@@ -63,7 +64,7 @@ function Navbar({ isAuthenticated, user, logout }) {
             <NavLink
               to="/nosotros"
               className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                isScrolled ? "text-blue-button" : "text-node-text"
+                (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
               }`}
             >
               {t('nav.about')}
@@ -71,7 +72,7 @@ function Navbar({ isAuthenticated, user, logout }) {
             {<NavLink
               to="/blog"
               className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                isScrolled ? "text-blue-button" : "text-node-text"
+                (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
               }`}
             >
               {t('nav.blog')}
@@ -79,7 +80,7 @@ function Navbar({ isAuthenticated, user, logout }) {
             <NavLink
               to="/contacto"
               className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                isScrolled ? "text-blue-button" : "text-node-text"
+                (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
               }`}
             >
               {t('nav.contact')}
@@ -91,7 +92,7 @@ function Navbar({ isAuthenticated, user, logout }) {
                 <NavLink
                   to="/login"
                   className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                    isScrolled ? "text-blue-button" : "text-node-text"
+                      (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
                   }`}
                 >
                   {t('nav.login')}
@@ -109,7 +110,7 @@ function Navbar({ isAuthenticated, user, logout }) {
                   <NavLink
                     to="/dashboard"
                     className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                      isScrolled ? "text-blue-button" : "text-node-text"
+                        (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
                     }`}
                   >
                     Dashboard
@@ -118,21 +119,24 @@ function Navbar({ isAuthenticated, user, logout }) {
                 <button
                   onClick={logout}
                   className={`text-lg font-chakra leading-6 transition duration-300 ease-in-out hover:underline-blue-button navbar-link ${
-                    isScrolled ? "text-blue-button" : "text-node-text"
+                      (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100" : "text-node-text"
                   }`}
                 >
                   {t('nav.logout', 'Logout')}
                 </button>
               </>
             )}
-            <LanguageSelector variant={isHomePage && !isScrolled ? "home" : "navbar"} />
+            <div className="flex items-center space-x-2">
+              <ThemeSelector variant={isHomePage && !isScrolled ? "home" : "navbar"} />
+              <LanguageSelector variant={isHomePage && !isScrolled ? "home" : "navbar"} />
+            </div>
           </div>
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md transition-colors ${
-                isScrolled ? "text-blue-button hover:bg-blue-button hover:text-white" : "text-node-text hover:bg-white hover:text-blue-button"
+                 (isScrolled || !isHomePage) ? "text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800" : "text-node-text hover:bg-white/10"
               }`}
             >
               <span className="sr-only">Abrir menú principal</span>
@@ -170,38 +174,38 @@ function Navbar({ isAuthenticated, user, logout }) {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white rounded-lg shadow-lg">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
               <NavLink
                 to="/casos"
-                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-gray-900 dark:text-gray-100 hover:bg-blue-600 dark:hover:bg-gray-700 hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.cases')}
               </NavLink>
               <NavLink
                 to="/servicios"
-                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-gray-900 dark:text-gray-100 hover:bg-blue-600 dark:hover:bg-gray-700 hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.services')}
               </NavLink>
               <NavLink
                 to="/nosotros"
-                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-gray-900 dark:text-gray-100 hover:bg-blue-600 dark:hover:bg-gray-700 hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.about')}
               </NavLink>
               <NavLink
                 to="/blog"
-                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-gray-900 dark:text-gray-100 hover:bg-blue-600 dark:hover:bg-gray-700 hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.blog')}
               </NavLink>
               <NavLink
                 to="/contacto"
-                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-blue-button hover:bg-blue-button hover:text-white transition-colors navbar-link"
+                className="block px-3 py-2 rounded-md text-base font-medium font-chakra text-gray-900 dark:text-gray-100 hover:bg-blue-600 dark:hover:bg-gray-700 hover:text-white transition-colors navbar-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t('nav.contact')}
@@ -210,7 +214,7 @@ function Navbar({ isAuthenticated, user, logout }) {
                 <>
                   <NavLink
                     to="/login"
-                    className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition duration-150"
+                    className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-150"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {t('nav.login')}
@@ -229,14 +233,17 @@ function Navbar({ isAuthenticated, user, logout }) {
                     logout();
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition duration-150"
+                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 transition duration-150"
                 >
                   {t('nav.logout', 'Logout')}
                 </button>
               )}
               {/* Language Selector Mobile */}
               <div className="px-3 py-2">
-                <LanguageSelector variant="mobile" />
+                <div className="flex items-center gap-2">
+                  <ThemeSelector variant="mobile" />
+                  <LanguageSelector variant="mobile" />
+                </div>
               </div>
             </div>
           </div>

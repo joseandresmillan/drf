@@ -85,12 +85,12 @@ const Register = ({ signup, isAuthenticated }) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
-      <div className="flex-grow flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 pt-24">
+      <div className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 pt-24">
         <div className="max-w-md w-full space-y-8">
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 font-chakra">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white font-chakra">
               {t('auth.register.title')}
             </h2>
           </div>
@@ -107,8 +107,8 @@ const Register = ({ signup, isAuthenticated }) => {
                   autoComplete="name"
                   required
                   className={`appearance-none relative block w-full px-3 py-2 border ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
-                  } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+                    errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                  } placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                   placeholder={t('auth.register.namePlaceholder')}
                   value={name}
                   onChange={onChange}
@@ -129,8 +129,8 @@ const Register = ({ signup, isAuthenticated }) => {
                   autoComplete="email"
                   required
                   className={`appearance-none relative block w-full px-3 py-2 border ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+                    errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                  } placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                   placeholder={t('auth.register.emailPlaceholder')}
                   value={email}
                   onChange={onChange}
@@ -151,8 +151,8 @@ const Register = ({ signup, isAuthenticated }) => {
                   autoComplete="new-password"
                   required
                   className={`appearance-none relative block w-full px-3 py-2 border ${
-                    errors.password ? 'border-red-500' : 'border-gray-300'
-                  } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+                    errors.password ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                  } placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                   placeholder={t('auth.register.passwordPlaceholder')}
                   value={password}
                   onChange={onChange}
@@ -173,8 +173,8 @@ const Register = ({ signup, isAuthenticated }) => {
                   autoComplete="new-password"
                   required
                   className={`appearance-none relative block w-full px-3 py-2 border ${
-                    errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
-                  } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
+                    errors.confirmPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                  } placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm`}
                   placeholder={t('auth.register.confirmPasswordPlaceholder')}
                   value={confirmPassword}
                   onChange={onChange}
@@ -204,7 +204,7 @@ const Register = ({ signup, isAuthenticated }) => {
             </div>
 
             <div className="text-center text-sm">
-              <span className="text-gray-600">{t('auth.register.hasAccount')}</span>{' '}
+              <span className="text-gray-600 dark:text-gray-400">{t('auth.register.hasAccount')}</span>{' '}
               <Link
                 to="/login"
                 className="font-medium text-blue-600 hover:text-blue-500"

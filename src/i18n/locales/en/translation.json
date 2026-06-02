@@ -180,6 +180,8 @@
     "title": "Technologies we use in",
     "subtitle": "Node to take your project to the top of innovation",
     "description": "Our technology stack combines the best Machine Learning, web development and DevOps tools to create robust and scalable solutions.",
+    "processingLabel": "Processing Matrix",
+    "heroText": "We build on a stack that transcends,\nfusing stability and constant evolution.\nTechnology that doesn't just work,\nbut opens the doors to the future.",
     "cta": {
       "question": "Ready to transform your business with these technologies?",
       "button": "Start Project"

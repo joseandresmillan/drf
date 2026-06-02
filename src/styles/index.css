@@ -54,6 +54,26 @@
   --transition-slow: all 0.5s ease-in-out;
 }
 
+:root[data-theme='light'] {
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --background-primary: #ffffff;
+  --background-secondary: #f9fafb;
+  --background-tertiary: #f3f4f6;
+  --border-color: #e5e7eb;
+}
+
+:root[data-theme='dark'] {
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #6b7280;
+  --background-primary: #111827;
+  --background-secondary: #1f2937;
+  --background-tertiary: #374151;
+  --border-color: #374151;
+}
+
 /* Reset y configuración base */
 * {
   margin: 0;
@@ -77,6 +97,7 @@ body {
   background: var(--background-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* Estados de enlaces y navegación */
@@ -108,14 +129,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E5F620;
+  background: #667eea;
   border-radius: var(--radius-lg);
   transition: var(--transition-normal);
   opacity: 0.7;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E5F620;
+  background: #155799;
   opacity: 1;
 }
 

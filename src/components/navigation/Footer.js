@@ -36,7 +36,7 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-white" aria-labelledby="footer-heading">
+    <footer className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -49,7 +49,7 @@ function Footer() {
               alt="Node.ec"
               loading="lazy"
             />
-            <p className="text-sm leading-6 text-gray-600">
+            <p className="text-sm leading-6 text-gray-600 dark:text-gray-400">
               {t('footer.description')}
             </p>
             <div className="flex space-x-6">
@@ -61,7 +61,7 @@ function Footer() {
                     href={item.href} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-gray-500 transition-colors duration-200 hover:scale-110"
+                    className="text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200 hover:scale-110"
                   >
                     <span className="sr-only">{item.name}</span>
                     <IconComponent className="h-6 w-6" aria-hidden="true" />
@@ -77,20 +77,20 @@ function Footer() {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
                   {t('footer.contact')}
                 </h3>
                 <ul className="mt-6 space-y-4">
                   {navigation.support.map((item, idx) => (
                     <li key={item.name || idx}>
                       {item.isLabel ? (
-                        <span className="text-sm font-medium leading-6 text-gray-700 block mb-2">
+                        <span className="text-sm font-medium leading-6 text-gray-500 dark:text-gray-400 block mb-2">
                           {item.name}
                         </span>
                       ) : (
                         <a
                           href={item.href}
-                          className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors break-words inline-block max-w-full"
+                          className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors break-words inline-block max-w-full"
                         >
                           {item.name}
                         </a>
@@ -100,7 +100,7 @@ function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
                   {t('footer.location')}
                 </h3>
                 <ul className="mt-6 space-y-4">
@@ -108,7 +108,7 @@ function Footer() {
                     <li key={item.name || idx}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                       >
                         {item.name}
                       </a>
@@ -119,7 +119,7 @@ function Footer() {
             </div>
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
                   {t('footer.company')}
                 </h3>
                 <ul className="mt-6 space-y-4">
@@ -127,7 +127,7 @@ function Footer() {
                     <li key={item.name || idx}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                       >
                         {item.name}
                       </a>
@@ -136,7 +136,7 @@ function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                <h3 className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
                   {t('footer.services')}
                 </h3>
                 <ul className="mt-6 space-y-4">
@@ -144,7 +144,7 @@ function Footer() {
                     <li key={item.name || idx}>
                       <a
                         href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors"
+                        className="text-sm leading-6 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
                       >
                         {item.name}
                       </a>
@@ -155,8 +155,8 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-500">
+        <div className="mt-16 border-t border-gray-200 dark:border-gray-700 pt-8 sm:mt-20 lg:mt-24">
+          <p className="text-xs leading-5 text-gray-500 dark:text-gray-500">
             &copy; 2026 {t('common.nodeEc')}. {t('footer.rights')}
           </p>
         </div>

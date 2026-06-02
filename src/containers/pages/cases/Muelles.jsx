@@ -10,31 +10,32 @@ export default function Muelles() {
   return (
     <Layout>
       <Navbar />
-  <div className="max-w-4xl mx-auto py-12 px-4 mt-20">
-        <h1 className="text-3xl font-bold mb-6 text-indigo-700">Muelles Inteligentes: Visibilidad y Validación Automática</h1>
+  <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+      <div className="max-w-4xl mx-auto py-12 px-4 mt-20">
+        <h1 className="text-3xl font-bold mb-6 text-blue-600 dark:text-blue-400">Muelles Inteligentes: Visibilidad y Validación Automática</h1>
         <picture>
           <source srcSet={deteccion_en_muelleWebp} type="image/webp" />
           <img src={deteccion_en_muellePng} alt="Muelles" className="rounded-lg shadow mb-8 w-full h-64 object-cover" />
         </picture>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">Resumen</h2>
-          <ul className="list-disc pl-6 text-lg">
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">Resumen</h2>
+          <ul className="list-disc pl-6 text-lg text-gray-700 dark:text-gray-300">
             <li><b>Visibilidad Total:</b> Monitoreo completo de operaciones de despacho en tiempo real con datos estructurados y visuales.</li>
             <li><b>Inteligencia Visual:</b> Computer Vision para análisis automático de cámaras y validación de procesos.</li>
             <li><b>Toma de Decisiones:</b> Datos precisos combinando información SAP con análisis visual automático.</li>
           </ul>
         </section>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">🧭 Guía Rápida de Navegación</h2>
-          <ul className="list-disc pl-6 text-lg">
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">🧭 Guía Rápida de Navegación</h2>
+          <ul className="list-disc pl-6 text-lg text-gray-700 dark:text-gray-300">
             <li>📦 <b>Despachos:</b> Vista principal con métricas globales y tabla detallada de despachos por fecha.</li>
             <li>🚛 <b>Estado de Muelles:</b> Monitor en tiempo real del estado de cada muelle con cronómetros.</li>
             <li>🚀 <b>Módulos del Sistema:</b> Dashboard global, métricas, gráficos, filtros avanzados y actualización automática.</li>
           </ul>
         </section>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">Monitor de Estado de Muelles</h2>
-          <ul className="list-disc pl-6 text-lg">
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">Monitor de Estado de Muelles</h2>
+          <ul className="list-disc pl-6 text-lg text-gray-700 dark:text-gray-300">
             <li>🚛 Estado en vivo de cada muelle de carga</li>
             <li>⏱️ Cronómetros de tiempo de carga activo</li>
             <li>🎨 Códigos de color intuitivos por estado</li>
@@ -43,8 +44,8 @@ export default function Muelles() {
           </ul>
         </section>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">KPIs y Análisis de Despachos</h2>
-          <ul className="list-disc pl-6 text-lg">
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">KPIs y Análisis de Despachos</h2>
+          <ul className="list-disc pl-6 text-lg text-gray-700 dark:text-gray-300">
             <li>📊 Treemaps interactivos por cliente y segmento</li>
             <li>📈 Totales mensuales y tendencias automáticas</li>
             <li>🎯 Indicadores de rendimiento por área</li>
@@ -53,8 +54,8 @@ export default function Muelles() {
           </ul>
         </section>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">Computer Vision (Nuevo)</h2>
-          <ul className="list-disc pl-6 text-lg">
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">Computer Vision (Nuevo)</h2>
+          <ul className="list-disc pl-6 text-lg text-gray-700 dark:text-gray-300">
             <li>🎥 Análisis automático de cámaras de muelles</li>
             <li>🚛 Detección de vehículos y estado de carga</li>
             <li>📸 Procesamiento de imágenes en tiempo real</li>
@@ -63,51 +64,52 @@ export default function Muelles() {
           </ul>
         </section>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">¿Por qué Computer Vision en Logística?</h2>
-          <ul className="list-disc pl-6 text-lg">
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">¿Por qué Computer Vision en Logística?</h2>
+          <ul className="list-disc pl-6 text-lg text-gray-700 dark:text-gray-300">
             <li><b>Validación Automática:</b> Verifica automáticamente que los datos del sistema SAP coincidan con la realidad física de los muelles.</li>
             <li><b>Detección en Tiempo Real:</b> Identifica inmediatamente cuando un vehículo llega, se está cargando o ha terminado el proceso.</li>
             <li><b>Detección de Anomalías:</b> Alerta sobre discrepancias entre los datos del sistema y la situación real en los muelles.</li>
           </ul>
         </section>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">🔄 Integración de Datos: Estructurados + Visuales</h2>
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">🔄 Integración de Datos: Estructurados + Visuales</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="text-lg font-bold mb-2">Datos Estructurados (SAP)</h3>
-              <ul className="list-disc pl-6 text-base">
+              <h3 className="text-lg font-bold mb-2 text-gray-800 dark:text-gray-100">Datos Estructurados (SAP)</h3>
+              <ul className="list-disc pl-6 text-base text-gray-700 dark:text-gray-300">
                 <li>📊 Información precisa y detallada</li>
                 <li>📈 Histórico completo de transacciones</li>
                 <li>🔢 Métricas exactas de tonelaje</li>
                 <li>📅 Fechas y horarios registrados</li>
               </ul>
-              <p className="mt-2 text-sm text-gray-600">⚠️ Limitaciones: Puede tener retrasos en actualización, no refleja situación física actual, depende de entrada manual correcta.</p>
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">⚠️ Limitaciones: Puede tener retrasos en actualización, no refleja situación física actual, depende de entrada manual correcta.</p>
             </div>
             <div>
-              <h3 className="text-lg font-bold mb-2">Datos No Estructurados (CV)</h3>
-              <ul className="list-disc pl-6 text-base">
+              <h3 className="text-lg font-bold mb-2 text-gray-800 dark:text-gray-100">Datos No Estructurados (CV)</h3>
+              <ul className="list-disc pl-6 text-base text-gray-700 dark:text-gray-300">
                 <li>⚡ Información en tiempo real</li>
                 <li>👁️ Situación física actual verificable</li>
                 <li>🤖 Automatización sin intervención humana</li>
                 <li>🚨 Detección inmediata de anomalías</li>
               </ul>
-              <p className="mt-2 text-sm text-gray-600">⚠️ Limitaciones: Dependiente de condiciones ambientales, información menos detallada, requiere procesamiento e interpretación.</p>
+              <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">⚠️ Limitaciones: Dependiente de condiciones ambientales, información menos detallada, requiere procesamiento e interpretación.</p>
             </div>
           </div>
         </section>
         <section className="mb-8">
-          <h2 className="text-xl font-semibold mb-2 text-blue-700">🔗 La Sinergia Perfecta: Datos + Visión</h2>
-          <p className="text-base mb-2">La combinación de datos estructurados de SAP con Computer Vision crea un sistema de monitoreo completo y confiable. Mientras SAP proporciona el contexto detallado de cada despacho (cliente, productos, cantidades), Computer Vision valida y complementa esta información con la situación física real del muelle.</p>
-          <div className="bg-blue-50 rounded p-4">
-            <b>Ejemplo de Complementariedad</b>
-            <ul className="list-disc pl-6 text-black">
+          <h2 className="text-xl font-semibold mb-2 text-blue-600 dark:text-blue-400">🔗 La Sinergia Perfecta: Datos + Visión</h2>
+          <p className="text-base mb-2 text-gray-700 dark:text-gray-300">La combinación de datos estructurados de SAP con Computer Vision crea un sistema de monitoreo completo y confiable. Mientras SAP proporciona el contexto detallado de cada despacho (cliente, productos, cantidades), Computer Vision valida y complementa esta información con la situación física real del muelle.</p>
+          <div className="bg-blue-50 dark:bg-blue-900/30 rounded p-4">
+            <b className="text-gray-900 dark:text-gray-100">Ejemplo de Complementariedad</b>
+            <ul className="list-disc pl-6 text-gray-900 dark:text-gray-100">
               <li>📊 SAP dice: 'Muelle 3 - Cliente ABC - 25 TN - Inicio: 14:30'</li>
               <li>👁️ CV confirma: 'Vehículo presente en Muelle 3 - Carga activa'</li>
               <li>✅ Resultado: Información 100% verificada y confiable</li>
             </ul>
           </div>
         </section>
-        <p className="text-base text-gray-600 mt-8">Autor: Andrés Millán</p>
+        <p className="text-base text-gray-500 dark:text-gray-400 mt-8">Autor: Andrés Millán</p>
+      </div>
       </div>
       <Footer />
     </Layout>

@@ -34,6 +34,8 @@ import CaseForm from "containers/dashboard/cases/CaseForm";
 import ContactList from "containers/dashboard/contacts/ContactList";
 import UserList from "containers/dashboard/users/UserList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
+import { ThemeProvider } from "./context/ThemeContext";
+
 function App() {
   useEffect(() => {
     store.dispatch(checkAuthenticated());
@@ -42,56 +44,58 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/casos" element={<Cases />} />
-          <Route path="/casos/muelles" element={<Muelles />} />
-          <Route path="/casos/plagas" element={<Plagas />} />
-          <Route path="/casos/conteo" element={<Conteo />} />
-          <Route path="/servicios" element={<Services />} />
-          <Route path="/nosotros" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/contacto" element={<Contact />} />
-          <Route path="/apod" element={<ApodPage />} /> 
-          <Route path="/login" element={<Login />} />
-          <Route path="/registro" element={<Register />} />
-          <Route path="/perfil" element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          } />
+      <ThemeProvider>
+        <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/casos" element={<Cases />} />
+            <Route path="/casos/muelles" element={<Muelles />} />
+            <Route path="/casos/plagas" element={<Plagas />} />
+            <Route path="/casos/conteo" element={<Conteo />} />
+            <Route path="/servicios" element={<Services />} />
+            <Route path="/nosotros" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/contacto" element={<Contact />} />
+            <Route path="/apod" element={<ApodPage />} /> 
+            <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Register />} />
+            <Route path="/perfil" element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            } />
 
-          {/* Dashboard — solo superusuarios */}
-          <Route path="/dashboard" element={
-            <SuperuserRoute>
-              <DashboardLayout />
-            </SuperuserRoute>
-          }>
-            <Route index element={<DashboardHome />} />
-            <Route path="blog" element={<BlogList />} />
-            <Route path="blog/nuevo" element={<BlogForm />} />
-            <Route path="blog/:id/editar" element={<BlogForm />} />
-            <Route path="blog/categorias" element={<CategoryList />} />
-            <Route path="blog/categorias/nueva" element={<CategoryForm />} />
-            <Route path="blog/categorias/:id/editar" element={<CategoryForm />} />
-            <Route path="servicios" element={<ServiceList />} />
-            <Route path="servicios/nuevo" element={<ServiceForm />} />
-            <Route path="servicios/:id/editar" element={<ServiceForm />} />
-            <Route path="servicios/categorias" element={<ServiceCategoryList />} />
-            <Route path="servicios/categorias/nueva" element={<ServiceCategoryForm />} />
-            <Route path="servicios/categorias/:id/editar" element={<ServiceCategoryForm />} />
-            <Route path="casos" element={<CaseList />} />
-            <Route path="casos/nuevo" element={<CaseForm />} />
-            <Route path="casos/:id/editar" element={<CaseForm />} />
-            <Route path="contactos" element={<ContactList />} />
-            <Route path="usuarios" element={<UserList />} />
-          </Route>
+            {/* Dashboard — solo superusuarios */}
+            <Route path="/dashboard" element={
+              <SuperuserRoute>
+                <DashboardLayout />
+              </SuperuserRoute>
+            }>
+              <Route index element={<DashboardHome />} />
+              <Route path="blog" element={<BlogList />} />
+              <Route path="blog/nuevo" element={<BlogForm />} />
+              <Route path="blog/:id/editar" element={<BlogForm />} />
+              <Route path="blog/categorias" element={<CategoryList />} />
+              <Route path="blog/categorias/nueva" element={<CategoryForm />} />
+              <Route path="blog/categorias/:id/editar" element={<CategoryForm />} />
+              <Route path="servicios" element={<ServiceList />} />
+              <Route path="servicios/nuevo" element={<ServiceForm />} />
+              <Route path="servicios/:id/editar" element={<ServiceForm />} />
+              <Route path="servicios/categorias" element={<ServiceCategoryList />} />
+              <Route path="servicios/categorias/nueva" element={<ServiceCategoryForm />} />
+              <Route path="servicios/categorias/:id/editar" element={<ServiceCategoryForm />} />
+              <Route path="casos" element={<CaseList />} />
+              <Route path="casos/nuevo" element={<CaseForm />} />
+              <Route path="casos/:id/editar" element={<CaseForm />} />
+              <Route path="contactos" element={<ContactList />} />
+              <Route path="usuarios" element={<UserList />} />
+            </Route>
 
-          <Route path="*" element={<Error404 />} />
-        </Routes>
-      </Router>
+            <Route path="*" element={<Error404 />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </Provider>
   );
 }

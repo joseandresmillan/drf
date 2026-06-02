@@ -7,10 +7,10 @@ const ServiceFilter = ({ categories, selectedCategory, onCategoryChange }) => {
   return (
     <div className="flex flex-col space-y-6 mb-12">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <h2 className="text-3xl font-bold text-white mb-4">
           {t('services.title')}
         </h2>
-        <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+        <p className="text-lg text-gray-400 max-w-3xl mx-auto">
           {t('services.subtitle')}
         </p>
       </div>
@@ -26,7 +26,7 @@ const ServiceFilter = ({ categories, selectedCategory, onCategoryChange }) => {
             className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 shadow-md ${
               selectedCategory === category.id
                 ? 'bg-blue-600 text-white shadow-blue-200'
-                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
             }`}
           >
             <span className="flex items-center space-x-2">
@@ -34,7 +34,7 @@ const ServiceFilter = ({ categories, selectedCategory, onCategoryChange }) => {
               <span className={`text-xs px-2 py-1 rounded-full ${
                 selectedCategory === category.id
                   ? 'bg-blue-500 text-blue-100'
-                  : 'bg-gray-100 text-gray-500'
+                  : 'bg-gray-700 text-gray-400'
               }`}>
                 {category.count}
               </span>
