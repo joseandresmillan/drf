@@ -705,7 +705,7 @@ export default function TechStack() {
                     ease: "easeInOut"
                   }}
                 />
-                <span className="text-cyan-400 text-xs font-mono">Processing Matrix</span>
+                <span className="text-cyan-400 text-xs font-mono">{t('techStack.processingLabel')}</span>
               </div>
               
               <div className="overflow-hidden h-[90px] sm:h-[140px] md:h-[170px] lg:h-[190px] px-1 flex items-center justify-center">
@@ -735,7 +735,7 @@ export default function TechStack() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex items-center justify-center w-full"
             >
-              <DecryptedText text={`Construimos sobre un stack que trasciende,\nfusionando estabilidad y evolución constante.\nTecnología que no solo funciona,\nsino que abre las puertas al futuro.`} />
+              <DecryptedText text={t('techStack.heroText')} />
             </motion.div>
           </div>
 

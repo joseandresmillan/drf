@@ -62,7 +62,7 @@ export const raspberryPiAiHatContentEs = `
 <h3>🚀 Acelerador de IA Hailo-8L</h3>
 <ul>
   <li><strong>Factor de Forma:</strong> M.2 Key-M</li>
-  <li><strong>Rendimiento:</strong> Hasta <strong>13 TOPS</strong> (Tera-Operaciones Por Segundo)</li>
+  <li><strong>Rendimiento:</strong> Hasta <strong>26 TOPS</strong> (Tera-Operaciones Por Segundo)</li>
   <li><strong>Eficiencia Energética:</strong> Promedio de solo 2.5W</li>
   <li><strong>Propósito:</strong> Un chip especializado construido desde cero para ejecutar redes neuronales de manera eficiente, ofreciendo rendimiento de centro de datos en un paquete diminuto.</li>
 </ul>
@@ -273,7 +273,7 @@ python basic_pipelines/detection_simple.py -i usb</code>
 <li><strong>Decisiones en tiempo real:</strong> Una rosa lista para cosecha tiene una ventana óptima de 24 horas. Los viajes de ida y vuelta a la nube añaden segundos de latencia. La inferencia Edge en un Hailo-8L corre a 30 FPS — la decisión ocurre en la cámara.</li>
 <li><strong>Soberanía de datos:</strong> Las imágenes de cultivos nunca salen de la finca. Sin costos de almacenamiento en la nube, sin preocupaciones de privacidad, sin riesgos de filtración de datos.</li>
 <li><strong>Costo a escala:</strong> Procesar 4 cámaras x imágenes 11.9 MP diarias en la nube cuesta ~$200/mes en tarifas de API. Una sola Raspberry Pi 5 + Hailo-8L hace lo mismo por $0/mes después de la compra de $200 en hardware.</li>
-<li><strong>Eficiencia energética:</strong> El Hailo-8L ofrece 13 TOPS con solo 5W. Compáralo con una GPU en la nube consumiendo 300W por solicitud de inferencia — Edge AI no solo es más barato, es más ecológico.</li>
+<li><strong>Eficiencia energética:</strong> El Hailo-8 ofrece 26 TOPS con solo 5W. Compáralo con una GPU en la nube consumiendo 300W por solicitud de inferencia — Edge AI no solo es más barato, es más ecológico.</li>
 </ul>
 
 <h3>La ventaja 10BASE-T1S</h3>

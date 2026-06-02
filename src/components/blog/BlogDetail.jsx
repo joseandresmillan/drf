@@ -1,21 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { getPostBySlug } from "../../data/blog";
+import { fetchBlogs, fetchBlogDetail } from "../../redux/actions/blog";
+import { adaptApiPost } from "../../utils/blogAdapter";
 import Footer from "../navigation/Footer";
+import Navbar from "../navigation/Navbar";
 import Layout from "../../hocs/layouts/Layout";
-import LanguageSelector from "../common/LanguageSelector";
 import "../../styles/blogContent.css";
 
-export default function BlogDetail() {
+function BlogDetail({ apiBlogList, apiBlogDetail, fetchBlogs, fetchBlogDetail }) {
   const { slug } = useParams();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const post = getPostBySlug(slug);
 
   // Normalize language code with fallback to 'es'
   const lang = i18n.language ? i18n.language.split('-')[0] : 'es';
+
+  // Step 1: ensure the list is loaded (we need the ID to fetch detail)
+  useEffect(() => {
+    if (apiBlogList.length === 0) {
+      fetchBlogs();
+    }
+  }, [apiBlogList.length, fetchBlogs]);
+
+  // Step 2: once we have the ID from the list, fetch the full detail (includes content)
+  useEffect(() => {
+    const listEntry = apiBlogList.find((p) => p.slug === slug);
+    if (listEntry) {
+      fetchBlogDetail(listEntry.id);
+    }
+  }, [apiBlogList, slug, fetchBlogDetail]);
+
+  // Use the detail post (has content) — fall back to list entry while loading
+  const detailRaw = apiBlogDetail && apiBlogDetail.slug === slug ? apiBlogDetail : null;
+  const listRaw = apiBlogList.find((p) => p.slug === slug);
+  const staticPost = getPostBySlug(slug);
+  const post = detailRaw ? adaptApiPost(detailRaw) : (listRaw ? adaptApiPost(listRaw) : staticPost || null);
 
   // Estados para el contenido y la carga
   const [content, setContent] = useState("");
@@ -98,10 +121,11 @@ export default function BlogDetail() {
   if (!post) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Navbar />
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
           <div className="text-center">
-            <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
-            <p className="text-xl text-gray-600 mb-6">
+            <h1 className="text-6xl font-bold text-gray-900 dark:text-white mb-4">404</h1>
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-6">
               {t("blog.postNotFound") || "Post no encontrado"}
             </p>
             <Link
@@ -119,9 +143,10 @@ export default function BlogDetail() {
 
   return (
     <Layout>
-      <div className="bg-gray-50 min-h-screen">
+      <Navbar />
+      <div className="bg-white dark:bg-gray-900 transition-colors duration-300 min-h-screen">
         {/* Hero Section con Gradiente */}
-        <div className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white py-16 md:py-24">
+        <div className="relative bg-gradient-to-br from-blue-600 to-blue-800 text-white pt-28 pb-16 md:pt-32 md:pb-24">
           <div className="container mx-auto px-6 lg:px-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -143,15 +168,12 @@ export default function BlogDetail() {
                 </span>
               </nav>
 
-              {/* Language Selector */}
-              <div className="mb-6">
-                <LanguageSelector variant="home" />
-              </div>
+              {/* Language Selector removed — Navbar already contains both Language and Theme selectors */}
 
               {/* Category Badge */}
               <div className="mb-4">
                 <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
-                  {t(`blog.categories.${post.category}`)}
+                  {post.categoryName || t(`blog.categories.${post.category}`, { defaultValue: post.category })}
                 </span>
               </div>
 
@@ -206,7 +228,7 @@ export default function BlogDetail() {
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               {/* Featured Image */}
-              {post.image && (
+              {post.image && post.showFeaturedImage !== false && (
                 <div className="mb-8 rounded-xl overflow-hidden shadow-2xl mx-auto max-w-2xl">
                   <picture>
                     <source srcSet={post.image} type="image/webp" />
@@ -226,7 +248,7 @@ export default function BlogDetail() {
                 {post.tags.map((tag, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full hover:bg-gray-300 transition-colors cursor-pointer"
+                    className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                   >
                     #{tag}
                   </span>
@@ -234,12 +256,12 @@ export default function BlogDetail() {
               </div>
 
               {/* Content */}
-              <div className="bg-white rounded-xl shadow-lg p-6 md:p-12">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-12 transition-colors duration-300">
                 {/*  Loading State */}
                 {loading ? (
                   <div className="flex flex-col items-center justify-center py-20">
                     <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mb-4"></div>
-                    <p className="text-gray-600 text-lg">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg">
                       {lang === "es"
                         ? "Cargando contenido..."
                         : "Loading content..."}
@@ -283,3 +305,8 @@ export default function BlogDetail() {
     </Layout>
   );
 }
+
+export default connect(
+  (state) => ({ apiBlogList: state.blog.list, apiBlogDetail: state.blog.detail }),
+  { fetchBlogs, fetchBlogDetail }
+)(BlogDetail);

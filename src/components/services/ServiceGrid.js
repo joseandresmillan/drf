@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useServices from '../../hooks/useServices';
 import ServiceFilter from './ServiceFilter';
@@ -11,6 +12,7 @@ export default function ServiceGrid() {
   const {
     services,
     categories,
+    loading,
     selectedCategory,
     handleCategoryChange,
     getPopularServices
@@ -19,7 +21,7 @@ export default function ServiceGrid() {
   const popularServices = getPopularServices();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white py-24 sm:py-32">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* Header Section */}
@@ -29,23 +31,29 @@ export default function ServiceGrid() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium rounded-full mb-4">
+          <span className="inline-block px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm font-medium rounded-full mb-4">
             Node.ec Solutions
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
             {t('services.mainTitle')}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
               {t('services.mainTitleHighlight')}
             </span>{' '}
             {t('services.mainTitleEnd')}
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
             {t('services.mainDescription')}
           </p>
         </motion.div>
 
+        {loading && (
+          <div className="flex justify-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+          </div>
+        )}
+
         {/* Servicios Populares */}
-        {popularServices.length > 0 && (
+        {!loading && popularServices.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -53,8 +61,8 @@ export default function ServiceGrid() {
             className="mb-16"
           >
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('services.popularServices')}</h2>
-              <p className="text-gray-600">{t('services.popularDescription')}</p>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">{t('services.popularServices')}</h2>
+              <p className="text-gray-600 dark:text-gray-400">{t('services.popularDescription')}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {popularServices.map((service, index) => (
@@ -91,17 +99,17 @@ export default function ServiceGrid() {
           </div>
 
           {/* Empty State */}
-          {services.length === 0 && (
+          {!loading && services.length === 0 && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-center py-16"
             >
               <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-medium text-gray-900 mb-2">
+              <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-2">
                 {t('services.emptyState.title')}
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 {t('services.emptyState.description')}
               </p>
             </motion.div>
@@ -129,13 +137,15 @@ export default function ServiceGrid() {
             >
               {t('services.cta.freeConsult')}
             </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 border-2 border-white text-white rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors"
-            >
-              {t('services.cta.viewPortfolio')}
-            </motion.button>
+            <Link to="/casos">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3 border-2 border-white text-white rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors"
+              >
+                {t('services.cta.viewPortfolio')}
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

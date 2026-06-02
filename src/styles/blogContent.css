@@ -263,6 +263,71 @@
 
 
 
+/* ========================================
+   DARK MODE OVERRIDES
+   ======================================== */
+
+.dark .blog-content {
+  color: #e5e7eb; /* gray-200 */
+}
+
+.dark .blog-content h1,
+.dark .blog-content h2,
+.dark .blog-content h3,
+.dark .blog-content h4 {
+  color: #f9fafb; /* gray-50 */
+}
+
+.dark .blog-content h2 {
+  border-bottom-color: #374151; /* gray-700 */
+}
+
+.dark .blog-content p,
+.dark .blog-content li {
+  color: #d1d5db; /* gray-300 */
+}
+
+.dark .blog-content strong,
+.dark .blog-content b {
+  color: #f3f4f6; /* gray-100 */
+}
+
+.dark .blog-content a {
+  color: #60a5fa; /* blue-400 */
+}
+
+.dark .blog-content a:hover {
+  color: #93c5fd; /* blue-300 */
+}
+
+.dark .blog-content code {
+  background-color: #374151; /* gray-700 */
+  color: #f472b6; /* pink-400 */
+}
+
+.dark .blog-content table td {
+  border-color: #4b5563; /* gray-600 */
+  color: #e5e7eb;
+}
+
+.dark .blog-content table tbody tr:nth-child(even) {
+  background-color: #1f2937; /* gray-800 */
+}
+
+.dark .blog-content table tbody tr:hover {
+  background-color: #1e3a5f;
+}
+
+.dark .blog-content blockquote {
+  color: #d1d5db;
+  background-color: #1f2937;
+  border-left-color: #3b82f6;
+}
+
+.dark .blog-content hr {
+  border-top-color: #374151;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .blog-content h1 {

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const ServiceCard = ({ service, index }) => {
   const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const features = Array.isArray(service.features) ? service.features : [];
 
   // Lock body scroll when popup is open
   useEffect(() => {
@@ -45,39 +47,44 @@ const ServiceCard = ({ service, index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="absolute inset-px rounded-lg bg-white shadow-lg"></div>
-      <div className="relative flex h-full flex-col rounded-lg bg-gradient-to-br from-white to-gray-50 p-8 transition-all duration-300 group-hover:shadow-2xl"
+      <div className="absolute inset-px rounded-lg bg-gray-800 shadow-lg"></div>
+      <div className="relative flex h-full flex-col rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 p-8 transition-all duration-300 group-hover:shadow-2xl border border-gray-700"
         style={{ minHeight: '400px' }}
       >
         
         {/* Header con icono y categoría */}
         <div className="flex items-start justify-between mb-6">
           <div className="text-4xl mb-4">{service.icon}</div>
-          <span className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">
-            {service.category}
+          <span className="px-3 py-1 text-xs font-medium bg-blue-900/50 text-blue-300 rounded-full">
+            {service.categoryLabel || service.category}
           </span>
         </div>
 
         {/* Título y descripción */}
-        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+        <h3 className="text-xl font-bold text-gray-100 mb-3 group-hover:text-blue-400 transition-colors">
           {service.name}
         </h3>
-        <p className="text-gray-600 mb-6 leading-relaxed">
+        <p className="text-gray-400 mb-6 leading-relaxed">
           {service.description}
         </p>
 
         {/* Features - Always visible */}
         <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-800 mb-3">{t('services.card.technologies')}</h4>
+          <h4 className="text-sm font-semibold text-gray-300 mb-3">{t('services.card.technologies')}</h4>
           <div className="flex flex-wrap gap-2">
-            {service.features.map((feature, idx) => (
+            {features.map((feature, idx) => (
               <span
                 key={idx}
-                className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-green-100 hover:text-green-800 transition-colors"
+                className="px-2 py-1 text-xs bg-gray-700 text-gray-300 rounded-md hover:bg-blue-900/50 hover:text-blue-300 transition-colors"
               >
                 {feature}
               </span>
             ))}
+            {features.length === 0 && (
+              <span className="px-2 py-1 text-xs bg-gray-700 text-gray-400 rounded-md">
+                {t('services.card.technologies')}
+              </span>
+            )}
           </div>
         </div>
 
@@ -116,7 +123,7 @@ const ServiceCard = ({ service, index }) => {
             style={{ pointerEvents: 'none' }}
           >
             <div
-              className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-2xl"
+              className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-gray-900 rounded-2xl shadow-2xl border border-gray-700"
               style={{ pointerEvents: 'auto' }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -145,7 +152,7 @@ const ServiceCard = ({ service, index }) => {
                     🔧 {t('modal.technologies')}
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {service.features.map((feature, idx) => (
+                    {features.map((feature, idx) => (
                       <span
                         key={idx}
                         className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
@@ -153,6 +160,11 @@ const ServiceCard = ({ service, index }) => {
                         {feature}
                       </span>
                     ))}
+                    {features.length === 0 && (
+                      <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                        {service.name}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -164,11 +176,11 @@ const ServiceCard = ({ service, index }) => {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <span className="text-gray-600 text-sm">{t('modal.duration')}</span>
-                      <p className="font-medium text-gray-900">{service.timeline}</p>
+                      <p className="font-medium text-gray-900">{service.timeline || `2-6 ${t('services.timeline.weeks')}`}</p>
                     </div>
                     <div>
                       <span className="text-gray-600 text-sm">{t('modal.category')}</span>
-                      <p className="font-medium text-gray-900 capitalize">{service.category}</p>
+                      <p className="font-medium text-gray-900 capitalize">{service.categoryLabel || service.category}</p>
                     </div>
                   </div>
                 </div>
@@ -227,9 +239,9 @@ const ServiceCard = ({ service, index }) => {
                   <button className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                     💬 {t('modal.freeConsult')}
                   </button>
-                  <button className="flex-1 border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <Link to="/casos" className="flex-1 border-2 border-blue-600 text-blue-600 py-3 px-6 rounded-lg font-medium hover:bg-blue-50 transition-colors text-center">
                     📁 {t('modal.viewPortfolio')}
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

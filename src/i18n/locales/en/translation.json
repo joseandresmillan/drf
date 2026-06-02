@@ -5,7 +5,10 @@
     "about": "About Us",
     "blog": "Blog",
     "contact": "Contact",
-    "apod": "Astronomy Picture"
+    "apod": "Astronomy Picture",
+    "login": "Log In",
+    "register": "Sign Up",
+    "logout": "Log Out"
   },
   "home": {
     "title": "Node.ec - Connecting the Digital Future",
@@ -177,6 +180,8 @@
     "title": "Technologies we use in",
     "subtitle": "Node to take your project to the top of innovation",
     "description": "Our technology stack combines the best Machine Learning, web development and DevOps tools to create robust and scalable solutions.",
+    "processingLabel": "Processing Matrix",
+    "heroText": "We build on a stack that transcends,\nfusing stability and constant evolution.\nTechnology that doesn't just work,\nbut opens the doors to the future.",
     "cta": {
       "question": "Ready to transform your business with these technologies?",
       "button": "Start Project"
@@ -309,5 +314,53 @@
     "edit": "Edit",
     "delete": "Delete",
     "confirm": "Confirm"
+  },
+  "auth": {
+    "login": {
+      "title": "Log In",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "password": "Password",
+      "passwordPlaceholder": "Your secure password",
+      "submit": "Log In",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign up here",
+      "error": "Login failed. Please check your credentials.",
+      "success": "Welcome back!"
+    },
+    "register": {
+      "title": "Create Account",
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "password": "Password",
+      "passwordPlaceholder": "Minimum 8 characters",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Repeat your password",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Log in here",
+      "underConstruction": "We are working on this page",
+      "underConstructionAria": "under construction",
+      "temporarilyUnavailable": "Registration is temporarily unavailable.",
+      "passwordMismatch": "Passwords do not match",
+      "error": "Failed to create account. Please try again.",
+      "success": "Account created successfully!"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "minLength": "Must be at least {count} characters"
+    },
+    "profile": {
+      "title": "My Profile",
+      "welcome": "Welcome",
+      "username": "Username",
+      "email": "Email Address",
+      "noEmail": "No email registered",
+      "memberSince": "Member since",
+      "logout": "Log Out"
+    }
   }
 }

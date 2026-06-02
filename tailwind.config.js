@@ -3,12 +3,13 @@ module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors:{
         "green-button": '#E5F620',
         "blue-button": '#155799',
-        "node-text":"#E5F620",
+        "node-text":"#FFFFFF",
         
         
       },

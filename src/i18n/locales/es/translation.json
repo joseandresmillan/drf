@@ -5,7 +5,10 @@
     "about": "Nosotros",
     "blog": "Blog",
     "contact": "Contacto",
-    "apod": "Imagen Astronómica"
+    "apod": "Imagen Astronómica",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "logout": "Cerrar Sesión"
   },
   "home": {
     "title": "Node.ec - Conectando el Futuro Digital",
@@ -177,6 +180,8 @@
     "title": "Tecnologías que utilizamos en",
     "subtitle": "Node para llevar a tu proyecto a la cima de la innovación",
     "description": "Nuestro stack tecnológico combina las mejores herramientas para crear soluciones robustas y escalables.",
+    "processingLabel": "Matriz de Procesamiento",
+    "heroText": "Construimos sobre un stack que trasciende,\nfusionando estabilidad y evolución constante.\nTecnología que no solo funciona,\nsino que abre las puertas al futuro.",
     "cta": {
       "question": "¿Listo para transformar tu negocio con estas tecnologías?",
       "button": "Iniciar Proyecto"
@@ -309,5 +314,53 @@
     "edit": "Editar",
     "delete": "Eliminar",
     "confirm": "Confirmar"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "email": "Correo Electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Tu contraseña segura",
+      "submit": "Iniciar Sesión",
+      "noAccount": "¿No tienes una cuenta?",
+      "signUpLink": "Regístrate aquí",
+      "error": "Error al iniciar sesión. Verifica tus credenciales.",
+      "success": "¡Bienvenido de vuelta!"
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "name": "Nombre Completo",
+      "namePlaceholder": "Tu nombre completo",
+      "email": "Correo Electrónico",
+      "emailPlaceholder": "tu@email.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Mínimo 8 caracteres",
+      "confirmPassword": "Confirmar Contraseña",
+      "confirmPasswordPlaceholder": "Repite tu contraseña",
+      "submit": "Crear Cuenta",
+      "hasAccount": "¿Ya tienes una cuenta?",
+      "signInLink": "Inicia sesión aquí",
+      "underConstruction": "Estamos trabajando en esta página",
+      "underConstructionAria": "en construcción",
+      "temporarilyUnavailable": "El registro está temporalmente no disponible.",
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "error": "Error al crear la cuenta. Intenta nuevamente.",
+      "success": "¡Cuenta creada exitosamente!"
+    },
+    "validation": {
+      "required": "Este campo es requerido",
+      "invalidEmail": "Correo electrónico inválido",
+      "minLength": "Debe tener al menos {count} caracteres"
+    },
+    "profile": {
+      "title": "Mi Perfil",
+      "welcome": "Bienvenido",
+      "username": "Usuario",
+      "email": "Correo Electrónico",
+      "noEmail": "Sin correo registrado",
+      "memberSince": "Miembro desde",
+      "logout": "Cerrar Sesión"
+    }
   }
 }

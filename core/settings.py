@@ -70,13 +70,19 @@ DJANGO_APPS = [
 
 # Aplicaciones del proyecto
 PROJECT_APPS = [
-    # Aquí agregarás tus apps personalizadas
+    'core',
+    'apps.blog',
+    'apps.services',
+    'apps.cases',
+    'apps.contacts',
 ]
 
 # Aplicaciones de terceros
 THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
+    'djoser',
+    'rest_framework_simplejwt',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -162,6 +168,29 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# JWT and Djoser Settings
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('JWT', 'Bearer'),
+}
+
+DJOSER = {
+    'USER_ID_FIELD': 'id',
+    'LOGIN_FIELD': 'username',
+    'USER_CREATE_PASSWORD_RETYPE': True,
+    'SET_PASSWORD_RETYPE': True,
+    'PASSWORD_RESET_CONFIRM_RETYPE': True,
+    'TOKEN_MODEL': None,
+    'SERIALIZERS': {
+        'user': 'core.serializers.CustomUserSerializer',
+        'current_user': 'core.serializers.CustomUserSerializer',
+        'user_create_password_retype': 'core.serializers.CustomUserCreateSerializer',
+    },
+}
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Additional locations of static files
@@ -258,6 +287,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',

@@ -74,7 +74,7 @@ function Header({ words, links, backgroundClass, useThreeBackground = false, sho
                   >
                     <Link
                       to={link.path}
-                      className="text-base sm:text-lg lg:text-xl font-chakra font-thin leading-relaxed text-node-text text-center pointer-events-auto px-2 py-1 rounded hover:bg-blue-button/10 navbar-link"
+                      className="text-base sm:text-lg lg:text-xl font-chakra font-thin leading-relaxed text-white/80 hover:text-white text-center pointer-events-auto px-3 py-1.5 rounded-md hover:bg-white/10 transition-all duration-200 navbar-link"
                     >
                       {link.label}
                     </Link>

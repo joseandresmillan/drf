@@ -80,12 +80,12 @@ function ContactForm() {
   ];
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-8">
+    <div className="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-8 border border-gray-200 dark:border-gray-700">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Name and Email Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="name">
+            <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2" htmlFor="name">
               {t('contact.form.name')} *
             </label>
             <input
@@ -94,14 +94,14 @@ function ContactForm() {
               id="name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               required
               placeholder="Nombre completo"
             />
           </div>
           
           <div>
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="email">
+            <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2" htmlFor="email">
               {t('contact.form.email')} *
             </label>
             <input
@@ -110,7 +110,7 @@ function ContactForm() {
               id="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              className="w-full px-4 py-3 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               required
               placeholder="andres@mail.com"
             />
@@ -119,7 +119,7 @@ function ContactForm() {
 
         {/* Phone */}
         <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="phone">
+          <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2" htmlFor="phone">
             {t('contact.form.phone')}
           </label>
           <input
@@ -128,14 +128,14 @@ function ContactForm() {
             id="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             placeholder="+593 XXXXXXXX"
           />
         </div>
 
         {/* Project Type */}
         <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="projectType">
+          <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2" htmlFor="projectType">
             {t('contact.form.projectType')}
           </label>
           <select
@@ -143,7 +143,7 @@ function ContactForm() {
             id="projectType"
             value={formData.projectType}
             onChange={handleChange}
-            className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           >
             <option value="">{t('contact.placeholders.selectType')}</option>
             {projectTypes.map(type => (
@@ -156,7 +156,7 @@ function ContactForm() {
 
         {/* Subject */}
         <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="subject">
+          <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2" htmlFor="subject">
             {t('contact.form.subject')} *
           </label>
           <input
@@ -165,7 +165,7 @@ function ContactForm() {
             id="subject"
             value={formData.subject}
             onChange={handleChange}
-            className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             required
             placeholder={t('contact.placeholders.subjectExample')}
           />
@@ -173,7 +173,7 @@ function ContactForm() {
 
         {/* Message */}
         <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="message">
+          <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2" htmlFor="message">
             {t('contact.form.message')} *
           </label>
           <textarea
@@ -181,7 +181,7 @@ function ContactForm() {
             id="message"
             value={formData.message}
             onChange={handleChange}
-            className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             rows="6"
             required
             placeholder={t('contact.placeholders.messageExample')}
@@ -190,7 +190,7 @@ function ContactForm() {
 
         {/* Timeline */}
         <div>
-          <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="timeline">
+          <label className="block text-gray-700 dark:text-gray-300 text-sm font-semibold mb-2" htmlFor="timeline">
             {t('contact.form.timeline')}
           </label>
           <select
@@ -198,7 +198,7 @@ function ContactForm() {
             id="timeline"
             value={formData.timeline}
             onChange={handleChange}
-            className="w-full px-4 py-3 text-black border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
           >
             <option value="">{t('contact.placeholders.selectTime')}</option>
             <option value="urgent">{t('contact.timelines.urgent')}</option>
