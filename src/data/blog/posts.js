@@ -61,8 +61,8 @@ export const blogPosts = [
       en: "Smart monitoring of rose crops automating phenotyping."
     },
     excerpt: {
-      es: "Descubre cómo el RoseAI Monitor automatiza el seguimiento del crecimiento y fenotipado de rosas en Cayambe utilizando la arquitectura VineCam 10BASE-T1S y aceleración Hailo-8L, reduciendo los costos de nube a cero.",
-      en: "Discover how the RoseAI Monitor automates growth tracking and rose phenotyping in Cayambe using the VineCam 10BASE-T1S architecture and Hailo-8L acceleration, reducing cloud costs to zero."
+      es: "Descubre cómo el RoseAI Monitor automatiza el seguimiento del crecimiento y fenotipado de rosas en Cayambe ",
+      en: "Discover how the RoseAI Monitor automates growth tracking and rose phenotyping in Cayambe ."
     },
     content: {
       es: roseaiMonitorContentEs,
@@ -80,15 +80,15 @@ export const blogPosts = [
       }
     },
     category: "ai",
-    tags: ["roseai", "hailo-8l", "precision-agriculture", "edge-ai", "computer-vision", "10base-t1s"],
-    readTime: 15,
+    tags: ["roseai", "hailo-8l", "precision-agriculture", "edge-ai", "computer-vision"],
+    readTime: 3,
     publishedDate: "2026-05-18",
     updatedDate: "2026-05-18",
     featured: true,
     seo: {
       keywords: {
-        es: ["roseai", "agricultura de precision", "hailo-8l", "vinecam", "fenotipado"],
-        en: ["roseai", "precision agriculture", "hailo-8l", "vinecam", "phenotyping"]
+        es: ["roseai", "agricultura de precision", "hailo-8l", "fenotipado"],
+        en: ["roseai", "precision agriculture", "hailo-8l", "phenotyping"]
       }
     }
   }
