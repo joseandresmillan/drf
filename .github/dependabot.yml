@@ -1,0 +1,56 @@
+# Agrupa las actualizaciones para recibir pocos PRs en lugar de decenas de
+# alertas sueltas. Ver docs/SEGURIDAD_DEPENDENCIAS.md para el criterio aplicado
+# a las alertas que se dejan abiertas de forma consciente.
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      django:
+        patterns:
+          - "Django"
+          - "django-*"
+          - "djangorestframework*"
+          - "djoser"
+      python-resto:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "Django"
+          - "django-*"
+          - "djangorestframework*"
+          - "djoser"
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    groups:
+      # Cadena de build de react-scripts: sin impacto en runtime, se agrupa
+      # para que no genere ruido. La salida definitiva es migrar a Vite.
+      build-toolchain:
+        patterns:
+          - "react-scripts"
+          - "webpack*"
+          - "postcss*"
+          - "@babel/*"
+          - "@svgr/*"
+          - "jest*"
+          - "workbox*"
+          - "babel-*"
+          - "eslint*"
+      runtime:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "react-scripts"
+          - "webpack*"
+          - "postcss*"
+          - "@babel/*"
+          - "@svgr/*"
+          - "jest*"
+          - "workbox*"
+          - "babel-*"
+          - "eslint*"

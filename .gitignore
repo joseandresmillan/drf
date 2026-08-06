@@ -313,6 +313,7 @@ tmp/
 !/README.md
 # Si quieres versionar otro .md puntual, agrega su excepción aquí:
 # !docs/GUIA_DESPLIEGUE_PRODUCCION.md
+!docs/SEGURIDAD_DEPENDENCIAS.md
 .sh
 .bat
 package-lock.json
