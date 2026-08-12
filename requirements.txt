@@ -6,9 +6,9 @@
 
 # --- Framework ---
 Django==6.0.8
-asgiref==3.11.1
+asgiref==3.12.1
 sqlparse==0.5.5
-tzdata==2026.2
+tzdata==2026.3
 
 # --- API / autenticacion ---
 djangorestframework==3.17.1
@@ -17,8 +17,8 @@ djoser==2.3.3
 PyJWT==2.13.0
 
 # djoser >= 2.3 requiere el stack de social-auth
-social-auth-app-django==5.9.0
-social-auth-core==4.9.1
+social-auth-app-django==6.0.1
+social-auth-core==5.1.0
 oauthlib==3.3.1
 requests-oauthlib==2.0.0
 python3-openid==3.2.0
@@ -37,16 +37,16 @@ django-js-asset==3.1.2
 pillow==12.3.0
 psycopg2-binary==2.9.12
 whitenoise==6.12.0
-gunicorn==25.3.0
+gunicorn==26.0.0
 
 # --- Transitivas ---
 cryptography==50.0.0
-cffi==2.0.0
+cffi==2.1.1
 pycparser==3.0
 requests==2.34.2
-certifi==2026.4.22
-charset-normalizer==3.4.7
+certifi==2026.7.22
+charset-normalizer==3.4.9
 idna==3.18
 urllib3==2.7.0
-packaging==26.2
-typing_extensions==4.15.0
+packaging==26.3
+typing_extensions==4.16.0
