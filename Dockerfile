@@ -76,7 +76,24 @@ RUN if [ -d "build/static/media" ]; then \
     fi
 
 #################################################
-# Segunda etapa: Django
+# Etapa intermedia: fuente sin el .git
+#################################################
+# CapRover no construye con el CLI de docker, sino enviando el contexto por la
+# API del daemon, y por esa via el .dockerignore NO se aplica: por eso .git
+# seguia acabando dentro de la imagen publicada, y .git/config lleva las
+# credenciales del remote incrustadas en la URL.
+#
+# Se limpia en una etapa intermedia a proposito: un `rm -rf .git` despues del
+# `COPY . .` en la etapa final no sirve, porque el directorio seguiria presente
+# en la capa anterior y se puede recuperar de la imagen. Copiando desde esta
+# etapa, las capas de la imagen final nunca llegan a contenerlo.
+FROM python:3.12-slim AS source-clean
+WORKDIR /src
+COPY . .
+RUN rm -rf .git .github
+
+#################################################
+# Tercera etapa: Django
 #################################################
 FROM python:3.12-slim
 
@@ -91,8 +108,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copiar código Django
-COPY . .
+# Copiar código Django (desde la etapa ya limpia de .git)
+COPY --from=source-clean /src .
 
 # Copiar build de React desde la primera etapa
 COPY --from=frontend-builder /app/build ./build
