@@ -243,7 +243,7 @@ if not DEBUG:
     STATICFILES_STORAGE = 'whitenoise.storage.StaticFilesStorage'
     WHITENOISE_USE_FINDERS = True
     WHITENOISE_AUTOREFRESH = True
-    WHITENOISE_MAX_AGE = 31536000  # 1 año
+    # WHITENOISE_MAX_AGE se define mas abajo, junto a WHITENOISE_IMMUTABLE_FILE_TEST.
     WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['js', 'css']  # No comprimir para evitar problemas MIME
     
     # CRÍTICO: Forzar tipos MIME en producción  
@@ -430,5 +430,11 @@ WHITENOISE_MIMETYPES = {
 
 # Configurar caching para archivos estáticos en producción
 if not DEBUG:
-    WHITENOISE_MAX_AGE = 31536000  # 1 año en segundos
+    # Solo los assets con hash en el nombre (main.<hash>.js, logo.<hash>.png que
+    # genera CRA) pueden cachearse para siempre: al cambiar, cambia la URL.
+    # favicon.ico/.png, manifest.json y robots.txt NO llevan hash, asi que con
+    # un año de TTL un favicon roto se queda clavado en el navegador y ningun
+    # deploy lo corrige. Estos van con TTL corto.
+    WHITENOISE_IMMUTABLE_FILE_TEST = r'\.[0-9a-f]{8,32}\.[A-Za-z0-9]+$'
+    WHITENOISE_MAX_AGE = 3600  # 1 hora para los assets sin hash
     WHITENOISE_SKIP_COMPRESS_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'zip', 'gz', 'tgz', 'bz2', 'tbz', 'xz', 'br']

@@ -115,6 +115,10 @@ class SecurityHeadersMiddleware:
             "img-src 'self' data: https:; "
             "font-src 'self' data:; "
             "connect-src 'self'; "
+            # Los videos del blog se embeben en un iframe de YouTube. Sin un
+            # frame-src explicito la directiva cae a default-src 'self' y el
+            # navegador bloquea el embed.
+            "frame-src https://www.youtube-nocookie.com https://www.youtube.com; "
             "object-src 'none'; "
             "base-uri 'self'; "
             "frame-ancestors 'none'"

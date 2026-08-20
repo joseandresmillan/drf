@@ -107,7 +107,7 @@ if [ -d "/app/staticfiles/media" ]; then\n\
     ls -la /app/staticfiles/media/\n\
 fi\n\
 echo "=== INICIANDO GUNICORN ==="\n\
-exec gunicorn core.wsgi:application --bind 0.0.0.0:8080 --workers 2\n\
+exec gunicorn core.wsgi:application --bind 0.0.0.0:8080 --worker-class gthread --workers 2 --threads 4 --timeout 60 --graceful-timeout 30 --max-requests 1000 --max-requests-jitter 100\n\
 ' > /app/start.sh && chmod +x /app/start.sh
 
 EXPOSE 8080
