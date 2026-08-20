@@ -1,0 +1,19 @@
+# La etapa runtime hace `COPY . .`, asi que todo lo que este en el contexto
+# acaba dentro de la imagen publicada. Lo mas importante que hay que dejar
+# fuera es .git: en un clon de despliegue, .git/config guarda la URL del
+# remote con las credenciales incrustadas (usuario:password), y hasta ahora
+# esas credenciales viajaban dentro de la imagen de produccion.
+.git
+.github
+.gitignore
+
+# Entornos y dependencias que se reconstruyen dentro de la imagen
+node_modules
+.venv
+venv
+
+# Artefactos locales que solo engordan el contexto
+**/__pycache__
+*.pyc
+*.log
+db.sqlite3

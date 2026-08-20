@@ -295,7 +295,8 @@ log.log
 # docs/ <- NO agregar esta línea, queremos que docs/ se incluya
 
 # Docker específico
-.dockerignore
+# .dockerignore SI debe versionarse: es lo que impide que .git (con las
+# credenciales del remote) acabe dentro de la imagen via `COPY . .`.
 docker-compose.override.yml
 
 # VS Code
