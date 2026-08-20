@@ -114,7 +114,10 @@ class SecurityHeadersMiddleware:
             "style-src 'self' 'unsafe-inline'; "
             "img-src 'self' data: https:; "
             "font-src 'self' data:; "
-            "connect-src 'self'; "
+            # El formulario de contacto (src/components/contact/ContactForm.js)
+            # hace fetch POST a Formspree; con connect-src 'self' se bloquea y
+            # el envio falla en silencio.
+            "connect-src 'self' https://formspree.io; "
             # Los videos del blog se embeben en un iframe de YouTube. Sin un
             # frame-src explicito la directiva cae a default-src 'self' y el
             # navegador bloquea el embed.
