@@ -3,13 +3,8 @@ FROM node:18 AS frontend-builder
 
 WORKDIR /app
 
-# El host tiene 1.9GB de RAM y 1GB de swap, pero dockerd, el contenedor de
-# produccion y las sesiones abiertas ya ocupan ~1GB: al build le quedan unos
-# 700-900MB reales. Con un tope de 1200MB V8 crece por encima de eso, empuja
-# todo a swap, la agota y el kernel mata el proceso a mitad de npm run build
-# (v99 y v101 murieron asi). Con un tope por debajo del presupuesto real V8
-# recolecta de forma agresiva en vez de inflarse.
-ENV NODE_OPTIONS="--max-old-space-size=512"
+# Configurar memoria para 2GB RAM (usar 1.2GB para el build)
+ENV NODE_OPTIONS="--max-old-space-size=1200"
 ENV GENERATE_SOURCEMAP=false
 ENV INLINE_RUNTIME_CHUNK=false
 ENV CI=false
@@ -39,9 +34,20 @@ COPY public/ ./public/
 COPY src/ ./src/
 COPY tailwind.config.js tsconfig.json ./
 
-# Build optimizado
+# Build optimizado.
+#
+# El tope de heap se fija AQUI y no en el ENV de arriba a proposito: cambiar
+# aquel invalidaria la cache de npm ci, que es la capa mas cara de reconstruir.
+#
+# El host tiene 1.9GB de RAM y 1GB de swap, pero dockerd, el contenedor de
+# produccion, hermes y las sesiones abiertas ya ocupan ~1GB, asi que al build
+# le quedan unos 700-900MB reales. Con el tope heredado de 1200MB V8 crece por
+# encima de ese presupuesto, empuja el resto del sistema a swap, la agota y el
+# kernel mata el proceso a mitad del build: asi murieron v99 y v101. Con el
+# tope por debajo del presupuesto real V8 recolecta de forma agresiva en vez
+# de inflarse. La caja tiene 1 solo CPU, asi que terser no paraleliza.
 RUN echo "Iniciando build de React..." && \
-    npm run build && \
+    NODE_OPTIONS="--max-old-space-size=512" npm run build && \
     echo "Build completado exitosamente!" && \
     ls -la build/static/
 
