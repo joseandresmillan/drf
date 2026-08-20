@@ -48,6 +48,18 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('favicon.ico', favicon_view, name='favicon'),
     
+    # Sitemap XML para buscadores
+    # Debe declararse aqui: el catch-all de React (mas abajo) no excluye
+    # 'sitemap.xml', asi que si no se define antes devuelve el index.html del SPA.
+    path(
+        'sitemap.xml',
+        TemplateView.as_view(
+            template_name='sitemap.xml',
+            content_type='application/xml',
+        ),
+        name='sitemap',
+    ),
+
     # Health check
     path('health/', views.health_check, name='health-check'),
     
