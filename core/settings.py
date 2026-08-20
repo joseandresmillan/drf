@@ -56,6 +56,11 @@ if DEBUG:
     ALLOWED_HOSTS.extend(['localhost', '127.0.0.1', '0.0.0.0', 'localhost:8000', '127.0.0.1:8000'])
 
 
+# Security headers (aplican en dev y producción)
+SECURE_CONTENT_TYPE_NOSNIFF = True  # X-Content-Type-Options: nosniff
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+X_FRAME_OPTIONS = 'DENY'
+
 # Application definition
 
 # Aplicaciones pre instaladas por Django
@@ -90,6 +95,7 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'core.middleware.SecurityHeadersMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     # 'core.middleware.ProductionMimeTypeMiddleware',  # DESACTIVADO temporalmente - causaba errores 500
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -340,6 +346,11 @@ try:
         # Configuraciones de seguridad adicionales para producción
         SECURE_SSL_REDIRECT = True
         SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+        # Strict-Transport-Security
+        SECURE_HSTS_SECONDS = 31536000  # 1 año
+        SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+        SECURE_HSTS_PRELOAD = True
 except:
     # Fallback seguro si las variables no están configuradas
     CORS_ALLOWED_ORIGINS = ['https://node.ec', 'https://www.node.ec']

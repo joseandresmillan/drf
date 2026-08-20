@@ -96,6 +96,36 @@ class ProductionMimeTypeMiddleware:
         return response
 
 
+class SecurityHeadersMiddleware:
+    """
+    Agrega Content-Security-Policy y Permissions-Policy, que Django no
+    configura de forma nativa via settings (a diferencia de HSTS,
+    X-Content-Type-Options, X-Frame-Options y Referrer-Policy).
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+
+        response.setdefault('Content-Security-Policy', (
+            "default-src 'self'; "
+            "script-src 'self'; "
+            "style-src 'self' 'unsafe-inline'; "
+            "img-src 'self' data: https:; "
+            "font-src 'self' data:; "
+            "connect-src 'self'; "
+            "object-src 'none'; "
+            "base-uri 'self'; "
+            "frame-ancestors 'none'"
+        ))
+        response.setdefault('Permissions-Policy', (
+            "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+        ))
+
+        return response
+
+
 class StaticFilesMimeTypeMiddleware:
     """
     Middleware para corregir MIME types de archivos estáticos en desarrollo
