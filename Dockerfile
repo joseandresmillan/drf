@@ -3,8 +3,13 @@ FROM node:18 AS frontend-builder
 
 WORKDIR /app
 
-# Configurar memoria para 2GB RAM (usar 1.2GB para el build)
-ENV NODE_OPTIONS="--max-old-space-size=1200"
+# El host tiene 1.9GB de RAM y 1GB de swap, pero dockerd, el contenedor de
+# produccion y las sesiones abiertas ya ocupan ~1GB: al build le quedan unos
+# 700-900MB reales. Con un tope de 1200MB V8 crece por encima de eso, empuja
+# todo a swap, la agota y el kernel mata el proceso a mitad de npm run build
+# (v99 y v101 murieron asi). Con un tope por debajo del presupuesto real V8
+# recolecta de forma agresiva en vez de inflarse.
+ENV NODE_OPTIONS="--max-old-space-size=512"
 ENV GENERATE_SOURCEMAP=false
 ENV INLINE_RUNTIME_CHUNK=false
 ENV CI=false
