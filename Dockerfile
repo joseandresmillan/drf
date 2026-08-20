@@ -40,6 +40,13 @@ RUN echo "Iniciando build de React..." && \
     echo "Build completado exitosamente!" && \
     ls -la build/static/
 
+# CRA deja favicon/manifest/robots/logos en la raiz de build/, pero
+# STATICFILES_DIRS solo apunta a build/static/, asi que collectstatic
+# nunca los recoge. Se copian a build/static/ para que si lo haga.
+RUN cp build/favicon.ico build/favicon.png build/manifest.json build/robots.txt build/logo192.png build/logo512.png build/static/ && \
+    echo "Assets publicos copiados a build/static/" && \
+    ls -la build/static/
+
 # Verificar que las imágenes estén presentes
 RUN if [ -d "build/static/media" ]; then \
         echo "✓ Imágenes encontradas:"; \

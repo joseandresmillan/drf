@@ -81,7 +81,7 @@ if settings.DEBUG:
             {'document_root': os.path.join(settings.BASE_DIR, 'build', 'static')},
         ),
         re_path(
-            r'^static/(?P<path>favicon\.ico|manifest\.json|robots\.txt|logo.*\.png)$',
+            r'^static/(?P<path>favicon\.ico|favicon\.png|manifest\.json|robots\.txt|logo.*\.png)$',
             serve,
             {'document_root': os.path.join(settings.BASE_DIR, 'build')},
         ),
