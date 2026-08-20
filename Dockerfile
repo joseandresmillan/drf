@@ -39,15 +39,24 @@ COPY tailwind.config.js tsconfig.json ./
 # El tope de heap se fija AQUI y no en el ENV de arriba a proposito: cambiar
 # aquel invalidaria la cache de npm ci, que es la capa mas cara de reconstruir.
 #
-# El host tiene 1.9GB de RAM y 1GB de swap, pero dockerd, el contenedor de
-# produccion, hermes y las sesiones abiertas ya ocupan ~1GB, asi que al build
-# le quedan unos 700-900MB reales. Con el tope heredado de 1200MB V8 crece por
-# encima de ese presupuesto, empuja el resto del sistema a swap, la agota y el
-# kernel mata el proceso a mitad del build: asi murieron v99 y v101. Con el
-# tope por debajo del presupuesto real V8 recolecta de forma agresiva en vez
-# de inflarse. La caja tiene 1 solo CPU, asi que terser no paraleliza.
+# Historial de este tope, para no repetir el ciclo:
+#
+#   1200MB + 1GB de swap  -> el kernel mataba el proceso (SIGKILL, v99/v101):
+#                            V8 crecia por encima de la RAM disponible, la
+#                            swap se agotaba entera y saltaba el OOM killer,
+#                            que en v102 llego a reiniciar el host.
+#    512MB + 5GB de swap  -> "Ineffective mark-compacts near heap limit /
+#                            JavaScript heap out of memory" (v103): ya no lo
+#                            mata el kernel, pero el bundle no cabe en 512MB.
+#   1536MB + 5GB de swap  -> valor actual. El build necesita mas de 512MB y la
+#                            swap ampliada absorbe lo que no entra en RAM.
+#
+# El host tiene 1.9GB de RAM, 1 solo CPU (terser no paraleliza) y ~1GB ya
+# ocupado por dockerd, el contenedor de produccion y las sesiones abiertas.
+# La swap de 4GB en /mnt/volume_1 es lo que hace viable este tope; si se
+# pierde (no es persistente entre reinicios), hay que recrearla.
 RUN echo "Iniciando build de React..." && \
-    NODE_OPTIONS="--max-old-space-size=512" npm run build && \
+    NODE_OPTIONS="--max-old-space-size=1536" npm run build && \
     echo "Build completado exitosamente!" && \
     ls -la build/static/
 
