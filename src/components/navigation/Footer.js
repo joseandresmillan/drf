@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { useTranslation } from 'react-i18next';
 import logoNODE from "assets/images/node-blue.gif";
 import LanguageSelector from "../common/LanguageSelector";
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin, FaTiktok } from 'react-icons/fa';
 
 function Footer() {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ function Footer() {
     ],
     support: [
       { name: "Email:", href: "#", isLabel: true },
-      { name: "joseandresmillan16@gmail.com", href: "mailto:joseandresmillan16@gmailcom" },
+      { name: "andres.millan@node.ec", href: "mailto:joseandresmillan16@gmailcom" },
     ],
     company: [
       { name: t('nav.cases'), href: "/casos" },
@@ -31,6 +31,16 @@ function Footer() {
         name: "Instagram",
         href: "https://www.instagram.com/node.ec/",
         icon: FaInstagram,
+      },
+      {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/company/node-ec/",
+        icon: FaLinkedin,
+      },
+      {
+        name: "TikTok",
+        href: "https://www.tiktok.com/@node.ec",
+        icon: FaTiktok,
       },
     ],
   };
