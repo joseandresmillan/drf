@@ -1,0 +1,12 @@
+# Node.ec
+
+> Node.ec es una agencia ecuatoriana de transformación digital especializada en visión por computadora, IoT e Industria 4.0.
+
+## Páginas
+
+- [Inicio](https://node.ec/): Presentación de Node.ec y sus servicios de transformación digital, visión por computadora e Industria 4.0.
+- [Servicios](https://node.ec/servicios): Catálogo de servicios ofrecidos por Node.ec.
+- [Casos de Éxito](https://node.ec/casos): Casos de éxito y proyectos realizados por Node.ec.
+- [Nosotros](https://node.ec/nosotros): Información sobre el equipo y la misión de Node.ec.
+- [Blog](https://node.ec/blog): Artículos y contenido sobre tecnología, IA e Industria 4.0.
+- [Contacto](https://node.ec/contacto): Formulario e información de contacto de Node.ec.

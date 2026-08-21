@@ -48,9 +48,9 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('favicon.ico', favicon_view, name='favicon'),
     
-    # Sitemap XML para buscadores
-    # Debe declararse aqui: el catch-all de React (mas abajo) no excluye
-    # 'sitemap.xml', asi que si no se define antes devuelve el index.html del SPA.
+    # Sitemap XML, robots.txt y llms.txt para buscadores/crawlers
+    # Deben declararse aqui: el catch-all de React (mas abajo) no los excluye,
+    # asi que si no se definen antes devuelven el index.html del SPA.
     path(
         'sitemap.xml',
         TemplateView.as_view(
@@ -58,6 +58,22 @@ urlpatterns = [
             content_type='application/xml',
         ),
         name='sitemap',
+    ),
+    path(
+        'robots.txt',
+        TemplateView.as_view(
+            template_name='robots.txt',
+            content_type='text/plain',
+        ),
+        name='robots-txt',
+    ),
+    path(
+        'llms.txt',
+        TemplateView.as_view(
+            template_name='llms.txt',
+            content_type='text/markdown',
+        ),
+        name='llms-txt',
     ),
 
     # Health check
