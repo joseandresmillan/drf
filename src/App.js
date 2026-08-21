@@ -1,40 +1,42 @@
 import store from "./store";
 import { Provider } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { checkAuthenticated, load_user } from "./redux/actions/auth";
-import Error404 from "containers/errors/Error404";
 import Home from "containers/pages/Home";
-import Cases from "containers/pages/Cases";
-import Services from "containers/pages/Services";
-import About from "containers/pages/About";
-import Blog from "containers/pages/Blog";
-import BlogDetail from "components/blog/BlogDetail";
-import Contact from "containers/pages/Contact";
-import ApodPage from "containers/pages/ApodPage";
-import Muelles from "containers/pages/cases/Muelles";
-import Plagas from "containers/pages/cases/Plagas";
-import Conteo from "containers/pages/cases/Conteo";
-import Login from "containers/auth/Login";
-import Register from "containers/auth/Register";
-import Profile from "containers/auth/Profile";
 import PrivateRoute from "components/auth/PrivateRoute";
 import SuperuserRoute from "components/auth/SuperuserRoute";
-import DashboardLayout from "components/dashboard/DashboardLayout";
-import DashboardHome from "containers/dashboard/DashboardHome";
-import BlogList from "containers/dashboard/blog/BlogList";
-import BlogForm from "containers/dashboard/blog/BlogForm";
-import CategoryList from "containers/dashboard/categories/CategoryList";
-import CategoryForm from "containers/dashboard/categories/CategoryForm";
-import ServiceList from "containers/dashboard/services/ServiceList";
-import ServiceForm from "containers/dashboard/services/ServiceForm";
-import ServiceCategoryList from "containers/dashboard/services/categories/ServiceCategoryList";
-import ServiceCategoryForm from "containers/dashboard/services/categories/ServiceCategoryForm";
-import CaseList from "containers/dashboard/cases/CaseList";
-import CaseForm from "containers/dashboard/cases/CaseForm";
-import ContactList from "containers/dashboard/contacts/ContactList";
-import UserList from "containers/dashboard/users/UserList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
 import { ThemeProvider } from "./context/ThemeContext";
+
+// Rutas no críticas para el primer render: se cargan bajo demanda
+const Error404 = lazy(() => import("containers/errors/Error404"));
+const Cases = lazy(() => import("containers/pages/Cases"));
+const Services = lazy(() => import("containers/pages/Services"));
+const About = lazy(() => import("containers/pages/About"));
+const Blog = lazy(() => import("containers/pages/Blog"));
+const BlogDetail = lazy(() => import("components/blog/BlogDetail"));
+const Contact = lazy(() => import("containers/pages/Contact"));
+const ApodPage = lazy(() => import("containers/pages/ApodPage"));
+const Muelles = lazy(() => import("containers/pages/cases/Muelles"));
+const Plagas = lazy(() => import("containers/pages/cases/Plagas"));
+const Conteo = lazy(() => import("containers/pages/cases/Conteo"));
+const Login = lazy(() => import("containers/auth/Login"));
+const Register = lazy(() => import("containers/auth/Register"));
+const Profile = lazy(() => import("containers/auth/Profile"));
+const DashboardLayout = lazy(() => import("components/dashboard/DashboardLayout"));
+const DashboardHome = lazy(() => import("containers/dashboard/DashboardHome"));
+const BlogList = lazy(() => import("containers/dashboard/blog/BlogList"));
+const BlogForm = lazy(() => import("containers/dashboard/blog/BlogForm"));
+const CategoryList = lazy(() => import("containers/dashboard/categories/CategoryList"));
+const CategoryForm = lazy(() => import("containers/dashboard/categories/CategoryForm"));
+const ServiceList = lazy(() => import("containers/dashboard/services/ServiceList"));
+const ServiceForm = lazy(() => import("containers/dashboard/services/ServiceForm"));
+const ServiceCategoryList = lazy(() => import("containers/dashboard/services/categories/ServiceCategoryList"));
+const ServiceCategoryForm = lazy(() => import("containers/dashboard/services/categories/ServiceCategoryForm"));
+const CaseList = lazy(() => import("containers/dashboard/cases/CaseList"));
+const CaseForm = lazy(() => import("containers/dashboard/cases/CaseForm"));
+const ContactList = lazy(() => import("containers/dashboard/contacts/ContactList"));
+const UserList = lazy(() => import("containers/dashboard/users/UserList"));
 
 function App() {
   useEffect(() => {
@@ -46,6 +48,7 @@ function App() {
     <Provider store={store}>
       <ThemeProvider>
         <Router future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
+          <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/casos" element={<Cases />} />
@@ -94,6 +97,7 @@ function App() {
 
             <Route path="*" element={<Error404 />} />
           </Routes>
+          </Suspense>
         </Router>
       </ThemeProvider>
     </Provider>
