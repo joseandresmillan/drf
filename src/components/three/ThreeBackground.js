@@ -1,10 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, lazy, Suspense } from 'react';
 import * as THREE from 'three';
 // Importes para post-procesamiento
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { BokehPass } from 'three/examples/jsm/postprocessing/BokehPass.js';
-import CameraControls from './CameraControls';
+
+const CameraControls = lazy(() => import('./CameraControls'));
 
 const ThreeBackground = ({ className, showControls = true }) => {
   const mountRef = useRef(null);
@@ -13,6 +14,11 @@ const ThreeBackground = ({ className, showControls = true }) => {
 
   useEffect(() => {
     if (!mountRef.current) return;
+
+    // No montar la escena animada si el usuario prefiere movimiento reducido
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
 
     const currentMount = mountRef.current;
     let width = currentMount.clientWidth;
@@ -53,7 +59,7 @@ const ThreeBackground = ({ className, showControls = true }) => {
 
     // ── Geometría (≤100x100) ───────────────────────────────────
     const WIDTH = 60, HEIGHT = 60;
-    const SX = 60, SZ = 60;
+    const SX = 30, SZ = 30;
     const geo = new THREE.PlaneGeometry(WIDTH, HEIGHT, SX, SZ);
     geo.rotateX(-Math.PI / 2);
 
@@ -100,7 +106,6 @@ const ThreeBackground = ({ className, showControls = true }) => {
     const hit = new THREE.Vector3();
 
     function addRipple(x, z, now) {
-      console.log(`🌊 Ripple agregado en x:${x.toFixed(2)}, z:${z.toFixed(2)}, tiempo:${now.toFixed(2)}`);
       ripples.push({
         x, z,
         t0: now,
@@ -126,15 +131,8 @@ const ThreeBackground = ({ className, showControls = true }) => {
     }
 
     const handleClick = (e) => {
-      console.log('🖱️ Click detectado en canvas Three.js');
-      
       const p = pointerToXZ(e);
-      if (!p) {
-        console.log('❌ No se pudieron obtener coordenadas XZ');
-        return;
-      }
-      
-      console.log(`✅ Coordenadas obtenidas: x=${p.x.toFixed(2)}, z=${p.z.toFixed(2)}`);
+      if (!p) return;
       addRipple(p.x, p.z, clock.getElapsedTime());
     };
 
@@ -145,9 +143,15 @@ const ThreeBackground = ({ className, showControls = true }) => {
 
     // ── Animación ───────────────────────────────────────────────
     const tmp = new THREE.Vector2();
-    
+    let isVisible = true;
+    let isPageVisible = document.visibilityState !== 'hidden';
+
     function animate() {
       frameId.current = requestAnimationFrame(animate);
+
+      // No hacer trabajo si el hero está fuera del viewport o la pestaña está oculta
+      if (!isVisible || !isPageVisible) return;
+
       const t = clock.getElapsedTime();
 
       // Limpiar ripples viejos
@@ -209,13 +213,30 @@ const ThreeBackground = ({ className, showControls = true }) => {
 
     window.addEventListener('resize', handleResize);
 
+    // Pausar el bucle de animación cuando el hero sale del viewport (scroll)
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0]?.isIntersecting ?? true;
+      },
+      { threshold: 0 }
+    );
+    intersectionObserver.observe(currentMount);
+
+    // Pausar cuando la pestaña pasa a background
+    const handleVisibilityChange = () => {
+      isPageVisible = document.visibilityState !== 'hidden';
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      intersectionObserver.disconnect();
       renderer.domElement.removeEventListener('click', handleClick);
       renderer.domElement.removeEventListener('mousedown', handleClick);
       renderer.domElement.removeEventListener('pointerdown', handleClick);
-      
+
       if (frameId.current) {
         cancelAnimationFrame(frameId.current);
       }
@@ -266,10 +287,12 @@ const ThreeBackground = ({ className, showControls = true }) => {
         }}
       />
       {showControls && (
-        <CameraControls
-          onPositionChange={handleCameraPositionChange}
-          onLookAtChange={handleCameraLookAtChange}
-        />
+        <Suspense fallback={null}>
+          <CameraControls
+            onPositionChange={handleCameraPositionChange}
+            onLookAtChange={handleCameraLookAtChange}
+          />
+        </Suspense>
       )}
     </>
   );

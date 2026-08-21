@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
-import { useState, useEffect } from "react";
-import ThreeBackground from "../three/ThreeBackground";
+import { useState, useEffect, lazy, Suspense } from "react";
 import useLanguage from "../../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
+
+const ThreeBackground = lazy(() => import("../three/ThreeBackground"));
 
 function Header({ words, links, backgroundClass, useThreeBackground = false, showCameraControls = false }) {
   const { currentLanguage } = useLanguage();
@@ -49,7 +50,11 @@ function Header({ words, links, backgroundClass, useThreeBackground = false, sho
   return (
     <main>
       <div className={`relative px-4 sm:px-6 lg:px-8 min-h-screen ${useThreeBackground ? "" : `bg-cover bg-center ${backgroundClass}`}`}>
-        {useThreeBackground && <ThreeBackground showControls={showCameraControls} />}
+        {useThreeBackground && (
+          <Suspense fallback={null}>
+            <ThreeBackground showControls={showCameraControls} />
+          </Suspense>
+        )}
         <div className="mx-auto max-w-7xl pt-32 pb-20 sm:pt-40 sm:pb-24 lg:pt-44 lg:pb-28 relative z-30 pointer-events-none">
           <div className="text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl text-node-text font-chakra tracking-tight font-bold leading-tight relative z-50 pointer-events-none px-2 sm:px-4 header-title">
