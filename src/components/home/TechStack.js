@@ -351,25 +351,25 @@ export default function TechStack() {
   const technologies = useMemo(() => [
     {
       name: 'Python',
-      icon: <SiPython className="w-6 h-6 text-blue-500" />,
+      icon: <SiPython className="w-6 h-6 text-blue-500" aria-hidden="true" />,
       color: 'from-blue-500 to-cyan-400',
       delay: 0
     },
     {
       name: 'Claude',
-      icon: <SiClaude className="w-6 h-6 text-black" />,
+      icon: <SiClaude className="w-6 h-6 text-black" aria-hidden="true" />,
       color: 'from-gray-800 to-gray-600',
       delay: 0.2
     },
     {
       name: 'Docker',
-      icon: <SiDocker className="w-6 h-6 text-blue-600" />,
+      icon: <SiDocker className="w-6 h-6 text-blue-600" aria-hidden="true" />,
       color: 'from-blue-600 to-blue-400',
       delay: 0.4
     },
     {
       name: 'React',
-      icon: <SiReact className="w-6 h-6 text-cyan-400" />,
+      icon: <SiReact className="w-6 h-6 text-cyan-400" aria-hidden="true" />,
       color: 'from-cyan-400 to-blue-400',
       delay: 0.6
     },
@@ -381,7 +381,7 @@ export default function TechStack() {
     },
     {
       name: 'GitHub',
-      icon: <SiGithub className="w-6 h-6 text-gray-800" />,
+      icon: <SiGithub className="w-6 h-6 text-gray-800" aria-hidden="true" />,
       color: 'from-gray-700 to-gray-500',
       delay: 1.0
     },
@@ -393,7 +393,7 @@ export default function TechStack() {
     },
     {
       name: 'Hugging Face',
-      icon: <SiHuggingface className="w-6 h-6 text-yellow-500" />,
+      icon: <SiHuggingface className="w-6 h-6 text-yellow-500" aria-hidden="true" />,
       color: 'from-yellow-500 to-orange-400',
       delay: 1.4
     }

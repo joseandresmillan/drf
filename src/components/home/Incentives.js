@@ -10,17 +10,17 @@ export default function Incentives() {
   const incentives = [
     {
       name: t('home.incentives.web3.title'),
-      imageSrc: <SiHiveBlockchain className="h-16 w-16 text-blue-600" />,
+      imageSrc: <SiHiveBlockchain className="h-16 w-16 text-blue-600" aria-hidden="true" />,
       description: t('home.incentives.web3.description'),
     },
     {
       name: t('home.incentives.scalability.title'),
-      imageSrc: <GiTimeTrap className="h-16 w-16 text-green-600" />,
+      imageSrc: <GiTimeTrap className="h-16 w-16 text-green-600" aria-hidden="true" />,
       description: t('home.incentives.scalability.description'),
     },
     {
       name: t('home.incentives.interoperability.title'),
-      imageSrc: <FaSatelliteDish className="h-16 w-16 text-yellow-600" />,
+      imageSrc: <FaSatelliteDish className="h-16 w-16 text-yellow-600" aria-hidden="true" />,
       description: t('home.incentives.interoperability.description'),
     },
   ];
