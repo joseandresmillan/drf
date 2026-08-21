@@ -7,6 +7,7 @@ import PrivateRoute from "components/auth/PrivateRoute";
 import SuperuserRoute from "components/auth/SuperuserRoute";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; /*Responsable de todas las rutas */
 import { ThemeProvider } from "./context/ThemeContext";
+import WhatsAppButton from "components/common/WhatsAppButton";
 
 // Rutas no críticas para el primer render: se cargan bajo demanda
 const Error404 = lazy(() => import("containers/errors/Error404"));
@@ -98,6 +99,7 @@ function App() {
             <Route path="*" element={<Error404 />} />
           </Routes>
           </Suspense>
+          <WhatsAppButton />
         </Router>
       </ThemeProvider>
     </Provider>
