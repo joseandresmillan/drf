@@ -5,15 +5,15 @@
 # (ver docs/SEGURIDAD_DEPENDENCIAS.md).
 
 # --- Framework ---
-Django==6.0.8
+Django==6.1
 asgiref==3.11.1
 sqlparse==0.5.5
 tzdata==2026.2
 
 # --- API / autenticacion ---
-djangorestframework==3.17.1
+djangorestframework==3.18.0
 djangorestframework-simplejwt==5.5.1
-djoser==2.3.3
+djoser==2.3.4
 PyJWT==2.13.0
 
 # djoser >= 2.3 requiere el stack de social-auth
@@ -26,12 +26,12 @@ defusedxml==0.7.1
 
 # --- Apps de Django ---
 django-cors-headers==4.9.0
-django-environ==0.13.0
+django-environ==0.14.0
 django-storages==1.14.6
 django-ckeditor==6.7.3
 django-ckeditor-5==0.2.20
 django-ckeditor5==0.0.4
-django-js-asset==3.1.2
+django-js-asset==4.0.2
 
 # --- Imagenes / base de datos / servidor ---
 pillow==12.3.0
